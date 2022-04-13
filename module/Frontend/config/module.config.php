@@ -25,7 +25,6 @@ return array(
     'view_helpers' => array(
         'factories' => array (
             'FrontendSquareGroupList' => 'Frontend\View\Helper\SquareGroupListFactory',
-            'FrontendSquareGroupCheck' => 'Frontend\View\Helper\SquareGroupCheckFactory',
         ),
     ),
 
