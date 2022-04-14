@@ -76,4 +76,8 @@ return array(
     'Player' => 'Joueur',
     'Players' => 'Joueurs',
 
+    'This website is using cookies' => 'Ce site utilise des cookies',
+    'More details' => 'Plus de détails',
+    'Understood' => 'Entendu',
+
 );

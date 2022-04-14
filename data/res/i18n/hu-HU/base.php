@@ -81,5 +81,7 @@ return array(
 
     'Visibility' => 'Láthatóság',
     'Quantity' => 'Mennyiség',
-
+    'This website is using cookies' => 'Ez a weboldal cookie-kat használ',
+    'More details' => 'Részletek',
+    'Understood' => 'Elfogadom',
 );

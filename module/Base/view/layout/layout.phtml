@@ -70,8 +70,11 @@
             </div>
 
             <?= $this->links() ?>
-        </div>
 
+        </div>
+        
+        <?= $this->partial('base/cookie') ?>
+        
         <div id="footer">
             <div class="centered-text">
                 <span class="no-wrap">v<?= $this->version() ?> &copy; <?= date('Y') ?> <a href="<?= $this->option('client.website') ?>"><?= $this->option('client.name.full') ?></a></span>
@@ -83,6 +86,7 @@
         <script type="text/javascript" src="<?= $this->basePath('js/jquery/jquery.min.js') ?>"></script>
         <script type="text/javascript" src="<?= $this->basePath('js/jquery-ui/jquery-ui.min.js') ?>"></script>
         <script type="text/javascript" src="<?= $this->basePath('js/default.min.js') ?>"></script>
+        <script type="text/javascript" src="<?= $this->basePath('js/cookie-consent.min.js') ?>"></script>
         <?= $this->headScript() ?>
     </body>
 </html>
