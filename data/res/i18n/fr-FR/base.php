@@ -76,7 +76,7 @@ return array(
     'Player' => 'Joueur',
     'Players' => 'Joueurs',
 
-    'This website is using cookies' => 'Ce site utilise des cookies',
+    'We use cookies on our website to give you the best possible experience' => 'Nous utilisons des cookies sur notre site Web pour vous offrir la meilleure expérience possible',
     'More details' => 'Plus de détails',
     'Understood' => 'Entendu',
 
