@@ -109,6 +109,7 @@ return array(
     'view_manager' => array(
         'template_map' => array(
             'base/layout'          => __DIR__ . '/../view/layout/layout.phtml',
+            'base/cookie'          => __DIR__ . '/../view/layout/cookieconsentpopup.phtml',
             'error/404'            => __DIR__ . '/../view/error/404.phtml',
             'error/500'            => __DIR__ . '/../view/error/500.phtml',
         ),

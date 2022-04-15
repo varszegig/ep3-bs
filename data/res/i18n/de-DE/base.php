@@ -82,4 +82,8 @@ return array(
     'Visibility' => 'Sichtbarkeit',
     'Quantity' => 'Anzahl',
 
+    'We use cookies on our website to give you the best possible experience' => 'Wir verwenden Cookies auf unserer Website, um Ihnen das bestmögliche Erlebnis zu bieten',
+    'More details' => 'Mehr Details',
+    'Understood' => 'Verstanden',
+
 );
