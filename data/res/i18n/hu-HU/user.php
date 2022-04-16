@@ -27,12 +27,12 @@ return array(
     'All right, your password has been changed. You can now log into your account.'
         => 'Jelszava sikeresen megváltoztatva. Most már be tud lépni.',
 
-    'New registration waiting for activation' => 'Az új regisztrálása aktiválásra vár',
-    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n%s\r\n%s"
-        => "%s: Egy új felhasználó regisztrált. A beállításai alapján ez a felhasználó nem fog tudni %sat foglalni amíg manuálisan nem aktiválja. \r\nA felhasználó adatai:\r\n%s\r\n%s",
+    'New registration waiting for activation' => 'Új regisztráció vár aktiválásra',
+    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n\r\n%s\r\n%s"
+        => "%s: Egy új felhasználó regisztrált. A beállításai alapján ez a felhasználó nem fog tudni %sat foglalni amíg manuálisan nem aktiválja. \r\nA felhasználó adatai:\r\n\r\n%s\r\n%s",
 
     'New user registration' => 'Új felhasználói regisztráció',
-    "A new user has registered to your %s. \r\nNew user details:\r\n%s\r\n%s" => "%s: Új felhasználó regisztrált. \r\nAz új felhasználó adatai:\r\n%s\r\n%s",
+    "A new user has registered to your %s. \r\nNew user details:\r\n\r\n%s\r\n%s" => "%s: Új felhasználó regisztrált. \r\nAz új felhasználó adatai:\r\n\r\n%s\r\n%s",
     
     'Your registration to the %s %s' => 'A regisztrációja a %s %s - hoz',
 
