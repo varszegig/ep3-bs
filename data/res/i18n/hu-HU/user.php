@@ -28,9 +28,12 @@ return array(
         => 'Jelszava sikeresen megváltoztatva. Most már be tud lépni.',
 
     'New registration waiting for activation' => 'Az új regisztrálása aktiválásra vár',
-    'A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him.'
-        => 'Egy új felhasználó regisztrálva lett az ön %s. A beállításai alapján ez a felhasználó nem fog tudni foglalni %s amíg manuálisan nem aktiválja',
+    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n%s\r\n%s"
+        => "%s: Egy új felhasználó regisztrált. A beállításai alapján ez a felhasználó nem fog tudni %sat foglalni amíg manuálisan nem aktiválja. \r\nA felhasználó adatai:\r\n%s\r\n%s",
 
+    'New user registration' => 'Új felhasználói regisztráció',
+    "A new user has registered to your %s. \r\nNew user details:\r\n%s\r\n%s" => "%s: Új felhasználó regisztrált. \r\nAz új felhasználó adatai:\r\n%s\r\n%s",
+    
     'Your registration to the %s %s' => 'A regisztrációja a %s %s - hoz',
 
     "welcome to the %s %s!\r\n\r\nThank you for your registration to our service.\r\n\r\nBefore you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"

@@ -28,8 +28,12 @@ return array(
         => 'In Ordnung, Ihr Passwort wurde geändert. Sie können sich nun wieder anmelden.',
 
     'New registration waiting for activation' => 'Neuer Benutzer wartet auf Aktivierung',
-    'A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him.'
-        => 'Ein neuer Benutzer hat sich bei Ihrem %s registriert. Entsprechend Ihrer Einstellungen muss dieser Benutzer manuell aktiviert werden, bevor dieser %s buchen kann.',
+    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n%s\r\n%s"
+        => "Ein neuer Benutzer hat sich bei Ihrem %s registriert. Entsprechend Ihrer Einstellungen muss dieser Benutzer manuell aktiviert werden, bevor dieser %s buchen kann.\r\nNeue Benutzerdaten:\r\n%s\r\n%s",
+
+    'New user registration' => 'Neue Benutzerregistrierung',
+    "A new user has registered to your %s. \r\nNew user details:\r\n%s\r\n%s" => "Ein neuer Benutzer hat sich bei Ihrem %s registriert.\r\nNeue Benutzerdaten:\r\n%s\r\n%s",
+    
 
     'Your registration to the %s %s' => 'Ihre Registrierung beim %s %s',
 

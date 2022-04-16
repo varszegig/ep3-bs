@@ -28,9 +28,12 @@ return array(
         => 'Très bien, votre mot de passe a été changé. Vous pouvez maintenant vous connecter à votre compte.',
 
     'New registration waiting for activation' => 'Nouvel inscription en attente d\'activation',
-    'A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him.'
-        => 'Un nouvel utilisateur c\'est inscrit à %s. D\'après votre configuration il ne sera pas en mesure de réserver des %s jusqu\'à ce que vous l\'activiez manuellement.',
+    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n%s\r\n%s"
+        => "Un nouvel utilisateur c\'est inscrit à %s. D\'après votre configuration il ne sera pas en mesure de réserver des %s jusqu\'à ce que vous l\'activiez manuellement.\r\nDétails du nouvel utilisateur:\r\n%s\r\n%s",
 
+    'New user registration' => 'Enregistrement d\'un nouvel utilisateur',
+    "A new user has registered to your %s. \r\nNew user details:\r\n%s\r\n%s" => "Un nouvel utilisateur c\'est inscrit à %s. \r\nDétails du nouvel utilisateur\r\n%s\r\n%s",
+    
     'Your registration to the %s %s' => 'Votre inscription à %s %s',
 
     "welcome to the %s %s!\r\n\r\nThank you for your registration to our service.\r\n\r\nBefore you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"
