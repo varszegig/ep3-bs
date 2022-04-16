@@ -199,7 +199,7 @@ class AccountController extends AbstractActionController
                     $backendMailService = $serviceManager->get('Backend\Service\MailService');
                     $backendMailService->send(
                         $this->t('New registration waiting for activation'),
-                        sprintf($this->t("A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\n\r\nNew user details:\r\n%s\r\n%s"),
+                        sprintf($this->t("A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n\r\n%s\r\n%s"),
                             $this->option('service.name.full', false), 
                             $this->option('subject.square.type.plural', false), 
                             $alias, $registrationData['rf-email1']));
