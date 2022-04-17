@@ -32,7 +32,7 @@ return array(
         => "Un nouvel utilisateur c\'est inscrit à %s. D\'après votre configuration il ne sera pas en mesure de réserver des %s jusqu\'à ce que vous l\'activiez manuellement.\r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
 
     'New user registration' => 'Enregistrement d\'un nouvel utilisateur',
-    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "Un nouvel utilisateur c\'est inscrit à %s. \r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
+    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "Un nouvel utilisateur c\'est inscrit à %s.\r\n\r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
     
     'Your registration to the %s %s' => 'Votre inscription à %s %s',
 
@@ -43,6 +43,7 @@ return array(
 
     'You cannot manually activate your account currently' => 'Vous ne pouvez pas activer manuellement votre compte actuellement',
 
+    'Aktivierung des Benutzerkontos' => 'Activation du compte utilisateur',
     'We have just received your request for a new user account activation email.' => 'Nous venons de recevoir votre demande pour un nouvel email d\'activation de compte utilisateur.',
     'Unfortunately, your account is considered a placeholder and thus cannot be activated.' => 'Malheureusement, votre compte a été défini comme joker et ne peut pas être activé.',
     "Before you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"

@@ -32,7 +32,7 @@ return array(
         => "Ein neuer Benutzer hat sich bei Ihrem %s registriert. Entsprechend Ihrer Einstellungen muss dieser Benutzer manuell aktiviert werden, bevor dieser %s buchen kann.\r\nNeue Benutzerdaten:\r\n\r\n%s\r\n%s",
 
     'New user registration' => 'Neue Benutzerregistrierung',
-    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "Ein neuer Benutzer hat sich bei Ihrem %s registriert.\r\nNeue Benutzerdaten:\r\n\r\n%s\r\n%s",
+    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "Ein neuer Benutzer hat sich bei Ihrem %s registriert.\r\n\r\nNeue Benutzerdaten:\r\n\r\n%s\r\n%s",
     
 
     'Your registration to the %s %s' => 'Ihre Registrierung beim %s %s',
@@ -44,6 +44,7 @@ return array(
 
     'You cannot manually activate your account currently' => 'Sie können Ihr Benutzerkonto derzeit nicht selbst aktivieren',
 
+    'User account activation' => 'Aktivierung des Benutzerkontos',
     'We have just received your request for a new user account activation email.' => 'Sie haben kürzlich um eine neue Aktivierungs E-Mail gebeten.',
     'Unfortunately, your account is considered a placeholder and thus cannot be activated.' => 'Leider wurde Ihr Benutzerkonto als Platzhalter definiert.',
     "Before you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"
