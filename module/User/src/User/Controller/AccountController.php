@@ -228,7 +228,7 @@ class AccountController extends AbstractActionController
                     $backendMailService = $serviceManager->get('Backend\Service\MailService');
                     $backendMailService->send(
                         $this->t('New user registration'),
-                        sprintf($this->t("A new user has registered to your %s. \r\n\r\nNew user details:\r\n%s\r\n%s"),
+                        sprintf($this->t("A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s"),
                         $this->option('service.name.full', false), $alias, $registrationData['rf-email1']));                    
                 }
 

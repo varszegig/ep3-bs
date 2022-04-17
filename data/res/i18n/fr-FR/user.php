@@ -32,7 +32,7 @@ return array(
         => "Un nouvel utilisateur c\'est inscrit à %s. D\'après votre configuration il ne sera pas en mesure de réserver des %s jusqu\'à ce que vous l\'activiez manuellement.\r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
 
     'New user registration' => 'Enregistrement d\'un nouvel utilisateur',
-    "A new user has registered to your %s. \r\nNew user details:\r\n\r\n%s\r\n%s" => "Un nouvel utilisateur c\'est inscrit à %s. \r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
+    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "Un nouvel utilisateur c\'est inscrit à %s. \r\nDétails du nouvel utilisateur:\r\n\r\n%s\r\n%s",
     
     'Your registration to the %s %s' => 'Votre inscription à %s %s',
 
