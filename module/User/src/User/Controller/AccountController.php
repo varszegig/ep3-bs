@@ -199,8 +199,10 @@ class AccountController extends AbstractActionController
                     $backendMailService = $serviceManager->get('Backend\Service\MailService');
                     $backendMailService->send(
                         $this->t('New registration waiting for activation'),
-                        sprintf($this->t('A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him.'),
-                            $this->option('service.name.full', false), $this->option('subject.square.type.plural', false)));
+                        sprintf($this->t("A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n\r\n%s\r\n%s"),
+                            $this->option('service.name.full', false), 
+                            $this->option('subject.square.type.plural', false), 
+                            $alias, $registrationData['rf-email1']));
                 }
 
                 /* Send confirmation email to user for activation */
@@ -216,10 +218,18 @@ class AccountController extends AbstractActionController
                         $this->option('client.name.short', false), $this->option('service.name.full', false));
 
                     $text = sprintf($this->t("welcome to the %s %s!\r\n\r\nThank you for your registration to our service.\r\n\r\nBefore you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"),
-                        $this->option('client.name.full', false), $this->option('service.name.full', false), $this->option('subject.square.type.plural', false), $activationLink);
+                        $this->option('client.name.full', false), $this->option('service.name.full', false), 
+                        $this->option('subject.square.type.plural', false), $activationLink);
 
                     $userMailService = $serviceManager->get('User\Service\MailService');
                     $userMailService->send($user, $subject, $text);
+
+                    /* Inform admon about new user */
+                    $backendMailService = $serviceManager->get('Backend\Service\MailService');
+                    $backendMailService->send(
+                        $this->t('New user registration'),
+                        sprintf($this->t("A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s"),
+                        $this->option('service.name.full', false), $alias, $registrationData['rf-email1']));                    
                 }
 
                 return $this->redirect()->toRoute('user/registration-confirmation');

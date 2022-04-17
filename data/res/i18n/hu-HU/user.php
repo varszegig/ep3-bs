@@ -27,23 +27,27 @@ return array(
     'All right, your password has been changed. You can now log into your account.'
         => 'Jelszava sikeresen megváltoztatva. Most már be tud lépni.',
 
-    'New registration waiting for activation' => 'Az új regisztrálása aktiválásra vár',
-    'A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him.'
-        => 'Egy új felhasználó regisztrálva lett az ön %s. A beállításai alapján ez a felhasználó nem fog tudni foglalni %s amíg manuálisan nem aktiválja',
+    'New registration waiting for activation' => 'Új regisztráció vár aktiválásra',
+    "A new user has registered to your %s. According to your configuration, this user will not be able to book %s until you manually activate him. \r\nNew user details:\r\n\r\n%s\r\n%s"
+        => "%s: Egy új felhasználó regisztrált. A beállításai alapján ez a felhasználó nem fog tudni %sat foglalni amíg manuálisan nem aktiválja. \r\nA felhasználó adatai:\r\n\r\n%s\r\n%s",
 
+    'New user registration' => 'Új felhasználói regisztráció',
+    "A new user has registered to your %s.\r\n\r\nNew user details:\r\n\r\n%s\r\n%s" => "%s: Új felhasználó regisztrált.\r\n\r\nAz új felhasználó adatai:\r\n\r\n%s\r\n%s",
+    
     'Your registration to the %s %s' => 'A regisztrációja a %s %s - hoz',
 
     "welcome to the %s %s!\r\n\r\nThank you for your registration to our service.\r\n\r\nBefore you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"
-        => "Üdvözöljük Önt!\r\n\r\nKöszönjük a regisztrációját.\r\n\r\nMielőtt foglalni tudna az új felhasználói fiókjával, aktiválnia kell a következő linken!\r\n\r\n%s",
+        => "A %s %s üdvözli Önt!\r\n\r\nKöszönjük a regisztrációját.\r\n\r\nMielőtt foglalni tudna %sat az új felhasználói fiókjával, aktiválnia kell a következő linken!\r\n\r\n%s",
 
     'Your activation code seems invalid. Please try again.' => 'Az aktivációs kódja nem érvényes. Kérjük próbálja meg újra.',
 
     'You cannot manually activate your account currently' => 'Jelenleg ön nem tudja manuálisan aktiválni a felhasználói fiókját',
 
+    'User account activation' => 'Felhasználói fiók aktiválása',
     'We have just received your request for a new user account activation email.' => 'Megkaptuk az új aktivációs email-re vonatkozó kérését.',
     'Unfortunately, your account is considered a placeholder and thus cannot be activated.' => 'Sajnos a felhasználói fiókja foglalva van és ezért nem lehet bejelentkezni.',
     "Before you can completely use your new user account to book spare %s online, you have to activate it by simply clicking the following link. That's all!\r\n\r\n%s"
-        => "Mielőtt foglalni tudna az új felhasználói fiókjával %s, aktiválnia kell a következő linken!\r\n\r\n%s",
+        => "Mielőtt foglalni tudna az új felhasználói fiókjával %sat, aktiválnia kell a következő linken!\r\n\r\n%s",
     'However, your account has already been activated. You can login whenever you like!'
         => 'A felhasználói fiókja már aktiválva lett. Mostantól bármikor be tud jelentkezni!',
 
@@ -242,7 +246,7 @@ return array(
     'Bye, %s' => 'Viszontlátásra, %s',
 
     'If you have already registered, you can login here with your email address and start booking %s.'
-        => 'Ha már regisztrált akkor itt tud bejelentkeztni az email címével és kezdhet foglalni %s.',
+        => 'Ha már regisztrált akkor itt tud bejelentkeztni az email címével és kezdhet foglalni %sat.',
 
     'Bill' => 'Számla',
     'Booking-Bill' => 'Foglalás számla',

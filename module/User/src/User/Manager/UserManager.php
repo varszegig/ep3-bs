@@ -375,7 +375,7 @@ class UserManager extends AbstractManager
         } else {
             if (empty($where)) {
                 $where = array(
-                    new NotIn('status', array('deleted', 'disabled')),
+                    new NotIn('status', array('deleted', 'blocked')),
                 );
             }
 
