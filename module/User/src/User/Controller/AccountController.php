@@ -229,7 +229,7 @@ class AccountController extends AbstractActionController
                     $backendMailService->send(
                         $this->t('New user registration'),
                         sprintf($this->t("A new user has registered to your %s. \r\n\r\nNew user details:\r\n%s\r\n%s"),
-                            $alias, $registrationData['rf-email1']));                    
+                        $this->option('service.name.full', false), $alias, $registrationData['rf-email1']));                    
                 }
 
                 return $this->redirect()->toRoute('user/registration-confirmation');
