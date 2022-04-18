@@ -36,9 +36,9 @@
 
                 <div id="topbar-website" class="responsive-pass-4">
                     <p>
-                        <span class="light-gray"><?= $this->t('Our website') ?></span><br>
+                        <span class="header-light"><?= $this->t('Our website') ?></span><br>
                         <span class="large-text">
-                            <a href="<?= $this->option('client.website') ?>" class="unlined white">
+                            <a href="<?= $this->option('client.website') ?>" class="unlined header-white">
                                 <?= $this->shortUrl($this->option('client.website')) ?>
                             </a>
                         </span>
@@ -47,9 +47,9 @@
 
                 <div id="topbar-phone" class="responsive-pass-4">
                     <p>
-                        <span class="light-gray"><?= $this->t('Book by phone') ?></span><br>
+                        <span class="header-light"><?= $this->t('Book by phone') ?></span><br>
                         <span class="large-text">
-                            <a href="tel:<?= $this->option('client.contact.phone') ?>" class="unlined white">
+                            <a href="tel:<?= $this->option('client.contact.phone') ?>" class="unlined header-white">
                                 <?= $this->option('client.contact.phone') ?>
                             </a>
                         </span>
@@ -77,7 +77,7 @@
         
         <div id="footer">
             <div class="centered-text">
-                <span class="no-wrap">v<?= $this->version() ?> &copy; <?= date('Y') ?> <a href="<?= $this->option('client.website') ?>"><?= $this->option('client.name.full') ?></a></span>
+                <span class="no-wrap header-light">v<?= $this->version() ?> &copy; <?= date('Y') ?> <a href="<?= $this->option('client.website') ?>"><?= $this->option('client.name.full') ?></a></span>
                 (<a href="<?= $this->option('client.website.imprint') ?>"><?= $this->t('Imprint') ?></a><?php if ($this->option('client.website.privacy')): ?> &ndash; <a href="<?= $this->option('client.website.privacy') ?>"><?= $this->t('Privacy') ?></a><?php endif; ?>)
                 <?php if ($this->option('service.branding', 'true') == 'true'): ?><span class="no-wrap">&amp; <a href="<?= $this->option('service.branding.website') ?>"><?= $this->option('service.branding.name') ?></a> (<?= $this->t('Software') ?>)</span><?php endif; ?>
             </div>

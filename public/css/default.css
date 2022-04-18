@@ -425,9 +425,15 @@ a.squarebox-primary-close-link:hover {
 
 .light-gray { color: #999; }
 
-.white, .white a:link, a.white:link, .white a:visited, a.white:visited { color: #FFF; }
+.header-light { color: #999; }
+
+.white, .white a:link, a.white:link, .white a:visited, a.white:visited { color: rgb(255, 255, 255); }
 .white a:link, a.white:link, .white a:visited, a.white:visited { opacity: 0.85; }
 .white a:hover, a.white:hover, .white a:hover, a.white:hover { opacity: 1.00; }
+
+.header-white, .header-white a:link, a.header-white:link, .header-white a:visited, a.header-white:visited { color: #FFF; }
+.header-white a:link, a.header-white:link, .header-white a:visited, a.header-white:visited { opacity: 0.85; }
+.header-white a:hover, a.header-white:hover, .header-white a:hover, a.header-white:hover { opacity: 1.00; }
 
 .my-highlight { color: #5F8024; }
 
