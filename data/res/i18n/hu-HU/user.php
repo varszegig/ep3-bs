@@ -232,7 +232,7 @@ return array(
     'Account data' => 'Felhasználói adatok',
     'Personal data' => 'Személyes adatok',
 
-    'I have read and accept the %1$sprivacy policy%2$s' => 'Elolvastam és elfogadtam az%1$sadatvédelmi nyilatkozatot%2$s',
+    'I have read and accept the %1$sprivacy policy%2$s' => 'Elolvastam és elfogadtam az%1$sadatvédelmi nyilatkozatot %2$s',
 
     'please inform us about changes, so we can update this data' => 'kérem értesítsen bennünket a változtatásokról, hogy frissíteni tudjuk az adatokat',
 
