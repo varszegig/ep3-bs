@@ -133,6 +133,7 @@ class IndexController extends AbstractActionController
                         'range_book' => 4838400,
                         'max_active_bookings' => 0,
                         'range_cancel' => 86400,
+                        'square_group' => 0,
                     ));
 
                     $square2 = clone $square1;
