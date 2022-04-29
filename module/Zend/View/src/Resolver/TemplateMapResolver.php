@@ -7,14 +7,14 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Resolver;
+namespace Laminas\View\Resolver;
 
 use ArrayIterator;
 use IteratorAggregate;
 use Traversable;
-use Zend\Stdlib\ArrayUtils;
-use Zend\View\Exception;
-use Zend\View\Renderer\RendererInterface as Renderer;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\View\Exception;
+use Laminas\View\Renderer\RendererInterface as Renderer;
 
 class TemplateMapResolver implements IteratorAggregate, ResolverInterface
 {

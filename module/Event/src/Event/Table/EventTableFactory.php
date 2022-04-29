@@ -2,15 +2,15 @@
 
 namespace Event\Table;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class EventTableFactory implements FactoryInterface
 {
 
     public function createService(ServiceLocatorInterface $sm)
     {
-        return new EventTable(EventTable::NAME, $sm->get('Zend\Db\Adapter\Adapter'));
+        return new EventTable(EventTable::NAME, $sm->get('Laminas\Db\Adapter\Adapter'));
     }
 
 }

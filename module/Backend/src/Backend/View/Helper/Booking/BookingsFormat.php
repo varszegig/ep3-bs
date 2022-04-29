@@ -2,7 +2,7 @@
 
 namespace Backend\View\Helper\Booking;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class BookingsFormat extends AbstractHelper
 {

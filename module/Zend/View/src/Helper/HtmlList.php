@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
-use Zend\View\Exception;
+use Laminas\View\Exception;
 
 /**
  * Helper for ordered and unordered lists

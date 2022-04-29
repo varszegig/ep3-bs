@@ -5,7 +5,7 @@ namespace Calendar\Controller\Plugin;
 use DateTime;
 use Exception;
 use RuntimeException;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class DetermineDate extends AbstractPlugin
 {

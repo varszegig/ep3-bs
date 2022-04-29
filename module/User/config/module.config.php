@@ -154,8 +154,8 @@ return array(
 
             'User\Service\MailService' => 'User\Service\MailServiceFactory',
 
-            'Zend\Session\Config\ConfigInterface' => 'Zend\Session\Service\SessionConfigFactory',
-            'Zend\Session\SessionManager' => 'Zend\Session\Service\SessionManagerFactory',
+            'Laminas\Session\Config\ConfigInterface' => 'Laminas\Session\Service\SessionConfigFactory',
+            'Laminas\Session\SessionManager' => 'Laminas\Session\Service\SessionManagerFactory',
         ),
     ),
 

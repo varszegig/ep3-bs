@@ -7,16 +7,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Validator;
+namespace Laminas\I18n\Validator;
 
 use Locale;
 use NumberFormatter;
 use Traversable;
 use IntlException;
-use Zend\I18n\Exception as I18nException;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Validator\AbstractValidator;
-use Zend\Validator\Exception;
+use Laminas\I18n\Exception as I18nException;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\Exception;
 
 class IsInt extends AbstractValidator
 {

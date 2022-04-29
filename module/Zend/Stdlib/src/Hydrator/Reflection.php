@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\Reflection as BaseReflection;
+use Laminas\Hydrator\Reflection as BaseReflection;
 
 /**
- * @deprecated Use Zend\Hydrator\Reflection from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Reflection from laminas/laminas-hydrator instead.
  */
 class Reflection extends BaseReflection implements HydratorInterface
 {

@@ -2,10 +2,10 @@
 
 namespace Base\View\Helper;
 
-use Zend\Form\Element\Checkbox;
-use Zend\Form\Element\Submit;
-use Zend\Form\Form;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\Form\Element\Checkbox;
+use Laminas\Form\Element\Submit;
+use Laminas\Form\Form;
+use Laminas\View\Helper\AbstractHelper;
 
 class FormDefault extends AbstractHelper
 {

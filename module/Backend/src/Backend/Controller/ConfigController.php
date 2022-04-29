@@ -3,7 +3,7 @@
 namespace Backend\Controller;
 
 use Backend\Form\Config\TextForm;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class ConfigController extends AbstractActionController
 {

@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\NamingStrategy;
+namespace Laminas\Stdlib\Hydrator\NamingStrategy;
 
-use Zend\Hydrator\NamingStrategy\ArrayMapNamingStrategy as BaseArrayMapNamingStrategy;
+use Laminas\Hydrator\NamingStrategy\ArrayMapNamingStrategy as BaseArrayMapNamingStrategy;
 
 /**
- * @deprecated Use Zend\Hydrator\NamingStrategy\ArrayMapNamingStrategy from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\NamingStrategy\ArrayMapNamingStrategy from laminas/laminas-hydrator instead.
  */
 class ArrayMapNamingStrategy extends BaseArrayMapNamingStrategy implements NamingStrategyInterface
 {

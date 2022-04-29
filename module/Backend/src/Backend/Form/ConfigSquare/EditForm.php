@@ -5,10 +5,10 @@ namespace Backend\Form\ConfigSquare;
 use Square\Entity\Square;
 use Square\Entity\SquareGroup;
 use Square\Manager\SquareGroupManager;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
-use Zend\ServiceManager\ServiceLocatorAwareInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
+use Laminas\ServiceManager\ServiceLocatorAwareInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class EditForm extends Form
 {

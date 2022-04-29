@@ -2,9 +2,9 @@
 
 namespace Base\I18n\Translator;
 
-use Zend\I18n\Translator\Translator;
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\I18n\Translator\Translator;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class TranslatorFactory implements FactoryInterface
 {
@@ -39,7 +39,7 @@ class TranslatorFactory implements FactoryInterface
 
         $translator->setLocale($locale);
 
-        return new \Zend\Mvc\I18n\Translator($translator);
+        return new \Laminas\Mvc\I18n\Translator($translator);
     }
 
 }

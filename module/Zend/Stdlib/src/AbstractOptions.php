@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib;
+namespace Laminas\Stdlib;
 
 use Traversable;
 
@@ -53,7 +53,7 @@ abstract class AbstractOptions implements ParameterObjectInterface
                     __METHOD__,
                     'array',
                     'Traversable',
-                    'Zend\Stdlib\AbstractOptions'
+                    'Laminas\Stdlib\AbstractOptions'
                 )
             );
         }

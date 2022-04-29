@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Iterator;
+namespace Laminas\Stdlib\Hydrator\Iterator;
 
-use Zend\Hydrator\Iterator\HydratingIteratorInterface as BaseHydratingIteratorInterface;
+use Laminas\Hydrator\Iterator\HydratingIteratorInterface as BaseHydratingIteratorInterface;
 
 /**
- * @deprecated Use Zend\Hydrator\Iterator\HydratingIteratorInterface from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Iterator\HydratingIteratorInterface from laminas/laminas-hydrator instead.
  */
 interface HydratingIteratorInterface extends BaseHydratingIteratorInterface
 {

@@ -4,7 +4,7 @@ namespace Base\Controller\Plugin;
 
 use Base\Manager\ConfigManager;
 use RuntimeException;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class Cookie extends AbstractPlugin
 {

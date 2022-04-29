@@ -7,15 +7,15 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Aggregate;
+namespace Laminas\Stdlib\Hydrator\Aggregate;
 
-use Zend\Hydrator\Aggregate\AggregateHydrator as BaseAggregateHydrator;
-use Zend\Stdlib\Hydrator\HydratorInterface;
+use Laminas\Hydrator\Aggregate\AggregateHydrator as BaseAggregateHydrator;
+use Laminas\Stdlib\Hydrator\HydratorInterface;
 
 /**
  * Aggregate hydrator that composes multiple hydrators via events
  *
- * @deprecated Use Zend\Hydrator\Aggregate\AggregateHydrator from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Aggregate\AggregateHydrator from laminas/laminas-hydrator instead.
  */
 class AggregateHydrator extends BaseAggregateHydrator implements HydratorInterface
 {

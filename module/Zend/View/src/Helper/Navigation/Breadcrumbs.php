@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper\Navigation;
+namespace Laminas\View\Helper\Navigation;
 
-use Zend\Navigation\AbstractContainer;
-use Zend\Navigation\Page\AbstractPage;
-use Zend\View;
-use Zend\View\Exception;
+use Laminas\Navigation\AbstractContainer;
+use Laminas\Navigation\Page\AbstractPage;
+use Laminas\View;
+use Laminas\View\Exception;
 
 /**
  * Helper for printing breadcrumbs.
@@ -107,7 +107,7 @@ class Breadcrumbs extends AbstractHelper
         if ($this->getLinkLast()) {
             $html = $this->htmlify($active);
         } else {
-            /** @var \Zend\View\Helper\EscapeHtml $escaper */
+            /** @var \Laminas\View\Helper\EscapeHtml $escaper */
             $escaper = $this->view->plugin('escapeHtml');
             $html    = $escaper(
                 $this->translate($active->getLabel(), $active->getTextDomain())
@@ -294,7 +294,7 @@ class Breadcrumbs extends AbstractHelper
             $model['pages'] = array_reverse($model['pages']);
         }
 
-        /** @var \Zend\View\Helper\Partial $partialHelper */
+        /** @var \Laminas\View\Helper\Partial $partialHelper */
         $partialHelper = $this->view->plugin('partial');
         if (is_array($partial)) {
             if (count($partial) != 2) {

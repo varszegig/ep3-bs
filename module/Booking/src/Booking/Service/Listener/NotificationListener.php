@@ -9,11 +9,11 @@ use Booking\Manager\ReservationManager;
 use Square\Manager\SquareManager;
 use User\Manager\UserManager;
 use User\Service\MailService as UserMailService;
-use Zend\EventManager\AbstractListenerAggregate;
-use Zend\EventManager\Event;
-use Zend\EventManager\EventManagerInterface;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\I18n\View\Helper\DateFormat;
+use Laminas\EventManager\AbstractListenerAggregate;
+use Laminas\EventManager\Event;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\I18n\View\Helper\DateFormat;
 
 class NotificationListener extends AbstractListenerAggregate
 {

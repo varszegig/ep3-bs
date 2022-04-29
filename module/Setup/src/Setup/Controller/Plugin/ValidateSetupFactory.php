@@ -2,8 +2,8 @@
 
 namespace Setup\Controller\Plugin;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class ValidateSetupFactory implements FactoryInterface
 {
@@ -12,7 +12,7 @@ class ValidateSetupFactory implements FactoryInterface
     {
         return new ValidateSetup(
             $sm->getServiceLocator(),
-            $sm->getServiceLocator()->get('Zend\Db\Adapter\Adapter'));
+            $sm->getServiceLocator()->get('Laminas\Db\Adapter\Adapter'));
     }
 
 }

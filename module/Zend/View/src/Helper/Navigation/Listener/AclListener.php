@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper\Navigation\Listener;
+namespace Laminas\View\Helper\Navigation\Listener;
 
-use Zend\EventManager\Event;
+use Laminas\EventManager\Event;
 
 /**
  * Default Access Control Listener

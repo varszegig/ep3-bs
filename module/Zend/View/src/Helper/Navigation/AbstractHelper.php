@@ -7,28 +7,28 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper\Navigation;
+namespace Laminas\View\Helper\Navigation;
 
 use Interop\Container\ContainerInterface;
 use RecursiveIteratorIterator;
 use ReflectionClass;
 use ReflectionProperty;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
-use Zend\EventManager\SharedEventManager;
-use Zend\Navigation;
-use Zend\Navigation\Page\AbstractPage;
-use Zend\Permissions\Acl;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\View;
-use Zend\View\Exception;
-use Zend\View\Helper\TranslatorAwareTrait;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\EventManagerInterface;
+use Laminas\EventManager\SharedEventManager;
+use Laminas\Navigation;
+use Laminas\Navigation\Page\AbstractPage;
+use Laminas\Permissions\Acl;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\View;
+use Laminas\View\Exception;
+use Laminas\View\Helper\TranslatorAwareTrait;
 
 /**
  * Base class for navigational helpers.
  *
- * Duck-types against Zend\I18n\Translator\TranslatorAwareInterface.
+ * Duck-types against Laminas\I18n\Translator\TranslatorAwareInterface.
  */
 abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
     EventManagerAwareInterface,
@@ -193,7 +193,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
             RecursiveIteratorIterator::CHILD_FIRST
         );
 
-        /** @var \Zend\Navigation\Page\AbstractPage $page */
+        /** @var \Laminas\Navigation\Page\AbstractPage $page */
         foreach ($iterator as $page) {
             $currDepth = $iterator->getDepth();
             if ($currDepth < $minDepth || ! $this->accept($page)) {
@@ -276,7 +276,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
         if (! $container instanceof Navigation\AbstractContainer) {
             throw new  Exception\InvalidArgumentException(
                 'Container must be a string alias or an instance of '
-                . 'Zend\Navigation\AbstractContainer'
+                . 'Laminas\Navigation\AbstractContainer'
             );
         }
     }
@@ -401,7 +401,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
             'target' => $page->getTarget()
         ];
 
-        /** @var \Zend\View\Helper\EscapeHtml $escaper */
+        /** @var \Laminas\View\Helper\EscapeHtml $escaper */
         $escaper = $this->view->plugin('escapeHtml');
         $label   = $escaper($label);
 
@@ -701,7 +701,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
         } else {
             throw new Exception\InvalidArgumentException(sprintf(
                 '$role must be a string, null, or an instance of '
-                . 'Zend\Permissions\Role\RoleInterface; %s given',
+                . 'Laminas\Permissions\Role\RoleInterface; %s given',
                 (is_object($role) ? get_class($role) : gettype($role))
             ));
         }
@@ -851,7 +851,7 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
             static::$defaultRole = $role;
         } else {
             throw new Exception\InvalidArgumentException(sprintf(
-                '$role must be null|string|Zend\Permissions\Role\RoleInterface; received "%s"',
+                '$role must be null|string|Laminas\Permissions\Role\RoleInterface; received "%s"',
                 (is_object($role) ? get_class($role) : gettype($role))
             ));
         }
@@ -873,9 +873,9 @@ abstract class AbstractHelper extends View\Helper\AbstractHtmlElement implements
         }
 
         $events->getSharedManager()->attach(
-            'Zend\View\Helper\Navigation\AbstractHelper',
+            'Laminas\View\Helper\Navigation\AbstractHelper',
             'isAllowed',
-            ['Zend\View\Helper\Navigation\Listener\AclListener', 'accept']
+            ['Laminas\View\Helper\Navigation\Listener\AclListener', 'accept']
         );
     }
 

@@ -7,13 +7,13 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 /**
- * @deprecated Use Zend\Hydrator\DelegatingHydratorFactory from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\DelegatingHydratorFactory from laminas/laminas-hydrator instead.
  */
 class DelegatingHydratorFactory implements FactoryInterface
 {

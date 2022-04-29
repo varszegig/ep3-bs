@@ -47,6 +47,6 @@ $moduleConfig = array(
     ),
 );
 
-$serviceManager = new Zend\ServiceManager\ServiceManager(new Zend\Mvc\Service\ServiceManagerConfig());
+$serviceManager = new Laminas\ServiceManager\ServiceManager(new Laminas\Mvc\Service\ServiceManagerConfig());
 $serviceManager->setService('ApplicationConfig', $moduleConfig);
 $serviceManager->get('ModuleManager')->loadModules();

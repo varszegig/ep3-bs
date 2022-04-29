@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper\Placeholder;
+namespace Laminas\View\Helper\Placeholder;
 
 /**
  * Container for placeholder values

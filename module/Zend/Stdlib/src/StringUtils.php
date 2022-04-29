@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib;
+namespace Laminas\Stdlib;
 
-use Zend\Stdlib\StringWrapper\StringWrapperInterface;
+use Laminas\Stdlib\StringWrapper\StringWrapperInterface;
 
 /**
  * Utility class for handling strings of different character encodings
@@ -58,18 +58,18 @@ abstract class StringUtils
             static::$wrapperRegistry = [];
 
             if (extension_loaded('intl')) {
-                static::$wrapperRegistry[] = 'Zend\Stdlib\StringWrapper\Intl';
+                static::$wrapperRegistry[] = 'Laminas\Stdlib\StringWrapper\Intl';
             }
 
             if (extension_loaded('mbstring')) {
-                static::$wrapperRegistry[] = 'Zend\Stdlib\StringWrapper\MbString';
+                static::$wrapperRegistry[] = 'Laminas\Stdlib\StringWrapper\MbString';
             }
 
             if (extension_loaded('iconv')) {
-                static::$wrapperRegistry[] = 'Zend\Stdlib\StringWrapper\Iconv';
+                static::$wrapperRegistry[] = 'Laminas\Stdlib\StringWrapper\Iconv';
             }
 
-            static::$wrapperRegistry[] = 'Zend\Stdlib\StringWrapper\Native';
+            static::$wrapperRegistry[] = 'Laminas\Stdlib\StringWrapper\Native';
         }
 
         return static::$wrapperRegistry;

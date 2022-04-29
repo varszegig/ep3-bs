@@ -7,14 +7,14 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Strategy;
+namespace Laminas\Stdlib\Hydrator\Strategy;
 
-use Zend\Hydrator\Strategy\BooleanStrategy as BaseBooleanStrategy;
+use Laminas\Hydrator\Strategy\BooleanStrategy as BaseBooleanStrategy;
 
 /**
  * This Strategy extracts and hydrates int and string values to Boolean values
  *
- * @deprecated Use Zend\Hydrator\Strategy\BooleanStrategy from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Strategy\BooleanStrategy from laminas/laminas-hydrator instead.
  */
 class BooleanStrategy extends BaseBooleanStrategy implements StrategyInterface
 {

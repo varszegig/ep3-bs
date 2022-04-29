@@ -4,7 +4,7 @@ namespace Backend\View\Helper\Event;
 
 use Event\Entity\Event;
 use Square\Manager\SquareManager;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class EventFormat extends AbstractHelper
 {

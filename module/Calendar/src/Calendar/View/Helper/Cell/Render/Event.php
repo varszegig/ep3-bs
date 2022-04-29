@@ -2,7 +2,7 @@
 
 namespace Calendar\View\Helper\Cell\Render;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class Event extends AbstractHelper
 {

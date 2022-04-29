@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\View\Helper;
+namespace Laminas\I18n\View\Helper;
 
 use Locale;
 use NumberFormatter;
-use Zend\I18n\Exception;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\I18n\Exception;
+use Laminas\View\Helper\AbstractHelper;
 
 /**
  * View helper for formatting currency.

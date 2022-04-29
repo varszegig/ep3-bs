@@ -3,7 +3,7 @@
 namespace Calendar\View\Helper;
 
 use Square\Entity\Square;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ReservationsForCell extends AbstractHelper
 {

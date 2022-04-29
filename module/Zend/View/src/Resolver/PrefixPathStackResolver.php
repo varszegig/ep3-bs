@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Resolver;
+namespace Laminas\View\Resolver;
 
-use Zend\View\Renderer\RendererInterface as Renderer;
+use Laminas\View\Renderer\RendererInterface as Renderer;
 
 final class PrefixPathStackResolver implements ResolverInterface
 {
@@ -25,8 +25,8 @@ final class PrefixPathStackResolver implements ResolverInterface
      *
      * @param string[]|string[][]|ResolverInterface[] $prefixes Set of path prefixes to be matched (array keys), with
      *                                                          either a path or an array of paths to use for matching
-     *                                                          as in the {@see \Zend\View\Resolver\TemplatePathStack},
-     *                                                          or a {@see \Zend\View\Resolver\ResolverInterface}
+     *                                                          as in the {@see \Laminas\View\Resolver\TemplatePathStack},
+     *                                                          or a {@see \Laminas\View\Resolver\ResolverInterface}
      *                                                          to use for view path starting with that prefix
      */
     public function __construct(array $prefixes = [])

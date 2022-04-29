@@ -9,7 +9,7 @@ use Booking\Entity\Booking\BillFactory;
 use Booking\Table\Booking\BillTable;
 use InvalidArgumentException;
 use RuntimeException;
-use Zend\Db\Sql\Predicate\In;
+use Laminas\Db\Sql\Predicate\In;
 
 class BillManager extends AbstractManager
 {

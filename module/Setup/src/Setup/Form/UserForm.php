@@ -2,8 +2,8 @@
 
 namespace Setup\Form;
 
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class UserForm extends Form
 {

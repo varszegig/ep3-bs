@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Exception;
+namespace Laminas\Stdlib\Exception;
 
 /**
  * Invalid callback exception

@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\ObjectProperty as BaseObjectProperty;
+use Laminas\Hydrator\ObjectProperty as BaseObjectProperty;
 
 /**
- * @deprecated Use Zend\Hydrator\ObjectProperty from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\ObjectProperty from laminas/laminas-hydrator instead.
  */
 class ObjectProperty extends BaseObjectProperty implements HydratorInterface
 {

@@ -7,15 +7,15 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Validator;
+namespace Laminas\I18n\Validator;
 
 use Locale;
 use IntlDateFormatter;
 use Traversable;
 use IntlException;
-use Zend\I18n\Exception as I18nException;
-use Zend\Validator\AbstractValidator;
-use Zend\Validator\Exception as ValidatorException;
+use Laminas\I18n\Exception as I18nException;
+use Laminas\Validator\AbstractValidator;
+use Laminas\Validator\Exception as ValidatorException;
 
 class DateTime extends AbstractValidator
 {

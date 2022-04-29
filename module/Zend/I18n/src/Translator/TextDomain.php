@@ -7,11 +7,11 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Translator;
+namespace Laminas\I18n\Translator;
 
 use ArrayObject;
-use Zend\I18n\Exception;
-use Zend\I18n\Translator\Plural\Rule as PluralRule;
+use Laminas\I18n\Exception;
+use Laminas\I18n\Translator\Plural\Rule as PluralRule;
 
 /**
  * Text domain.

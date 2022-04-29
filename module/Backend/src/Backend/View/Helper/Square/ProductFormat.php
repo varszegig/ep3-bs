@@ -4,7 +4,7 @@ namespace Backend\View\Helper\Square;
 
 use Square\Entity\SquareProduct;
 use Square\Manager\SquareManager;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ProductFormat extends AbstractHelper
 {

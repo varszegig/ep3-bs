@@ -13,8 +13,8 @@ use Exception;
 use InvalidArgumentException;
 use RuntimeException;
 use Square\Manager\SquareManager;
-use Zend\Db\Sql\Predicate\In;
-use Zend\Db\Sql\Where;
+use Laminas\Db\Sql\Predicate\In;
+use Laminas\Db\Sql\Where;
 
 class ReservationManager extends AbstractManager
 {

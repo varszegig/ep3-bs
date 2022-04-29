@@ -5,7 +5,7 @@ namespace Setup\Controller;
 use Backend\Form\Config\TextForm;
 use Setup\Form\UserForm;
 use Square\Entity\Square;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class IndexController extends AbstractActionController
 {
@@ -28,7 +28,7 @@ class IndexController extends AbstractActionController
 
             $sqlContent = file_get_contents($sqlFile);
 
-            $dbAdapter = @$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+            $dbAdapter = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
             $db = $dbAdapter->getDriver()->getConnection()->getResource();
 
             if ($db instanceof \PDO) {

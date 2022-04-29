@@ -4,8 +4,8 @@ namespace Backend\Controller;
 
 use Event\Entity\Event;
 use Event\Table\EventTable;
-use Zend\Db\Adapter\Adapter;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class EventController extends AbstractActionController
 {
@@ -241,7 +241,7 @@ class EventController extends AbstractActionController
     {
         $this->authorize('admin.event');
 
-        $db = @$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $db = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
 
         $stats = $db->query(sprintf('SELECT status, COUNT(status) AS count FROM %s GROUP BY status', EventTable::NAME),
             Adapter::QUERY_MODE_EXECUTE)->toArray();

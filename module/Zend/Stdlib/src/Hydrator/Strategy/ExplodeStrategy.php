@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Strategy;
+namespace Laminas\Stdlib\Hydrator\Strategy;
 
-use Zend\Hydrator\Strategy\ExplodeStrategy as BaseExplodeStrategy;
+use Laminas\Hydrator\Strategy\ExplodeStrategy as BaseExplodeStrategy;
 
 /**
- * @deprecated Use Zend\Hydrator\Strategy\ExplodeStrategy from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Strategy\ExplodeStrategy from laminas/laminas-hydrator instead.
  */
 class ExplodeStrategy extends BaseExplodeStrategy implements StrategyInterface
 {

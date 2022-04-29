@@ -2,7 +2,7 @@
 
 namespace Event\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class EventController extends AbstractActionController
 {

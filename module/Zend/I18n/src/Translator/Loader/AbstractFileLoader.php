@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Translator\Loader;
+namespace Laminas\I18n\Translator\Loader;
 
 /**
  * Abstract file loader implementation; provides facilities around resolving

@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Validator;
+namespace Laminas\I18n\Validator;
 
-use Zend\I18n\Filter\Alpha as AlphaFilter;
+use Laminas\I18n\Filter\Alpha as AlphaFilter;
 
 class Alpha extends Alnum
 {

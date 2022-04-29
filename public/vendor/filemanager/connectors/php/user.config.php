@@ -40,9 +40,9 @@ function auth() {
 
   if (isset($_COOKIE[$sessionName])) {
 
-    require 'vendor/zendframework/zend-stdlib/src/Exception/ExceptionInterface.php';
-    require 'vendor/zendframework/zend-stdlib/src/Exception/InvalidArgumentException.php';
-    require 'vendor/zendframework/zend-stdlib/src/ArrayObject.php';
+    require 'vendor/laminas/laminas-stdlib/src/Exception/ExceptionInterface.php';
+    require 'vendor/laminas/laminas-stdlib/src/Exception/InvalidArgumentException.php';
+    require 'vendor/laminas/laminas-stdlib/src/ArrayObject.php';
 
     session_name($sessionName);
     session_save_path($sessionPath);
@@ -55,7 +55,7 @@ function auth() {
 
         $userSession = $_SESSION['UserSession'];
 
-        if ($userSession && $userSession instanceof Zend\Stdlib\ArrayObject) {
+        if ($userSession && $userSession instanceof Laminas\Stdlib\ArrayObject) {
             if ($userSession->uid && is_numeric($userSession->uid) && $userSession->uid > 0) {
 	            if ($userSession->status && ($userSession->status == 'assist' || $userSession->status == 'admin')) {
 		            return true;

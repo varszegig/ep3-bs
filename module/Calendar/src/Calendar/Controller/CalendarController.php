@@ -3,7 +3,7 @@
 namespace Calendar\Controller;
 
 use DateTime;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class CalendarController extends AbstractActionController
 {

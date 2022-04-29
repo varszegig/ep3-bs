@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
 abstract class AbstractHtmlElement extends AbstractHelper
 {
@@ -76,7 +76,7 @@ abstract class AbstractHtmlElement extends AbstractHelper
                 // Don't escape event attributes; _do_ substitute double quotes with singles
                 if (! is_scalar($val)) {
                     // non-scalar data should be cast to JSON first
-                    $val = \Zend\Json\Json::encode($val);
+                    $val = \Laminas\Json\Json::encode($val);
                 }
             } else {
                 if (is_array($val)) {

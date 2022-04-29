@@ -5,8 +5,8 @@ namespace Backend\Form\Booking;
 use Booking\Entity\Booking;
 use Booking\Service\BookingStatusService;
 use Square\Manager\SquareManager;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditForm extends Form
 {

@@ -2,7 +2,7 @@
 
 namespace UserTest\Controller;
 
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class SessionControllerTest extends AbstractHttpControllerTestCase
 {

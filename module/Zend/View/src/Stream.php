@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View;
+namespace Laminas\View;
 
 /**
  * Stream wrapper to convert markup of mostly-PHP templates into PHP prior to

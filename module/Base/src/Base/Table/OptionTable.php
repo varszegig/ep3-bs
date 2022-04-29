@@ -2,7 +2,7 @@
 
 namespace Base\Table;
 
-use Zend\Db\TableGateway\TableGateway;
+use Laminas\Db\TableGateway\TableGateway;
 
 class OptionTable extends TableGateway
 {

@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
 /**
  * Helper for declaring default values of template variables
@@ -17,14 +17,14 @@ class DeclareVars extends AbstractHelper
     /**
      * The view object that created this helper object.
      *
-     * @var \Zend\View\View
+     * @var \Laminas\View\View
      */
     public $view;
 
     /**
      * Declare template vars to set default values and avoid notices when using strictVars
      *
-     * Primarily for use when using {@link Zend\View\Variables::setStrictVars()},
+     * Primarily for use when using {@link Laminas\View\Variables::setStrictVars()},
      * this helper can be used to declare template variables that may or may
      * not already be set in the view object, as well as to set default values.
      * Arrays passed as arguments to the method will be used to set default

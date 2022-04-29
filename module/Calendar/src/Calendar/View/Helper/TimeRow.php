@@ -2,7 +2,7 @@
 
 namespace Calendar\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class TimeRow extends AbstractHelper
 {

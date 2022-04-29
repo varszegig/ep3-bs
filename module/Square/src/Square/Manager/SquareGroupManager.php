@@ -9,7 +9,7 @@ use Square\Entity\Square;
 use Square\Entity\SquareGroup;
 use Square\Entity\SquareGroupFactory;
 use Square\Table\SquareGroupTable;
-use Zend\Db\Sql\Where;
+use Laminas\Db\Sql\Where;
 
 class SquareGroupManager extends AbstractManager
 {

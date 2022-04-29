@@ -5,8 +5,8 @@ namespace Backend\Controller;
 use Booking\Entity\Booking;
 use Booking\Table\BookingTable;
 use Booking\Table\ReservationTable;
-use Zend\Db\Adapter\Adapter;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class BookingController extends AbstractActionController
 {
@@ -274,7 +274,7 @@ class BookingController extends AbstractActionController
         $editDateRangeForm = $formElementManager->get('Backend\Form\Booking\Range\EditDateRangeForm');
 
         if ($this->getRequest()->isPost()) {
-            $db = $serviceManager->get('Zend\Db\Adapter\Adapter');
+            $db = $serviceManager->get('Laminas\Db\Adapter\Adapter');
 
             $mode = $this->params()->fromQuery('mode');
 
@@ -425,7 +425,7 @@ class BookingController extends AbstractActionController
     {
         $this->authorize('admin.booking');
 
-        $db = @$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $db = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
 
         $stats = $db->query(sprintf('SELECT status, COUNT(status) AS count FROM %s GROUP BY status', BookingTable::NAME),
             Adapter::QUERY_MODE_EXECUTE)->toArray();

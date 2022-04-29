@@ -3,8 +3,8 @@
 namespace Backend\Form\ConfigSquare;
 
 use Base\Manager\ConfigManager;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditSquareGroupForm extends Form
 {

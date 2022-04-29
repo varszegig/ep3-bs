@@ -2,8 +2,8 @@
 
 namespace Backend\Form\ConfigSquare;
 
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditInfoForm extends Form
 {

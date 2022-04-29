@@ -4,9 +4,9 @@ namespace Backend\Controller;
 
 use User\Entity\User;
 use User\Table\UserTable;
-use Zend\Crypt\Password\Bcrypt;
-use Zend\Db\Adapter\Adapter;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Crypt\Password\Bcrypt;
+use Laminas\Db\Adapter\Adapter;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class UserController extends AbstractActionController
 {
@@ -274,7 +274,7 @@ class UserController extends AbstractActionController
     {
         $this->authorize('admin.user');
 
-        $db = @$this->getServiceLocator()->get('Zend\Db\Adapter\Adapter');
+        $db = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
 
         $stats = $db->query(sprintf('SELECT status, COUNT(status) AS count FROM %s GROUP BY status', UserTable::NAME),
             Adapter::QUERY_MODE_EXECUTE)->toArray();

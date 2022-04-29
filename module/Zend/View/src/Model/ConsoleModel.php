@@ -7,7 +7,7 @@
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
  */
 
-namespace Zend\View\Model;
+namespace Laminas\View\Model;
 
 class ConsoleModel extends ViewModel
 {
@@ -53,7 +53,7 @@ class ConsoleModel extends ViewModel
      * Set result text.
      *
      * @param string  $text
-     * @return \Zend\View\Model\ConsoleModel
+     * @return \Laminas\View\Model\ConsoleModel
      */
     public function setResult($text)
     {

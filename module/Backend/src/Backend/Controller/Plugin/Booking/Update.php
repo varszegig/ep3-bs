@@ -9,8 +9,8 @@ use Square\Entity\Square;
 use Square\Manager\SquareManager;
 use User\Entity\User;
 use User\Manager\UserManager;
-use Zend\Db\Adapter\Driver\ConnectionInterface;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Db\Adapter\Driver\ConnectionInterface;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class Update extends AbstractPlugin
 {

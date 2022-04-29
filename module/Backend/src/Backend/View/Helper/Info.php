@@ -2,7 +2,7 @@
 
 namespace Backend\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class Info extends AbstractHelper
 {

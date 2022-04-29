@@ -7,7 +7,7 @@ use Booking\Manager\ReservationManager;
 use DateTime;
 use IntlDateFormatter;
 use Square\Entity\Square;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class TimeBlockChoice extends AbstractHelper
 {

@@ -16,8 +16,8 @@ use RuntimeException;
 use Square\Entity\Square;
 use Square\Manager\SquarePricingManager;
 use User\Entity\User;
-use Zend\Db\Adapter\Driver\ConnectionInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\Db\Adapter\Driver\ConnectionInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class BookingService extends AbstractService
 {

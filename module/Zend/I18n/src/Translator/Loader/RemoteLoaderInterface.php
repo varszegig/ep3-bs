@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Translator\Loader;
+namespace Laminas\I18n\Translator\Loader;
 
 /**
  * Remote loader interface.
@@ -19,7 +19,7 @@ interface RemoteLoaderInterface
      *
      * @param  string $locale
      * @param  string $textDomain
-     * @return \Zend\I18n\Translator\TextDomain|null
+     * @return \Laminas\I18n\Translator\TextDomain|null
      */
     public function load($locale, $textDomain);
 }

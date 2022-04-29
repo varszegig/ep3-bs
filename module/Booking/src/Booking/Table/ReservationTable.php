@@ -2,7 +2,7 @@
 
 namespace Booking\Table;
 
-use Zend\Db\TableGateway\TableGateway;
+use Laminas\Db\TableGateway\TableGateway;
 
 class ReservationTable extends TableGateway
 {

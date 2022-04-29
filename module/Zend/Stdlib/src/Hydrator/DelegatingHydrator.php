@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\DelegatingHydrator as BaseDelegatingHydrator;
+use Laminas\Hydrator\DelegatingHydrator as BaseDelegatingHydrator;
 
 /**
- * @deprecated Use Zend\Hydrator\DelegatingHydrator from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\DelegatingHydrator from laminas/laminas-hydrator instead.
  */
 class DelegatingHydrator extends BaseDelegatingHydrator implements HydratorInterface
 {

@@ -192,7 +192,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                         <td>
                             <?php
 
-                            $element = new \Zend\Form\Element\Select('pricing-visibility');
+                            $element = new \Laminas\Form\Element\Select('pricing-visibility');
                             $element->setAttribute('id', 'pricing-visibility');
                             $element->setValueOptions(array(
                                 'never' => 'For no one',

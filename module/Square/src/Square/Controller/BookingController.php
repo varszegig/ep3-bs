@@ -4,8 +4,8 @@ namespace Square\Controller;
 
 use Booking\Entity\Booking\Bill;
 use RuntimeException;
-use Zend\Json\Json;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Json\Json;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class BookingController extends AbstractActionController
 {

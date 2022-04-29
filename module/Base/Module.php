@@ -2,11 +2,11 @@
 
 namespace Base;
 
-use Zend\EventManager\EventInterface;
-use Zend\ModuleManager\Feature\AutoloaderProviderInterface;
-use Zend\ModuleManager\Feature\BootstrapListenerInterface;
-use Zend\ModuleManager\Feature\ConfigProviderInterface;
-use Zend\Validator\AbstractValidator;
+use Laminas\EventManager\EventInterface;
+use Laminas\ModuleManager\Feature\AutoloaderProviderInterface;
+use Laminas\ModuleManager\Feature\BootstrapListenerInterface;
+use Laminas\ModuleManager\Feature\ConfigProviderInterface;
+use Laminas\Validator\AbstractValidator;
 
 class Module implements AutoloaderProviderInterface, BootstrapListenerInterface, ConfigProviderInterface
 {
@@ -14,7 +14,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
     public function getAutoloaderConfig()
     {
         return array(
-            'Zend\Loader\StandardAutoloader' => array(
+            'Laminas\Loader\StandardAutoloader' => array(
                 'namespaces' => array(
                     __NAMESPACE__ => __DIR__ . '/src/' . __NAMESPACE__,
                 ),
@@ -28,7 +28,7 @@ class Module implements AutoloaderProviderInterface, BootstrapListenerInterface,
 
         /* Check database */
 
-        $dbAdapter = $serviceManager->get('Zend\Db\Adapter\Adapter');
+        $dbAdapter = $serviceManager->get('Laminas\Db\Adapter\Adapter');
         $dbConnection = $dbAdapter->getDriver()->getConnection();
 
         try {

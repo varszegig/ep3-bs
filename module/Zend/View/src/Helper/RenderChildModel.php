@@ -7,10 +7,10 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
-use Zend\View\Exception;
-use Zend\View\Model\ModelInterface as Model;
+use Laminas\View\Exception;
+use Laminas\View\Model\ModelInterface as Model;
 
 /**
  * Helper for rendering child view models

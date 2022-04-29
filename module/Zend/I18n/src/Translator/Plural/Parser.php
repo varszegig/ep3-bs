@@ -7,9 +7,9 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Translator\Plural;
+namespace Laminas\I18n\Translator\Plural;
 
-use Zend\I18n\Exception;
+use Laminas\I18n\Exception;
 
 /**
  * Plural rule parser.

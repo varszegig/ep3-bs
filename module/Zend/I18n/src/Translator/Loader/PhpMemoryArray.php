@@ -7,11 +7,11 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Translator\Loader;
+namespace Laminas\I18n\Translator\Loader;
 
-use Zend\I18n\Exception;
-use Zend\I18n\Translator\Plural\Rule as PluralRule;
-use Zend\I18n\Translator\TextDomain;
+use Laminas\I18n\Exception;
+use Laminas\I18n\Translator\Plural\Rule as PluralRule;
+use Laminas\I18n\Translator\TextDomain;
 
 /**
  * PHP Memory array loader.
@@ -34,8 +34,8 @@ class PhpMemoryArray implements RemoteLoaderInterface
      * @param  string $locale
      * @param  string $textDomain
      *
-     * @throws \Zend\I18n\Exception\InvalidArgumentException
-     * @return \Zend\I18n\Translator\TextDomain|null
+     * @throws \Laminas\I18n\Exception\InvalidArgumentException
+     * @return \Laminas\I18n\Translator\TextDomain|null
      */
     public function load($locale, $textDomain)
     {

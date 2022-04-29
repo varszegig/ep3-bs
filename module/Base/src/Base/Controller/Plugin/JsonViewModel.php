@@ -2,8 +2,8 @@
 
 namespace Base\Controller\Plugin;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\View\Model\JsonModel;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\View\Model\JsonModel;
 
 class JsonViewModel extends AbstractPlugin
 {

@@ -3,7 +3,7 @@
 namespace Calendar\View\Helper\Cell\Render;
 
 use Booking\Service\BookingStatusService;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class OccupiedForPrivileged extends AbstractHelper
 {
