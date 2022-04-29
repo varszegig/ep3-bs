@@ -2,8 +2,8 @@
 
 namespace Backend\Form\Booking\Range;
 
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditTimeRangeForm extends Form
 {

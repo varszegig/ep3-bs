@@ -7,10 +7,10 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Validator;
+namespace Laminas\I18n\Validator;
 
-use Zend\I18n\Filter\Alnum as AlnumFilter;
-use Zend\Validator\AbstractValidator;
+use Laminas\I18n\Filter\Alnum as AlnumFilter;
+use Laminas\Validator\AbstractValidator;
 
 class Alnum extends AbstractValidator
 {

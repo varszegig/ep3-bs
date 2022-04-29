@@ -7,7 +7,7 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib;
+namespace Laminas\Stdlib;
 
 /**
  * Wrapper for glob with fallback if GLOB_BRACE is not available.

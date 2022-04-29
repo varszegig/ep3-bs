@@ -7,11 +7,11 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib;
+namespace Laminas\Stdlib;
 
 use Traversable;
-use Zend\Stdlib\ArrayUtils\MergeRemoveKey;
-use Zend\Stdlib\ArrayUtils\MergeReplaceKeyInterface;
+use Laminas\Stdlib\ArrayUtils\MergeRemoveKey;
+use Laminas\Stdlib\ArrayUtils\MergeReplaceKeyInterface;
 
 /**
  * Utility class for testing and manipulation of PHP arrays.

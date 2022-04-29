@@ -4,9 +4,9 @@ namespace Backend\Form\User;
 
 use User\Entity\User;
 use User\Manager\UserManager;
-use Zend\Db\Sql\Predicate\IsNotNull;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Db\Sql\Predicate\IsNotNull;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditForm extends Form
 {

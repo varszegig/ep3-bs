@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\ClassMethods as BaseClassMethods;
+use Laminas\Hydrator\ClassMethods as BaseClassMethods;
 
 /**
- * @deprecated Use Zend\Hydrator\ClassMethods from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\ClassMethods from laminas/laminas-hydrator instead.
  */
 class ClassMethods extends BaseClassMethods implements HydratorInterface, HydratorOptionsInterface
 {

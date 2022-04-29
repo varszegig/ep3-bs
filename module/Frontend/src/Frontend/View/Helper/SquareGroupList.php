@@ -2,11 +2,11 @@
 
 namespace Frontend\View\Helper;
 
-use Zend\Stdlib\RequestInterface;
+use Laminas\Stdlib\RequestInterface;
 use Square\Manager\SquareGroupManager;
 use Square\Entity\SquareGroup;
 use Square\Manager\SquareManager;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class SquareGroupList extends AbstractHelper
 {

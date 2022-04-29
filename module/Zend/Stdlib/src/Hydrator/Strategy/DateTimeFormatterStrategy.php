@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Strategy;
+namespace Laminas\Stdlib\Hydrator\Strategy;
 
-use Zend\Hydrator\Strategy\DateTimeFormatterStrategy as BaseDateTimeFormatterStrategy;
+use Laminas\Hydrator\Strategy\DateTimeFormatterStrategy as BaseDateTimeFormatterStrategy;
 
 /**
- * @deprecated Use Zend\Hydrator\Strategy\DateTimeFormatterStrategy from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Strategy\DateTimeFormatterStrategy from laminas/laminas-hydrator instead.
  */
 class DateTimeFormatterStrategy extends BaseDateTimeFormatterStrategy implements StrategyInterface
 {

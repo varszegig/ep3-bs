@@ -7,15 +7,15 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
 use Traversable;
-use Zend\Mvc\ModuleRouteListener;
-use Zend\Mvc\Router\RouteMatch as LegacyRouteMatch;
-use Zend\Mvc\Router\RouteStackInterface as LegacyRouteStackInterface;
-use Zend\Router\RouteMatch;
-use Zend\Router\RouteStackInterface;
-use Zend\View\Exception;
+use Laminas\Mvc\ModuleRouteListener;
+use Laminas\Mvc\Router\RouteMatch as LegacyRouteMatch;
+use Laminas\Mvc\Router\RouteStackInterface as LegacyRouteStackInterface;
+use Laminas\Router\RouteMatch;
+use Laminas\Router\RouteStackInterface;
+use Laminas\View\Exception;
 
 /**
  * Helper for making easy links and getting urls that depend on the routes and router.
@@ -39,8 +39,8 @@ class Url extends AbstractHelper
     /**
      * Generates a url given the name of a route.
      *
-     * @see Zend\Mvc\Router\RouteInterface::assemble()
-     * @see Zend\Router\RouteInterface::assemble()
+     * @see Laminas\Mvc\Router\RouteInterface::assemble()
+     * @see Laminas\Router\RouteInterface::assemble()
      * @param  string $name Name of the route
      * @param  array $params Parameters for the link
      * @param  array|Traversable $options Options for the route

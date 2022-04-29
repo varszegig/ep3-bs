@@ -7,16 +7,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Filter;
+namespace Laminas\I18n\Filter;
 
-use Zend\Stdlib\ErrorHandler;
+use Laminas\Stdlib\ErrorHandler;
 
 class NumberFormat extends NumberParse
 {
     /**
-     * Defined by Zend\Filter\FilterInterface
+     * Defined by Laminas\Filter\FilterInterface
      *
-     * @see    Zend\Filter\FilterInterface::filter()
+     * @see    Laminas\Filter\FilterInterface::filter()
      * @param  mixed $value
      * @return mixed
      */

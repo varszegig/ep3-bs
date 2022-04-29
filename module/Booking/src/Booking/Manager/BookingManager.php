@@ -11,7 +11,7 @@ use Booking\Table\BookingTable;
 use Exception;
 use InvalidArgumentException;
 use RuntimeException;
-use Zend\Db\Sql\Predicate\In;
+use Laminas\Db\Sql\Predicate\In;
 
 class BookingManager extends AbstractManager
 {

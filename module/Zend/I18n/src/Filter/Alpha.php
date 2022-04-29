@@ -7,14 +7,14 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\Filter;
+namespace Laminas\I18n\Filter;
 
 use Locale;
 
 class Alpha extends Alnum
 {
     /**
-     * Defined by Zend\Filter\FilterInterface
+     * Defined by Laminas\Filter\FilterInterface
      *
      * Returns the string $value, removing all but alphabetic characters
      *

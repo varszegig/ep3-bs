@@ -3,7 +3,7 @@
 namespace Base\View\Helper;
 
 use Base\Manager\OptionManager;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class PriceFormat extends AbstractHelper
 {

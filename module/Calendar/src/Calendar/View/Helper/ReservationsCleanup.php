@@ -3,7 +3,7 @@
 namespace Calendar\View\Helper;
 
 use DateTime;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ReservationsCleanup extends AbstractHelper
 {

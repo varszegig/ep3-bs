@@ -4,8 +4,8 @@ namespace User\Controller;
 
 use DateTime;
 use RuntimeException;
-use Zend\Crypt\Password\Bcrypt;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Crypt\Password\Bcrypt;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class AccountController extends AbstractActionController
 {

@@ -2,7 +2,7 @@
 
 namespace Square\Table;
 
-use Zend\Db\TableGateway\TableGateway;
+use Laminas\Db\TableGateway\TableGateway;
 
 class SquareProductTable extends TableGateway
 {

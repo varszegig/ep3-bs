@@ -5,9 +5,9 @@ namespace User\Form;
 use Base\Manager\OptionManager;
 use User\Entity\User;
 use User\Manager\UserManager;
-use Zend\Crypt\Password\Bcrypt;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Crypt\Password\Bcrypt;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class RegistrationForm extends Form
 {

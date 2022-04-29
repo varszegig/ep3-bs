@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Strategy\Exception;
+namespace Laminas\Stdlib\Hydrator\Strategy\Exception;
 
-use Zend\Hydrator\Strategy\Exception;
+use Laminas\Hydrator\Strategy\Exception;
 
 /**
- * @deprecated Use Zend\Hydrator\Strategy\Exception\ExceptionInterface from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Strategy\Exception\ExceptionInterface from laminas/laminas-hydrator instead.
  */
 interface ExceptionInterface extends Exception\ExceptionInterface
 {

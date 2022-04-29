@@ -7,12 +7,12 @@
  * @license        http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Filter;
+namespace Laminas\Stdlib\Hydrator\Filter;
 
-use Zend\Hydrator\Filter\NumberOfParameterFilter as BaseNumberOfParameterFilter;
+use Laminas\Hydrator\Filter\NumberOfParameterFilter as BaseNumberOfParameterFilter;
 
 /**
- * @deprecated Use Zend\Hydrator\Filter\NumberOfParameterFilter from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Filter\NumberOfParameterFilter from laminas/laminas-hydrator instead.
  */
 class NumberOfParameterFilter extends BaseNumberOfParameterFilter implements FilterInterface
 {

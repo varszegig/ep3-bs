@@ -3,7 +3,7 @@
 namespace Calendar\View\Helper\Cell\Render;
 
 use Square\Entity\Square;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 use Square\Manager\SquarePricingManager;
 
 class FreeForPrivileged extends AbstractHelper

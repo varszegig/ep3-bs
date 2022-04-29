@@ -2,8 +2,8 @@
 
 namespace Base\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
-use Zend\Mvc\Controller\Plugin\FlashMessenger;
+use Laminas\View\Helper\AbstractHelper;
+use Laminas\Mvc\Controller\Plugin\FlashMessenger;
 
 class Messages extends AbstractHelper
 {

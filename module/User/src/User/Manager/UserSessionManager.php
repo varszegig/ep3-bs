@@ -7,11 +7,11 @@ use Base\Manager\ConfigManager;
 use DateTime;
 use User\Authentication\Result;
 use User\Entity\User;
-use Zend\Crypt\Password\Bcrypt;
-use Zend\Session\Container;
-use Zend\Session\SessionManager;
-use Zend\Session\Validator\HttpUserAgent;
-use Zend\Session\Validator\RemoteAddr;
+use Laminas\Crypt\Password\Bcrypt;
+use Laminas\Session\Container;
+use Laminas\Session\SessionManager;
+use Laminas\Session\Validator\HttpUserAgent;
+use Laminas\Session\Validator\RemoteAddr;
 
 class UserSessionManager extends AbstractManager
 {

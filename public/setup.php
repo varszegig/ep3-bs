@@ -63,4 +63,4 @@ if (! is_readable($init)) {
 /**
  * Initialize our application with the setup configuration file and run!
  */
-Zend\Mvc\Application::init(require 'config/setup.php')->run();
+Laminas\Mvc\Application::init(require 'config/setup.php')->run();

@@ -3,10 +3,10 @@
 namespace Base\Manager;
 
 use Base\Entity\AbstractEntity;
-use Zend\Db\Sql\Predicate\IsNull;
-use Zend\Db\Sql\Select;
-use Zend\Db\Sql\Where;
-use Zend\Db\TableGateway\TableGateway;
+use Laminas\Db\Sql\Predicate\IsNull;
+use Laminas\Db\Sql\Select;
+use Laminas\Db\Sql\Where;
+use Laminas\Db\TableGateway\TableGateway;
 
 abstract class AbstractLocaleEntityManager extends AbstractEntityManager
 {

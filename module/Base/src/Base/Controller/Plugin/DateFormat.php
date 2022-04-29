@@ -4,8 +4,8 @@ namespace Base\Controller\Plugin;
 
 use DateTime;
 use IntlDateFormatter;
-use Zend\I18n\View\Helper\DateFormat as DateFormatHelper;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\I18n\View\Helper\DateFormat as DateFormatHelper;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class DateFormat extends AbstractPlugin
 {

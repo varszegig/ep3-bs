@@ -3,7 +3,7 @@
 namespace Backend\View\Helper\Square;
 
 use Square\Entity\SquareGroup;
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class SquareGroupFormat extends AbstractHelper
 {

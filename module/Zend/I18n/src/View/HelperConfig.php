@@ -7,11 +7,11 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\I18n\View;
+namespace Laminas\I18n\View;
 
-use Zend\ServiceManager\ConfigInterface;
-use Zend\ServiceManager\Factory\InvokableFactory;
-use Zend\ServiceManager\ServiceManager;
+use Laminas\ServiceManager\ConfigInterface;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\ServiceManager\ServiceManager;
 
 /**
  * Service manager configuration for i18n view helpers.
@@ -57,12 +57,12 @@ class HelperConfig implements ConfigInterface
         // Legacy (v2) due to alias resolution; canonical form of resolved
         // alias is used to look up the factory, while the non-normalized
         // resolved alias is used as the requested name passed to the factory.
-        'zendi18nviewhelpercurrencyformat' => InvokableFactory::class,
-        'zendi18nviewhelperdateformat' => InvokableFactory::class,
-        'zendi18nviewhelpernumberformat' => InvokableFactory::class,
-        'zendi18nviewhelperplural' => InvokableFactory::class,
-        'zendi18nviewhelpertranslate' => InvokableFactory::class,
-        'zendi18nviewhelpertranslateplural' => InvokableFactory::class,
+        'laminasi18nviewhelpercurrencyformat' => InvokableFactory::class,
+        'laminasi18nviewhelperdateformat' => InvokableFactory::class,
+        'laminasi18nviewhelpernumberformat' => InvokableFactory::class,
+        'laminasi18nviewhelperplural' => InvokableFactory::class,
+        'laminasi18nviewhelpertranslate' => InvokableFactory::class,
+        'laminasi18nviewhelpertranslateplural' => InvokableFactory::class,
     ];
 
     /**

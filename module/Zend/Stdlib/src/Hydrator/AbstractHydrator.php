@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\AbstractHydrator as BaseAbstractHydrator;
+use Laminas\Hydrator\AbstractHydrator as BaseAbstractHydrator;
 
 /**
- * @deprecated Use Zend\Hydrator\AbstractHydrator from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\AbstractHydrator from laminas/laminas-hydrator instead.
  */
 abstract class AbstractHydrator extends BaseAbstractHydrator implements HydratorInterface
 {

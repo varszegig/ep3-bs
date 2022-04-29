@@ -7,17 +7,17 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View;
+namespace Laminas\View;
 
 use Interop\Container\ContainerInterface;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\SharedEventManagerInterface;
-use Zend\I18n\Translator\TranslatorAwareInterface;
-use Zend\I18n\Translator\TranslatorInterface;
-use Zend\ServiceManager\AbstractPluginManager;
-use Zend\ServiceManager\Exception\InvalidServiceException;
-use Zend\ServiceManager\Factory\InvokableFactory;
-use Zend\View\Exception\InvalidHelperException;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\SharedEventManagerInterface;
+use Laminas\I18n\Translator\TranslatorAwareInterface;
+use Laminas\I18n\Translator\TranslatorInterface;
+use Laminas\ServiceManager\AbstractPluginManager;
+use Laminas\ServiceManager\Exception\InvalidServiceException;
+use Laminas\ServiceManager\Factory\InvokableFactory;
+use Laminas\View\Exception\InvalidHelperException;
 
 /**
  * Plugin manager implementation for view helpers
@@ -189,42 +189,42 @@ class HelperPluginManager extends AbstractPluginManager
 
         // v2 canonical FQCNs
 
-        'zendviewhelperasset'             => Helper\Service\AssetFactory::class,
-        'zendviewhelperflashmessenger'    => Helper\Service\FlashMessengerFactory::class,
-        'zendviewhelperidentity'          => Helper\Service\IdentityFactory::class,
-        'zendviewhelperbasepath'          => InvokableFactory::class,
-        'zendviewhelpercycle'             => InvokableFactory::class,
-        'zendviewhelperdeclarevars'       => InvokableFactory::class,
-        'zendviewhelperdoctype'           => InvokableFactory::class,
-        'zendviewhelperescapehtml'        => InvokableFactory::class,
-        'zendviewhelperescapehtmlattr'    => InvokableFactory::class,
-        'zendviewhelperescapejs'          => InvokableFactory::class,
-        'zendviewhelperescapecss'         => InvokableFactory::class,
-        'zendviewhelperescapeurl'         => InvokableFactory::class,
-        'zendviewhelpergravatar'          => InvokableFactory::class,
-        'zendviewhelperhtmltag'           => InvokableFactory::class,
-        'zendviewhelperheadlink'          => InvokableFactory::class,
-        'zendviewhelperheadmeta'          => InvokableFactory::class,
-        'zendviewhelperheadscript'        => InvokableFactory::class,
-        'zendviewhelperheadstyle'         => InvokableFactory::class,
-        'zendviewhelperheadtitle'         => InvokableFactory::class,
-        'zendviewhelperhtmlflash'         => InvokableFactory::class,
-        'zendviewhelperhtmllist'          => InvokableFactory::class,
-        'zendviewhelperhtmlobject'        => InvokableFactory::class,
-        'zendviewhelperhtmlpage'          => InvokableFactory::class,
-        'zendviewhelperhtmlquicktime'     => InvokableFactory::class,
-        'zendviewhelperinlinescript'      => InvokableFactory::class,
-        'zendviewhelperjson'              => InvokableFactory::class,
-        'zendviewhelperlayout'            => InvokableFactory::class,
-        'zendviewhelperpaginationcontrol' => InvokableFactory::class,
-        'zendviewhelperpartialloop'       => InvokableFactory::class,
-        'zendviewhelperpartial'           => InvokableFactory::class,
-        'zendviewhelperplaceholder'       => InvokableFactory::class,
-        'zendviewhelperrenderchildmodel'  => InvokableFactory::class,
-        'zendviewhelperrendertoplaceholder' => InvokableFactory::class,
-        'zendviewhelperserverurl'         => InvokableFactory::class,
-        'zendviewhelperurl'               => InvokableFactory::class,
-        'zendviewhelperviewmodel'         => InvokableFactory::class,
+        'laminasviewhelperasset'             => Helper\Service\AssetFactory::class,
+        'laminasviewhelperflashmessenger'    => Helper\Service\FlashMessengerFactory::class,
+        'laminasviewhelperidentity'          => Helper\Service\IdentityFactory::class,
+        'laminasviewhelperbasepath'          => InvokableFactory::class,
+        'laminasviewhelpercycle'             => InvokableFactory::class,
+        'laminasviewhelperdeclarevars'       => InvokableFactory::class,
+        'laminasviewhelperdoctype'           => InvokableFactory::class,
+        'laminasviewhelperescapehtml'        => InvokableFactory::class,
+        'laminasviewhelperescapehtmlattr'    => InvokableFactory::class,
+        'laminasviewhelperescapejs'          => InvokableFactory::class,
+        'laminasviewhelperescapecss'         => InvokableFactory::class,
+        'laminasviewhelperescapeurl'         => InvokableFactory::class,
+        'laminasviewhelpergravatar'          => InvokableFactory::class,
+        'laminasviewhelperhtmltag'           => InvokableFactory::class,
+        'laminasviewhelperheadlink'          => InvokableFactory::class,
+        'laminasviewhelperheadmeta'          => InvokableFactory::class,
+        'laminasviewhelperheadscript'        => InvokableFactory::class,
+        'laminasviewhelperheadstyle'         => InvokableFactory::class,
+        'laminasviewhelperheadtitle'         => InvokableFactory::class,
+        'laminasviewhelperhtmlflash'         => InvokableFactory::class,
+        'laminasviewhelperhtmllist'          => InvokableFactory::class,
+        'laminasviewhelperhtmlobject'        => InvokableFactory::class,
+        'laminasviewhelperhtmlpage'          => InvokableFactory::class,
+        'laminasviewhelperhtmlquicktime'     => InvokableFactory::class,
+        'laminasviewhelperinlinescript'      => InvokableFactory::class,
+        'laminasviewhelperjson'              => InvokableFactory::class,
+        'laminasviewhelperlayout'            => InvokableFactory::class,
+        'laminasviewhelperpaginationcontrol' => InvokableFactory::class,
+        'laminasviewhelperpartialloop'       => InvokableFactory::class,
+        'laminasviewhelperpartial'           => InvokableFactory::class,
+        'laminasviewhelperplaceholder'       => InvokableFactory::class,
+        'laminasviewhelperrenderchildmodel'  => InvokableFactory::class,
+        'laminasviewhelperrendertoplaceholder' => InvokableFactory::class,
+        'laminasviewhelperserverurl'         => InvokableFactory::class,
+        'laminasviewhelperurl'               => InvokableFactory::class,
+        'laminasviewhelperviewmodel'         => InvokableFactory::class,
     ];
 
     /**

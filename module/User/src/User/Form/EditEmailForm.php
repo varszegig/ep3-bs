@@ -3,8 +3,8 @@
 namespace User\Form;
 
 use User\Manager\UserManager;
-use Zend\Form\Form;
-use Zend\InputFilter\Factory;
+use Laminas\Form\Form;
+use Laminas\InputFilter\Factory;
 
 class EditEmailForm extends Form
 {

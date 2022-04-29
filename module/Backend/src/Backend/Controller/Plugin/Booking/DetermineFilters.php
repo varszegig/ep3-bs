@@ -2,7 +2,7 @@
 
 namespace Backend\Controller\Plugin\Booking;
 
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class DetermineFilters extends AbstractPlugin
 {

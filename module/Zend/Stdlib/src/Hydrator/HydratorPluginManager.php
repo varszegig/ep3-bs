@@ -7,16 +7,16 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\HydratorPluginManager as BaseHydratorPluginManager;
+use Laminas\Hydrator\HydratorPluginManager as BaseHydratorPluginManager;
 
 /**
  * Plugin manager implementation for hydrators.
  *
  * Enforces that adapters retrieved are instances of HydratorInterface
  *
- * @deprecated Use Zend\Hydrator\HydratorPluginManager from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\HydratorPluginManager from laminas/laminas-hydrator instead.
  */
 class HydratorPluginManager extends BaseHydratorPluginManager
 {
@@ -26,7 +26,7 @@ class HydratorPluginManager extends BaseHydratorPluginManager
      * @var array
      */
     protected $aliases = [
-        'delegatinghydrator' => 'Zend\Stdlib\Hydrator\DelegatingHydrator',
+        'delegatinghydrator' => 'Laminas\Stdlib\Hydrator\DelegatingHydrator',
     ];
 
     /**
@@ -35,10 +35,10 @@ class HydratorPluginManager extends BaseHydratorPluginManager
      * @var array
      */
     protected $invokableClasses = [
-        'arrayserializable' => 'Zend\Stdlib\Hydrator\ArraySerializable',
-        'classmethods'      => 'Zend\Stdlib\Hydrator\ClassMethods',
-        'objectproperty'    => 'Zend\Stdlib\Hydrator\ObjectProperty',
-        'reflection'        => 'Zend\Stdlib\Hydrator\Reflection'
+        'arrayserializable' => 'Laminas\Stdlib\Hydrator\ArraySerializable',
+        'classmethods'      => 'Laminas\Stdlib\Hydrator\ClassMethods',
+        'objectproperty'    => 'Laminas\Stdlib\Hydrator\ObjectProperty',
+        'reflection'        => 'Laminas\Stdlib\Hydrator\Reflection'
     ];
 
     /**
@@ -47,7 +47,7 @@ class HydratorPluginManager extends BaseHydratorPluginManager
      * @var array
      */
     protected $factories = [
-        'Zend\Stdlib\Hydrator\DelegatingHydrator' => 'Zend\Stdlib\Hydrator\DelegatingHydratorFactory',
-        'zendstdlibhydratordelegatinghydrator'    => 'Zend\Stdlib\Hydrator\DelegatingHydratorFactory',
+        'Laminas\Stdlib\Hydrator\DelegatingHydrator' => 'Laminas\Stdlib\Hydrator\DelegatingHydratorFactory',
+        'zendstdlibhydratordelegatinghydrator'    => 'Laminas\Stdlib\Hydrator\DelegatingHydratorFactory',
     ];
 }

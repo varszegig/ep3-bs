@@ -4,7 +4,7 @@ namespace User\Controller\Plugin;
 
 use RuntimeException;
 use User\Manager\UserSessionManager;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class Authorize extends AbstractPlugin
 {

@@ -7,9 +7,9 @@ use Exception;
 use InvalidArgumentException;
 use RuntimeException;
 use Traversable;
-use Zend\Db\Sql\Predicate\In;
-use Zend\Db\Sql\Select;
-use Zend\Db\TableGateway\TableGateway;
+use Laminas\Db\Sql\Predicate\In;
+use Laminas\Db\Sql\Select;
+use Laminas\Db\TableGateway\TableGateway;
 
 abstract class AbstractEntityManager extends AbstractManager
 {

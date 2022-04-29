@@ -2,8 +2,8 @@
 
 namespace Booking\Service;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class BookingServiceFactory implements FactoryInterface
 {
@@ -19,7 +19,7 @@ class BookingServiceFactory implements FactoryInterface
             $sm->get('Booking\Manager\ReservationManager'),
             $sm->get('Square\Manager\SquarePricingManager'),
             $sm->get('ViewHelperManager'),
-            $sm->get('Zend\Db\Adapter\Adapter')->getDriver()->getConnection());
+            $sm->get('Laminas\Db\Adapter\Adapter')->getDriver()->getConnection());
 
         $eventManager = $bookingService->getEventManager();
         $eventManager->attach($notificationListener);

@@ -3,7 +3,7 @@
 namespace User\Controller;
 
 use User\Authentication\Result;
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class SessionController extends AbstractActionController
 {

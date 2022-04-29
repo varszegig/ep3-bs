@@ -63,4 +63,4 @@ require $init;
 /**
  * Initialize our application with the provided configuration file and ruuuuun!
  */
-Zend\Mvc\Application::init(require 'config/application.php')->run();
+Laminas\Mvc\Application::init(require 'config/application.php')->run();

@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator\Strategy;
+namespace Laminas\Stdlib\Hydrator\Strategy;
 
-use Zend\Hydrator\Strategy\ClosureStrategy as BaseClosureStrategy;
+use Laminas\Hydrator\Strategy\ClosureStrategy as BaseClosureStrategy;
 
 /**
- * @deprecated Use Zend\Hydrator\Strategy\ClosureStrategy from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\Strategy\ClosureStrategy from laminas/laminas-hydrator instead.
  */
 class ClosureStrategy extends BaseClosureStrategy implements StrategyInterface
 {

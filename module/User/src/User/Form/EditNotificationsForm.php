@@ -2,7 +2,7 @@
 
 namespace User\Form;
 
-use Zend\Form\Form;
+use Laminas\Form\Form;
 
 class EditNotificationsForm extends Form
 {

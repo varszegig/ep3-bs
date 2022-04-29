@@ -35,7 +35,7 @@ return array(
 
             'MvcTranslator' => 'Base\I18n\Translator\TranslatorFactory',
 
-            'Zend\Db\Adapter\Adapter' => 'Zend\Db\Adapter\AdapterServiceFactory',
+            'Laminas\Db\Adapter\Adapter' => 'Laminas\Db\Adapter\AdapterServiceFactory',
 
             /* Listeners */
 

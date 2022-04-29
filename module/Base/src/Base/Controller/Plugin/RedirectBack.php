@@ -4,9 +4,9 @@ namespace Base\Controller\Plugin;
 
 use Base\Manager\ConfigManager;
 use RuntimeException;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
-use Zend\Serializer\Adapter\Json as JsonSerializer;
-use Zend\Serializer\Exception\ExceptionInterface;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Serializer\Adapter\Json as JsonSerializer;
+use Laminas\Serializer\Exception\ExceptionInterface;
 
 class RedirectBack extends AbstractPlugin
 {

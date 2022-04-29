@@ -7,8 +7,8 @@ use Booking\Manager\BookingManager;
 use Booking\Manager\ReservationManager;
 use Square\Manager\SquareManager;
 use User\Manager\UserManager;
-use Zend\Db\Sql\Predicate\Operator;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Db\Sql\Predicate\Operator;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class DetermineParams extends AbstractPlugin
 {

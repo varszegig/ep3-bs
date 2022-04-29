@@ -11,10 +11,10 @@ use User\Entity\User;
 use User\Entity\UserFactory;
 use User\Table\UserMetaTable;
 use User\Table\UserTable;
-use Zend\Crypt\Password\Bcrypt;
-use Zend\Db\Sql\Predicate\In;
-use Zend\Db\Sql\Predicate\Like;
-use Zend\Db\Sql\Predicate\NotIn;
+use Laminas\Crypt\Password\Bcrypt;
+use Laminas\Db\Sql\Predicate\In;
+use Laminas\Db\Sql\Predicate\Like;
+use Laminas\Db\Sql\Predicate\NotIn;
 
 class UserManager extends AbstractManager
 {

@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\HydratorAwareTrait as BaseHydratorAwareTrait;
+use Laminas\Hydrator\HydratorAwareTrait as BaseHydratorAwareTrait;
 
 /**
- * @deprecated Use Zend\Hydrator\HydratorAwareTrait from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\HydratorAwareTrait from laminas/laminas-hydrator instead.
  */
 trait HydratorAwareTrait
 {

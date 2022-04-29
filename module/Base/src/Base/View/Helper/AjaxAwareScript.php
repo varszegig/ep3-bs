@@ -2,7 +2,7 @@
 
 namespace Base\View\Helper;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class AjaxAwareScript extends AbstractHelper
 {

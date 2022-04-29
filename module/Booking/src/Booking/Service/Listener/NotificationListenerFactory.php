@@ -2,8 +2,8 @@
 
 namespace Booking\Service\Listener;
 
-use Zend\ServiceManager\FactoryInterface;
-use Zend\ServiceManager\ServiceLocatorInterface;
+use Laminas\ServiceManager\FactoryInterface;
+use Laminas\ServiceManager\ServiceLocatorInterface;
 
 class NotificationListenerFactory implements FactoryInterface
 {

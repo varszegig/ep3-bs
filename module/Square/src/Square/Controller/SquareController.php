@@ -2,7 +2,7 @@
 
 namespace Square\Controller;
 
-use Zend\Mvc\Controller\AbstractActionController;
+use Laminas\Mvc\Controller\AbstractActionController;
 
 class SquareController extends AbstractActionController
 {

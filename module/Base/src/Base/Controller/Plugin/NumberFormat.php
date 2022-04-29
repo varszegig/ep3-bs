@@ -2,8 +2,8 @@
 
 namespace Base\Controller\Plugin;
 
-use Zend\I18n\View\Helper\NumberFormat as NumberFormatHelper;
-use Zend\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\I18n\View\Helper\NumberFormat as NumberFormatHelper;
+use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 
 class NumberFormat extends AbstractPlugin
 {

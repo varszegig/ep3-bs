@@ -2,9 +2,9 @@
 
 namespace Base\View\Helper;
 
-use Zend\Form\View\Helper\FormElementErrors as ZendFormElementErrors;
+use Laminas\Form\View\Helper\FormElementErrors as LaminasFormElementErrors;
 
-class FormElementErrors extends ZendFormElementErrors
+class FormElementErrors extends LaminasFormElementErrors
 {
 
     protected $attributes = array(

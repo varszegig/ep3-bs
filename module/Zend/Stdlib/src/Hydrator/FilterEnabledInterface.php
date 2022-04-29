@@ -7,12 +7,12 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\Stdlib\Hydrator;
+namespace Laminas\Stdlib\Hydrator;
 
-use Zend\Hydrator\FilterEnabledInterface as BaseFilterEnabledInterface;
+use Laminas\Hydrator\FilterEnabledInterface as BaseFilterEnabledInterface;
 
 /**
- * @deprecated Use Zend\Hydrator\FilterEnabledInterface from zendframework/zend-hydrator instead.
+ * @deprecated Use Laminas\Hydrator\FilterEnabledInterface from laminas/laminas-hydrator instead.
  */
 interface FilterEnabledInterface extends BaseFilterEnabledInterface
 {

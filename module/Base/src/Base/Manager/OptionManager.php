@@ -6,9 +6,9 @@ use Base\Charon;
 use Base\Table\OptionTable;
 use InvalidArgumentException;
 use RuntimeException;
-use Zend\Db\Sql\Predicate\IsNull;
-use Zend\Db\Sql\Predicate\Operator;
-use Zend\Db\Sql\Predicate\Predicate;
+use Laminas\Db\Sql\Predicate\IsNull;
+use Laminas\Db\Sql\Predicate\Operator;
+use Laminas\Db\Sql\Predicate\Predicate;
 
 class OptionManager extends AbstractManager
 {

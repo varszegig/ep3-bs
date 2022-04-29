@@ -3,9 +3,9 @@
 namespace Base\Manager;
 
 use RuntimeException;
-use Zend\EventManager\EventManager;
-use Zend\EventManager\EventManagerAwareInterface;
-use Zend\EventManager\EventManagerInterface;
+use Laminas\EventManager\EventManager;
+use Laminas\EventManager\EventManagerAwareInterface;
+use Laminas\EventManager\EventManagerInterface;
 
 class ConfigManager implements EventManagerAwareInterface
 {

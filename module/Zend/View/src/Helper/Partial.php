@@ -7,10 +7,10 @@
  * @license   http://framework.zend.com/license/new-bsd New BSD License
  */
 
-namespace Zend\View\Helper;
+namespace Laminas\View\Helper;
 
-use Zend\View\Exception;
-use Zend\View\Model\ModelInterface;
+use Laminas\View\Exception;
+use Laminas\View\Model\ModelInterface;
 
 /**
  * Helper for rendering a template fragment in its own variable scope.

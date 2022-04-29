@@ -2,7 +2,7 @@
 
 namespace Backend\View\Helper\Square;
 
-use Zend\View\Helper\AbstractHelper;
+use Laminas\View\Helper\AbstractHelper;
 
 class ProductsFormat extends AbstractHelper
 {
