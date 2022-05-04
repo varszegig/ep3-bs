@@ -146,8 +146,7 @@ class BookingController extends AbstractActionController
                 } else {
 
                     /* Create booking/reservation */
-
-                    $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
+                    $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bd-date-end'],
                         $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
                 }
 
@@ -164,7 +163,6 @@ class BookingController extends AbstractActionController
         } else {
             if ($booking) {
                 $user = $booking->needExtra('user');
-
                 $editForm->setData(array(
                     'bf-rid' => $reservation->get('rid'),
                     'bf-user' => $user->need('alias') . ' (' . $user->need('uid') . ')',
@@ -197,10 +195,14 @@ class BookingController extends AbstractActionController
                     $timeEnd = '24:00';
                 }
 
+                $squarePricingManager = $serviceManager->get('Square\Manager\SquarePricingManager');
+                // error_log('enddate=' . $params['dateTimeEnd']);
+                $endDate = $squarePricingManager->getMaxEndDate($params['dateTimeEnd']);
+
                 $editForm->setData(array(
                     'bf-sid' => $params['square']->get('sid'),
                     'bf-date-start' => $this->dateFormat($params['dateTimeStart'], \IntlDateFormatter::MEDIUM),
-                    'bf-date-end' => $this->dateFormat($params['dateTimeEnd'], \IntlDateFormatter::MEDIUM), 
+                    'bf-date-end' => $this->dateFormat($endDate, \IntlDateFormatter::MEDIUM), 
                     'bf-time-start' => $params['dateTimeStart']->format('H:i'),
                     'bf-time-end' => $timeEnd,
                 ));

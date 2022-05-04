@@ -555,4 +555,20 @@ class SquarePricingManager extends AbstractManager
         return $minMaxPricingInRange;
     }
     
+/**
+     * Determines the maximum rule end-date.
+     *
+     * @param DateTime $dateTimeStart
+     * @return DateTime
+     */
+    public function getmaxEndDate(DateTime $dateTimeStart)
+    {
+        $rules = $this->getAll();
+        $maxEndDate = $dateTimeStart;
+        foreach ($rules as $rule) {
+            $ruleEnd = DateTime::createFromFormat('Y-m-d', $rule['date_end']);
+            if ($ruleEnd > $maxEndDate) $maxEndDate = $ruleEnd;
+        }
+        return $maxEndDate;
+    }
 }

@@ -76,12 +76,8 @@ class EventController extends AbstractActionController
             if ($editForm->isValid()) {
                 $data = $editForm->getData();
                 
-                if (!$eid) {
-                    $repeat = $data['ef-repeat'];
-                } else {
-                    $repeat = 0;
-                }
-                
+                $repeat = $data['ef-repeat'];
+
                 $dateStart = new \DateTime($data['ef-date-start']);
                 $dateEnd = new \DateTime($data['ef-date-end']);
 
@@ -96,6 +92,8 @@ class EventController extends AbstractActionController
 
                 if (! $event) {
                     $event = new Event();
+                } else {
+                    $walkingDateLimit = clone $dateStart;
                 }
 
                 while ($walkingDate <= $walkingDateLimit) {
@@ -106,6 +104,10 @@ class EventController extends AbstractActionController
 
                     $event->setMeta('name', $data['ef-name'], $locale);
                     $event->setMeta('description', $data['ef-description'], $locale);
+                    if ($repeat > 0) {
+                        $event->setMeta('repeat', $repeat, $locale);
+                        $event->setMeta('repeat_end', $walkingDateLimit->format('Y-m-d'), $locale);
+                    }
 
                     $dateStart = new \DateTime($data['ef-date-start']);
 
@@ -160,7 +162,6 @@ class EventController extends AbstractActionController
             }
         } else {
             if ($event) {
-                   
                 $editForm->setData(array(
                     'ef-name' => $event->getMeta('name'),
                     'ef-description' => $event->getMeta('description'),
@@ -170,12 +171,12 @@ class EventController extends AbstractActionController
                     'ef-time-end' => $event->needExtra('datetime_end')->format('H:i'),
                     'ef-sid' =>  $event->get('sid'),
                     'ef-capacity' =>  $event->get('capacity', 0),
-                    // 'ef-repeat-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
+                    'ef-repeat' => $event->getMeta('repeat'),
+                    'ef-repeat-end' => $this->dateFormat(new \DateTime($event->getMeta('repeat_end')), \IntlDateFormatter::MEDIUM),
                     'ef-notes' =>  $event->getMeta('notes'),
                 ));
             } else {
                 $params = $this->backendBookingDetermineParams();
-
                 $editForm->setData(array(
                     'ef-date-start' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
                     'ef-time-start' => $params['dateTimeStart']->format('H:i'),
@@ -183,6 +184,7 @@ class EventController extends AbstractActionController
                     'ef-time-end' => $params['dateTimeEnd']->format('H:i'),
                     'ef-sid' =>  $params['square']->get('sid'),
                     'ef-capacity' => 0,
+                    'ef-repeat' => 0,
                     'ef-repeat-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
                 ));
             }

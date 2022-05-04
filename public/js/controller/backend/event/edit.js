@@ -4,13 +4,18 @@
     var tagProvider;
 
     $(document).ready(function() {
-        disableFormElement("#ef-repeat-end");
+        
+        var repeat = $("#ef-repeat");
+        var dateEnd = $("#ef-repeat-end");
+
+        if (repeat.val() === "0") {
+            disableFormElement(dateEnd);
+        } else {
+            enableFormElement(dateEnd);
+        }
+
         $("#ef-repeat").on("change", updateForm);
         const eventid = document.URL.split("event/edit/")[1];
-        if (eventid !== undefined) {
-            disableFormElement("#ef-repeat");
-            disableFormElement("#ef-repeat-end");
-        }
 
     });
 
