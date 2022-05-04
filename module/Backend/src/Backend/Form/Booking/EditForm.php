@@ -281,10 +281,11 @@ class EditForm extends Form
                     array(
                         'name' => 'Callback',
                         'options' => array(
-                            'callback' => function($value) {
+                            'callback' => function($value, $context) {
                                     try {
                                         new \DateTime($value);
-
+                                        
+                                         if ($value <= $context['bf-date-start'] and $context['bf-repeat'] > 0) return false;
                                         return true;
                                     } catch (\Exception $e) {
                                         return false;
