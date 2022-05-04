@@ -272,10 +272,11 @@ class EditForm extends Form
                     array(
                         'name' => 'Callback',
                         'options' => array(
-                            'callback' => function($value) {
+                            'callback' => function($value, $context) {
                                     try {
-                                        new \DateTime($value);
-
+                                        $dateValue = new \DateTime($value);
+                                        $startValue = new \DateTime($context['ef-date-start']);
+                                        if ($dateValue < $startValue) return false;
                                         return true;
                                     } catch (\Exception $e) {
                                         return false;
@@ -344,10 +345,12 @@ class EditForm extends Form
                     array(
                         'name' => 'Callback',
                         'options' => array(
-                            'callback' => function($value) {
+                            'callback' => function($value, $context) {
                                     try {
                                         new \DateTime($value);
-
+                                        $dateValue = new \DateTime($value);
+                                        $startValue = new \DateTime($context['ef-date-start']);
+                                        if ($dateValue <= $startValue) return false;
                                         return true;
                                     } catch (\Exception $e) {
                                         return false;
