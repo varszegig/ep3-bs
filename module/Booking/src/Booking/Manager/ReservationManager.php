@@ -146,6 +146,8 @@ class ReservationManager extends AbstractManager
             }
 
             if ($dateStart >= $dateEnd) {
+                error_log($dateStart->format('Y-m-d'));
+                error_log($dateEnd->format('Y-m-d'));
                 throw new InvalidArgumentException('Invalid date range passed for reservation creation');
             }
 
