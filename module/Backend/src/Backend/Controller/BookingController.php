@@ -196,7 +196,6 @@ class BookingController extends AbstractActionController
                 }
 
                 $squarePricingManager = $serviceManager->get('Square\Manager\SquarePricingManager');
-                // error_log('enddate=' . $params['dateTimeEnd']);
                 $endDate = $squarePricingManager->getMaxEndDate($params['dateTimeEnd']);
 
                 $editForm->setData(array(
