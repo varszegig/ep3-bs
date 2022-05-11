@@ -41,15 +41,16 @@ return array(
 
     'Calendar' => 'Naptár',
 
-    'from %s to %s' => '%s-tól %s-ig',
+    'from %s to %s' => 'kezdet %s, vége %s',
     'from' => 'tól',
-    '%s to %s' => '%s-tól %s-ig',
+    '%s to %s' => 'kezdet %s, vége %s',
     'to' => '-',
     'and' => 'és',
     'or' => 'vagy',
     'for' => 'részére',
 
-    'Y-m-d' => 'Év.Hónap.Nap',
+    'dd.MM.yyyy' => 'yyyy-MM-dd',
+    'eeee, y. MMMM d.' => 'y. MMMM d, eeee',
 
     'Page not found' => 'Oldal nem található',
     'Oops ... something went wrong here' => 'Hoppá ... valami hiba történt',

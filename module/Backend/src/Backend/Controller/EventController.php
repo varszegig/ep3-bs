@@ -165,27 +165,27 @@ class EventController extends AbstractActionController
                 $editForm->setData(array(
                     'ef-name' => $event->getMeta('name'),
                     'ef-description' => $event->getMeta('description'),
-                    'ef-date-start' => $this->dateFormat($event->needExtra('datetime_start'), \IntlDateFormatter::MEDIUM),
+                    'ef-date-start' => $this->dateFormat($event->needExtra('datetime_start'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-start' => $event->needExtra('datetime_start')->format('H:i'),
-                    'ef-date-end' => $this->dateFormat($event->needExtra('datetime_end'), \IntlDateFormatter::MEDIUM),
+                    'ef-date-end' => $this->dateFormat($event->needExtra('datetime_end'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-end' => $event->needExtra('datetime_end')->format('H:i'),
                     'ef-sid' =>  $event->get('sid'),
                     'ef-capacity' =>  $event->get('capacity', 0),
                     'ef-repeat' => $event->getMeta('repeat'),
-                    'ef-repeat-end' => $this->dateFormat(new \DateTime($event->getMeta('repeat_end')), \IntlDateFormatter::MEDIUM),
+                    'ef-repeat-end' => $this->dateFormat(new \DateTime($event->getMeta('repeat_end')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-notes' =>  $event->getMeta('notes'),
                 ));
             } else {
                 $params = $this->backendBookingDetermineParams();
                 $editForm->setData(array(
-                    'ef-date-start' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
+                    'ef-date-start' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-start' => $params['dateTimeStart']->format('H:i'),
-                    'ef-date-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
+                    'ef-date-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-end' => $params['dateTimeEnd']->format('H:i'),
                     'ef-sid' =>  $params['square']->get('sid'),
                     'ef-capacity' => 0,
                     'ef-repeat' => 0,
-                    'ef-repeat-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM),
+                    'ef-repeat-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                 ));
             }
         }

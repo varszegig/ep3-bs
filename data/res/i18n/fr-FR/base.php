@@ -49,6 +49,8 @@ return array(
     'or' => 'ou',
     'for' => 'pour',
 
+    'dd.MM.yyyy' => 'dd-MM-yyyy',
+
     'Page not found' => 'Page introuvable !',
     'Oops ... something went wrong here' => 'Oops ... ça ne marche pas désolé',
     'This page does not (yet) exist' => 'Cette page n\'existe pas (encore)',

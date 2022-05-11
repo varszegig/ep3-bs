@@ -187,6 +187,7 @@ class BookingController extends AbstractActionController
                     $userNotes = '';
                 }
 
+                
                 $bookingService = $serviceManager->get('Booking\Service\BookingService');
                 $bookingService->createSingle($user, $square, $quantityParam, $byproducts['dateStart'], $byproducts['dateEnd'], $bills, array(
                     'player-names' => serialize($playerNames),

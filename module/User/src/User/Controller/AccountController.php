@@ -368,7 +368,7 @@ class AccountController extends AbstractActionController
         }
 
         $bookings = $bookingManager->getByValidity(array('uid' => $user->need('uid')));
-        $reservations = $reservationManager->getByBookings($bookings, 'date DESC, time_start DESC');
+        $reservations = $reservationManager->getByBookings($bookings, 'date ASC, time_start ASC');
 
         $bookingBillManager->getByBookings($bookings);
 

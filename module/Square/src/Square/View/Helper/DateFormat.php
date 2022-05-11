@@ -16,13 +16,13 @@ class DateFormat extends AbstractHelper
 
         if ($dateTimeStart->format('Y-m-d') == $dateTimeEnd->format('Y-m-d')) {
             $html .= sprintf('<p>%s<br>%s',
-                $view->dateFormat($dateTimeStart, IntlDateFormatter::FULL),
+                $view->dateFormat($dateTimeStart, IntlDateFormatter::FULL, null, null, $view->t('eeee, y. MMMM d.')),
                 $view->timeRange($dateTimeStart, $dateTimeEnd, '%s to %s'));
         } else {
-            $dateStartFormat = $view->dateFormat($dateTimeStart, IntlDateFormatter::FULL);
+            $dateStartFormat = $view->dateFormat($dateTimeStart, IntlDateFormatter::FULL, null, null, $view->t('eeee, y. MMMM d.'));
             $timeStartFormat = $view->timeFormat($dateTimeStart);
 
-            $dateEndFormat = $view->dateFormat($dateTimeEnd, IntlDateFormatter::FULL);
+            $dateEndFormat = $view->dateFormat($dateTimeEnd, IntlDateFormatter::FULL, null, null, $view->t('eeee, y. MMMM d.'));
             $timeEndFormat = $view->timeFormat($dateTimeEnd);
 
             $html .= sprintf('<p>%s - %s</p>', $dateStartFormat, $timeStartFormat);

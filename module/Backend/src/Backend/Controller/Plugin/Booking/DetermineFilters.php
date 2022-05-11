@@ -39,8 +39,9 @@ class DetermineFilters extends AbstractPlugin
                         strtolower($controller->t('Visibility')),
                         strtolower($controller->t('Quantity')),
                         strtolower($controller->t('Created')),
+                        strtolower($controller->t('Status')),
                     ),
-                    array('uid', 'uid', 'sid', 'status_billing', 'visibility', 'quantity', 'created'),
+                    array('uid', 'uid', 'sid', 'status_billing', 'visibility', 'quantity', 'created', 'status'),
                     $key);
 
                 // Translate values
