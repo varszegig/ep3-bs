@@ -1,9 +1,9 @@
 jQuery(function($) {
 	$.datepicker.regional["hu"] = {
-        "altFormat": "dd.mm.yy",
+        "altFormat": "yy-mm-dd",
         "closeText": "Bezár",
         "currentText": "Ma",
-        "dateFormat": "dd.mm.yy",
+        "dateFormat": "yy-mm-dd",
         "dayNames": ["Vasárnap", "Hétfő", "Kedd", "Szerda", "Csütörtök", "Péntek", "Szombat"],
         "dayNamesMin": ["Va", "Hé", "Ke", "Sze", "Cs", "Pé", "Szo"],
         "dayNamesShort": ["Va", "Hé", "Ke", "Sze", "Cs", "Pé", "Szo"],

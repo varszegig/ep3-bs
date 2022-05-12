@@ -44,8 +44,9 @@ class DetermineFilters extends AbstractPlugin
                         strtolower($controller->t('Active')),
                         strtolower($controller->t('IP')),
                         strtolower($controller->t('Created')),
+                        strtolower($controller->t('Status')),
                     ),
-                    array('email', 'last_activity', 'last_ip', 'created'),
+                    array('email', 'last_activity', 'last_ip', 'created', 'status'),
                     $key);
 
                 // Translate values
@@ -71,6 +72,11 @@ class DetermineFilters extends AbstractPlugin
                             }
 
                             $value = (new \DateTime($value))->format('Y-m-d');
+
+                            if ($operator == '=') {
+                                $value .= '%';
+                                $operator = 'LIKE';
+                            }
                     }
                 } catch (\RuntimeException $e) {
                     break;

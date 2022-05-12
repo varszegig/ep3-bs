@@ -26,8 +26,8 @@ $booking = $reservation->getExtra('booking');
             $this->t($booking->getRepeat()));
 
         echo sprintf($this->t('from %s to %s'),
-            '<b>' . $this->dateFormat($dateStart, IntlDateFormatter::FULL) . '</b>',
-            '<b>' . $this->dateFormat($dateEnd, IntlDateFormatter::FULL) . '</b>');
+            '<b>' . $this->dateFormat($dateStart, IntlDateFormatter::FULL, null, null, $this->t('eeee, y. MMMM d.')) . '</b>',
+            '<b>' . $this->dateFormat($dateEnd, IntlDateFormatter::FULL, null, null, $this->t('eeee, y. MMMM d.')) . '</b>');
 
         ?>
     </div>

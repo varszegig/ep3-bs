@@ -71,7 +71,7 @@ class NotificationListener extends AbstractListenerAggregate
 
         $subject = sprintf($this->t('Your %s-booking for %s'),
             $this->optionManager->get('subject.square.type'),
-            $dateFormatHelper($reservationStart, \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT));
+            $dateFormatHelper($reservationStart, \IntlDateFormatter::FULL, \IntlDateFormatter::SHORT, null, $this->t('eeee, y. MMMM d.')));
 
         $message = sprintf($this->t('we have reserved %s %s, %s for you. Thank you for your booking.'),
             $this->optionManager->get('subject.square.type'),
@@ -106,7 +106,7 @@ class NotificationListener extends AbstractListenerAggregate
 
 		    $backendSubject = sprintf($this->t('%s\'s %s-booking for %s'),
 		        $user->need('alias'), $this->optionManager->get('subject.square.type'),
-			    $dateFormatHelper($reservationStart, \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT));
+			    $dateFormatHelper($reservationStart, \IntlDateFormatter::FULL, \IntlDateFormatter::SHORT, null, $this->t('eeee, y. MMMM d.')));
 
 		    $addendum = sprintf($this->t('Originally sent to %s (%s).'),
 	            $user->need('alias'), $user->need('email'));

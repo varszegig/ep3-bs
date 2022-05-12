@@ -17,7 +17,7 @@ class DateFormat extends AbstractPlugin
         $this->dateFormatHelper = $dateFormatHelper;
     }
 
-    public function __invoke($dateTime, $dateType = IntlDateFormatter::MEDIUM, $timeType = IntlDateFormatter::NONE, $locale = "en_US")
+    public function __invoke($dateTime, $dateType = IntlDateFormatter::MEDIUM, $timeType = IntlDateFormatter::NONE, $locale = null, $pattern=null)
     {
         if (! $dateTime) {
             return null;
@@ -25,11 +25,12 @@ class DateFormat extends AbstractPlugin
         
         if (! ($dateTime instanceof DateTime)) {
             $dateTime = new DateTime($dateTime);
-        }
+        } 
 
+     
         $dateFormatHelper = $this->dateFormatHelper;
 
-        return $dateFormatHelper($dateTime, $dateType, $timeType, $locale);
+        return $dateFormatHelper($dateTime, $dateType, $timeType, $locale, $pattern);
     }
 
 }

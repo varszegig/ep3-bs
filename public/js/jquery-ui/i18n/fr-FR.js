@@ -1,9 +1,9 @@
 jQuery(function($) {
 	$.datepicker.regional["fr"] = {
-        "altFormat": "dd.mm.yy",
+        "altFormat": "dd-mm-yy",
         "closeText": "Fermer",
         "currentText": "Aujourd'hui",
-        "dateFormat": "dd.mm.yy",
+        "dateFormat": "dd-mm-yy",
         "dayNames": [ "dimanche", "lundi", "mardi", "mercredi", "jeudi", "vendredi", "samedi" ],
         "dayNamesMin": [ "D","L","M","M","J","V","S" ],
         "dayNamesShort": [ "dim.", "lun.", "mar.", "mer.", "jeu.", "ven.", "sam." ],

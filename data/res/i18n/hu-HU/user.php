@@ -124,11 +124,11 @@ return array(
     'Please type a new password here' => 'Kérjük adja meg az új jelszavát itt',
     'Please type your email address again<br>to prevent typing errors' => 'Kérjük adja meg az email címét ismet<br>a hibák elkerülése érdekében',
     'Please type your password again<br>to prevent typing errors' => 'Kérjük adja meg a jelszavát<br>a hibák elkerülése érdekében',
-    'Please type your new password again<br>to prevent typing errors' => 'Kérjük adja meg a jelszavát ismét<br>a hibák elkerüése érdekében',
+    'Please type your new password again<br>to prevent typing errors' => 'Kérjük adja meg a jelszavát ismét<br>a hibák elkerülése érdekében',
     'Your new password should be at least %min% characters long' => 'Az új jelszava minimum %min% karakter hosszú kell hogy legyen',
 
     'Notify on bookings and cancellations' => 'Figyelmeztessen foglalásoknál és lemondásoknál',
-    'We can send you confirmations per email' => 'Engdeélyezi a megerősítő emailek küldését',
+    'We can send you confirmations per email' => 'Engdélyezi a megerősítő emailek küldését',
 
     'Update phone number' => 'Telefonszám frissítése',
     'Update email address' => 'Email cím frissítése',
@@ -146,8 +146,8 @@ return array(
     'We only use this to inform you<br>about changes to your bookings' => 'Csak arra használjuk ezt, hogy informáljuk önt<br>a foglalások változásárol',
 
     'Salutation' => 'Köszöntés',
-    'First & Last name' => 'Keresztnév- & Vezetéknév',
-    'Last name' => 'Vezetéknév',
+    'First & Last name' => 'Vezetéknév és Keresztnév',
+    'Last name' => 'Keresztnév',
     'Street & Number' => 'Utca és házszám',
     'Street number' => 'Házszám',
     'Postal code & City' => 'Irányítószám és város',
@@ -161,8 +161,8 @@ return array(
     'Please type your name here' => 'Adja meg a nevét',
     'Your name is somewhat short ...' => 'A név túl rövid',
     'Your name contains invalid characters - sorry' => 'A név nem érvényes karaktereket tartalmaz',
-    'Your last name is somewhat short ...' => 'A vezetéknév rövid',
-    'Your last name contains invalid characters - sorry' => 'A vezetéknév érvénytelen karaktereket tartalmaz',
+    'Your last name is somewhat short ...' => 'A keresztnév rövid',
+    'Your last name contains invalid characters - sorry' => 'A keresztnév érvénytelen karaktereket tartalmaz',
     'Please type your street name here' => 'Adja meg az utca nevet itt',
     'This street name is somewhat short ...' => 'Az utca név rövid',
     'This street name contains invalid characters - sorry' => 'Az utca név érvénytelen karaktereket tartalmaz',
@@ -183,7 +183,7 @@ return array(
     'This user does not exist' => 'Ez a felhasználó nem létezik',
 
     'You have no imminent bookings.' => 'Önnek nincs aktuális foglalása',
-    'You have not booked any %s yet.' => 'Ön nem foglalt idáig %s -t.',
+    'You have not booked any %s yet.' => 'Ön nem foglalt idáig %s-at.',
     'You have already booked one %s.' => 'Ön már foglalt egy %s -t.',
     'You have already booked %s %s.' => 'Ön már foglalt %s %s.',
 
@@ -213,7 +213,7 @@ return array(
     'The only step remaining is to %sactivate your user account%s.'
         => 'Még egy utolsó lépésre van szükség, %shogy aktiválhassa a felhasználói fiókját%s.',
     'For this, we just sent you an email with an activation link within. Please check.'
-        => 'Elküldtünk egy aktivációs email-t. Kérjük ellenőrizze.',
+        => 'Elküldtünk egy aktivációs email-t. Kérjük ellenőrizze!',
     'If you did not receive an email from us, you can always %srequest a new one%s.'
         => 'Ha nem kapta meg az aktivációs email-t %sakkor itt tud újat kérni%s.',
 

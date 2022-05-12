@@ -176,16 +176,16 @@ class BookingController extends AbstractActionController
                     $editForm->setData(array(
                         'bf-time-start' => substr($booking->getMeta('time_start', $reservation->get('time_start')), 0, 5),
                         'bf-time-end' => substr($booking->getMeta('time_end', $reservation->get('time_end')), 0, 5),
-                        'bf-date-start' => $this->dateFormat($booking->getMeta('date_start', $reservation->get('date')), \IntlDateFormatter::MEDIUM),
-                        'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM),
+                        'bf-date-start' => $this->dateFormat($booking->getMeta('date_start', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                         'bf-repeat' => $booking->getMeta('repeat'),
                     ));
                 } else {
                     $editForm->setData(array(
                         'bf-time-start' => substr($reservation->get('time_start'), 0, 5),
                         'bf-time-end' => substr($reservation->get('time_end'), 0, 5),
-                        'bf-date-start' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM),
-                        'bf-date-end' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM),
+                        'bf-date-start' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-date-end' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     ));
                 }
             } else {
@@ -200,8 +200,8 @@ class BookingController extends AbstractActionController
 
                 $editForm->setData(array(
                     'bf-sid' => $params['square']->get('sid'),
-                    'bf-date-start' => $this->dateFormat($params['dateTimeStart'], \IntlDateFormatter::MEDIUM),
-                    'bf-date-end' => $this->dateFormat($endDate, \IntlDateFormatter::MEDIUM), 
+                    'bf-date-start' => $this->dateFormat($params['dateTimeStart'], \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                    'bf-date-end' => $this->dateFormat($endDate, \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')), 
                     'bf-time-start' => $params['dateTimeStart']->format('H:i'),
                     'bf-time-end' => $timeEnd,
                 ));
@@ -342,8 +342,8 @@ class BookingController extends AbstractActionController
             ));
 
             $editDateRangeForm->setData(array(
-                'bf-date-start' => $this->dateFormat($booking->needMeta('date_start'), \IntlDateFormatter::MEDIUM),
-                'bf-date-end' => $this->dateFormat($booking->needMeta('date_end'), \IntlDateFormatter::MEDIUM),
+                'bf-date-start' => $this->dateFormat($booking->needMeta('date_start'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                'bf-date-end' => $this->dateFormat($booking->needMeta('date_end'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                 'bf-repeat' => $booking->needMeta('repeat'),
             ));
         }

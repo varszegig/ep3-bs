@@ -67,8 +67,8 @@ return array(
     'Yes, cancel this booking' => 'Igen, lemondom ezt a foglalást',
     'No, go back' => 'Nem, vissza',
 
-    'This %s is still free.' => 'Ez %s még szabad.',
-    'This %s is still free for %s %s.' => 'Ez %s még szabad a %s %s-hoz.',
+    'This %s is still free.' => 'Ez a %s még szabad.',
+    'This %s is still free for %s %s.' => 'Ez a %s még szabad a %s %s-hoz.',
     '%s/%s already occupied' => '%s/%s már foglalt',
     'You are going to book this %s.' => 'Ön lefoglalja ezt %s.',
     'How many %s?' => 'Mennyi %s?',

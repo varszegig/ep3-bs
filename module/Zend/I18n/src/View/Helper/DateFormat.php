@@ -75,11 +75,6 @@ class DateFormat extends AbstractHelper
             $locale = $this->getLocale();
         }
 
-        // Force "hungarian-style" dates to have the name of the day at start
-        if ($dateType == IntlDateFormatter::FULL) {
-            $pattern ='eeee, y. MMMM d.';
-        }
-
         $timezone    = $this->getTimezone();
         $formatterId = md5($dateType . "\0" . $timeType . "\0" . $locale ."\0" . $pattern);
 

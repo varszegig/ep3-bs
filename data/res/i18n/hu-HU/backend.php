@@ -123,7 +123,7 @@ return array(
 
     'You can use filters like these to narrow your search:' => 'Használhat szűrést, amivel szűkítheti a keresést:',
     'You can also combine a search term and multiple filters like this:'
-        => 'Kombinálhatja is a kereső kifejezéseket és szűrőke, hasonlóan mint ez:',
+        => 'Kombinálhatja is a kereső kifejezéseket és szűrőket, hasonlóan mint ez:',
 
     'User ID' => 'Felhasználó ID',
     'Square ID' => 'Pálya ID',

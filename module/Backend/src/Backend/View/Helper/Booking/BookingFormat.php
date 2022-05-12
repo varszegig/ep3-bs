@@ -53,14 +53,14 @@ class BookingFormat extends AbstractHelper
 
         $date = new \DateTime($reservation->get('date'));
 
-        $fullDate = $view->dateFormat($date, \IntlDateFormatter::FULL);
+        $fullDate = $view->dateFormat($date, \IntlDateFormatter::FULL, null, null, $view->t('eeee, y. MMMM d.'));
         $fullDateParts = explode(', ', $fullDate);
 
         $html .= sprintf('<td>%s</td>',
             $fullDateParts[0]);
 
         $html .= sprintf('<td>%s</td>',
-            $view->dateFormat($date, \IntlDateFormatter::MEDIUM));
+            $view->dateFormat($date, \IntlDateFormatter::MEDIUM, null, null, $view->t('dd.MM.yyyy')));
 
         $html .= sprintf('<td>%s</td>',
             $view->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s'));

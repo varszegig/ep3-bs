@@ -16,13 +16,13 @@ class DateRange extends AbstractHelper
         if ($dateTimeStart->format('Y-m-d') == $dateTimeEnd->format('Y-m-d')) {
 
             return sprintf('%s, %s',
-                $view->dateFormat($dateTimeStart, IntlDateFormatter::MEDIUM),
+                $view->dateFormat($dateTimeStart, IntlDateFormatter::MEDIUM, null, null, $view->t('dd.MM.yyyy')),
                 $view->timeRange($dateTimeStart, $dateTimeEnd, '%s to %s'));
 
         } else {
 
-            $formatStart = $view->dateFormat($dateTimeStart, IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT);
-            $formatEnd = $view->dateFormat($dateTimeEnd, IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT);
+            $formatStart = $view->dateFormat($dateTimeStart, IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT, null, $view->t('dd.MM.yyyy'));
+            $formatEnd = $view->dateFormat($dateTimeEnd, IntlDateFormatter::MEDIUM, IntlDateFormatter::SHORT, null, $view->t('dd.MM.yyyy'));
 
             $locale = $view->config('i18n.locale');
 
