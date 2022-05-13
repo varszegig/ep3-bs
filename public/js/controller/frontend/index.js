@@ -1,5 +1,6 @@
 (function() {
 
+    
     $(document).ready(function() {
 
         $("#calendar-toolbar-datepicker-submit").hide();
@@ -8,7 +9,13 @@
             var optionValue = $(this).val();
             var url = window.location.origin;
             window.location = url + '?group-select=' + optionValue;
+            // Save value in localstorage
+            $.cookie("group-select", $(this).val());            
         });
+
+        if ("group-select" in localStorage && $('#group-select').length) {
+            $('#group-select').val($.cookie("group-select"));
+         }
 
         /* Beautify messages panel */
 

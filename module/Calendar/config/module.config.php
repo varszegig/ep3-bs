@@ -25,6 +25,7 @@ return array(
     'controller_plugins' => array(
         'invokables' => array(
             'CalendarDetermineDate' => 'Calendar\Controller\Plugin\DetermineDate',
+            'DetermineSquareGroup' => 'Frontend\Controller\Plugin\DetermineSquareGroup',
         ),
 
         'factories' => array(
