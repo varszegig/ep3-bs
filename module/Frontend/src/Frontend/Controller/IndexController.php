@@ -10,20 +10,19 @@ class IndexController extends AbstractActionController
 
     public function indexAction()
     {
-        $group = $this->getRequest()->getQuery('group-select');
 
+        $serviceManager = @$this->getServiceLocator();
         $calendarViewModel = $this->forward()->dispatch('Calendar\Controller\Calendar', ['action' => 'index']);
         $calendarViewModel->setCaptureTo('calendar');
+        $squareManager = $serviceManager->get('Square\Manager\SquareManager');
 
-        $group = $this->getRequest()->getQuery('group-select');
+        $group = $this->determineSquareGroup($squareManager);
        
-
         $dateStart = $calendarViewModel->getVariable('dateStart');
         $dateNow = $calendarViewModel->getVariable('dateNow');
         $squaresFilter = $calendarViewModel->getVariable('squaresFilter');
         $user = $calendarViewModel->getVariable('user');
-        $squareGroup = $calendarViewModel->getVariable('group-select');
-        $group = $this->getRequest()->getQuery('group-select');
+        // $squareGroup = $calendarViewModel->getVariable('group-select');
 
         $this->redirectBack()->setOrigin('frontend');
 

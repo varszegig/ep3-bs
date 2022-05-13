@@ -84,8 +84,8 @@ class CalendarController extends AbstractActionController
         $dateEnd->setTime(23, 59, 59);
         $dateNow = new DateTime();
 
-        $group = $this->params()->fromQuery('group-select');
-        if (!$group) $group = $squareManager->getMinSquareGroup();
+        $group = $this->determineSquareGroup($squareManager);
+
         $squares = $this->calendarDetermineSquares($group);
         $timeStart = $squareManager->getMinStartTime();
         $timeEnd = $squareManager->getMaxEndTime();

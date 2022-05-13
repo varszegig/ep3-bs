@@ -22,6 +22,12 @@ return array(
         ),
     ),
 
+    'controller_plugins' => array(
+        'invokables' => array(
+            'DetermineSquareGroup' => 'Frontend\Controller\Plugin\DetermineSquareGroup',
+        ),
+    ),
+
     'view_helpers' => array(
         'factories' => array (
             'FrontendSquareGroupList' => 'Frontend\View\Helper\SquareGroupListFactory',
