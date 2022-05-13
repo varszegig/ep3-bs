@@ -25,8 +25,9 @@ class DetermineSquareGroup extends AbstractPlugin
 
             $controller->cookie()->set('group-select', $group);
 
-            return $group;
-        }
+        } else $group = 0;
+
+        return $group;
     }
 
 }
