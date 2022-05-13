@@ -10,11 +10,11 @@
             var url = window.location.origin;
             window.location = url + '?group-select=' + optionValue;
             // Save value in localstorage
-            $.cookie("group-select", $(this).val());            
+            localStorage.setItem("group-select", $(this).val());   
         });
 
         if ("group-select" in localStorage && $('#group-select').length) {
-            $('#group-select').val($.cookie("group-select"));
+            $('#group-select').val(localStorage.getItem("group-select"));
          }
 
         /* Beautify messages panel */
