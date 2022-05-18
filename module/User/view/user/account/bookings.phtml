@@ -9,45 +9,31 @@ $this->setup(array(
     ),
 ));
 
-$this->headScript()->appendFile($this->basePath('js/controller/user/bookings.js'));
+$this->headScript()->appendFile($this->basePath('js/controller/user/bookings.min.js'));
 
 ?>
+
 
 <div>
     <h1><?= $this->t('My bookings') ?></h1>
 
     <div class="separator-small"></div>
 
-    <?php if (count($this->bookings) == 0): ?>
-        <p><?= sprintf($this->t('You have not booked any %s yet.'), $this->option('subject.square.type.plural')) ?></p>
-    <?php elseif (count($this->bookings) == 1): ?>
-        <p><?= sprintf($this->t('You have already booked one %s.'), $this->option('subject.square.type')) ?></p>
-    <?php else: ?>
-        <p><?= sprintf($this->t('You have already booked %s %s.'), count($this->bookings), $this->option('subject.square.type.plural')) ?></p>
-    <?php endif; ?>
-
+    <?= $this->userBookingsCount($this->bookings) ?>
     <?php if (count($this->bookings) > 0): ?>
 
         <div class="separator separator-line"></div>
 
         <style type="text/css">
             .default-table td { padding-right: 16px; padding-bottom: 8px; height: 24px; }
-            .accordion-header { display: flex; }
-            .accordion-controller { padding:1rem 0.5rem; background-color:unset; border-width:0 0 0px 0;}
-            .accordion-icon { margin-right: 1rem; transform:scaleY(2); }
-            .accordion { display:flex; flex-direction:column; border:1px solid grey; }
-            .hidden { display: none; }
-            .rotate-90 { transform: rotateZ(90deg) scaleY(2); }
         </style>
 
-            <div class="accordion">
-                <button id="accordion-controller" class="accordion-controller">
-                    <div class="accordion-header">
-                        <i id="accordion-icon" class="accordion-icon">></i>Past bookings
-                    </div>
-                </button>
-                <div id="accordion-content" class="hidden">
-                    <table class="default-table middle-table">
+            <div class="accordion js-accordion">
+                <div class="accordion__item js-accordion-item">
+                    <div class="accordion-header js-accordion-header"><?= $this->t('Past bookings') ?></div> 
+                    <div class="accordion-body js-accordion-body">
+                        <div class="accordion-body__contents">
+                            <table class="default-table middle-table">
 
             <?php
 
@@ -71,18 +57,17 @@ $this->headScript()->appendFile($this->basePath('js/controller/user/bookings.js'
                         $classes['color'] = 'gray';
 
                         if (! $todayMentioned) {
-                            echo '</table></div></div><table class="default-table middle-table">';
+                            echo '</table></div></div></div>';
+                            echo '<div class="accordion__item js-accordion-item">';
+                            $text = $this->t('Next bookings');
+                            echo '<div class="accordion-header js-accordion-header">' . $text . '</div>';
+                            echo '<div class="accordion-body js-accordion-body">';
+                            echo '<div class="accordion-body__contents">';
+                            echo '<table class="default-table middle-table">';                            
                 
-                            echo '<tr><td colspan="4"><div class="gray" style="position: relative;">';
-
-                            echo '<div style="position: absolute; left: 50%; top: -16px; margin-left: -23px; padding: 8px; background: #FFF;">' . $this->t('Now') . '</div>';
-                            echo '<div class="separator-small separator-line"></div>';
-
-                            echo '</div></td></tr>';
-
                             $todayMentioned = true;
                         }
-                        $cancellable = $this->squareValidator->isCancellable($booking);
+                        $cancellable = $this->squareValidator->isCancellable($booking, $reservation);
                     } 
 
                     $bills = $booking->getExtra('bills');
@@ -123,6 +108,10 @@ $this->headScript()->appendFile($this->basePath('js/controller/user/bookings.js'
 
             ?>
         </table>
+        </div>
+        </div>
+        </div>
+        </div>
 
         <div class="separator-small"></div>
 

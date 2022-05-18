@@ -1,3 +1,4 @@
+
 body {
     margin: 0; padding: 16px;
     font-family: Verdana, sans-serif;
@@ -877,3 +878,106 @@ option { padding-right: 16px; }
     background: #fda016;
 	color: #000;
 }
+
+/* accordion stylings */
+.accordion-header { display: flex; }
+.accordion-controller { padding:1rem 0.5rem; background-color:unset; border-width:0 0 0px 0;}
+.accordion-icon { margin-right: 1rem; transform:scaleY(2); }
+.accordion { display:flex; flex-direction:column; border:1px solid grey; }
+.hidden { display: none; }
+.rotate-90 { transform: rotateZ(90deg) scaleY(2); }
+
+
+/* new accordion */
+
+.accordion {
+    font-size: 1rem;
+    width: 90%;
+    margin: 0 auto;
+    border-radius: 5px;
+  }
+  
+  .accordion-header,
+  .accordion-body {
+    background: white;
+  }
+  
+  .accordion-header {
+    padding: 1.5em 1.5em;
+    background: #494d4a;
+    color: white;
+    cursor: pointer;
+    font-size: .7em;
+    letter-spacing: .1em;
+    transition: all .3s;
+    text-transform: uppercase;
+    display: block;
+  }
+  
+  .accordion__item {
+      border-bottom: 1px solid #494d4a;
+  }
+  
+  .accordion__item .accordion__item {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .accordion-header:hover {
+    background: #3a3b3a;
+    position: relative;
+    z-index: 5;
+  }
+  
+  .accordion-body {
+    background: #fcfcfc;
+    color: #353535;
+    display: none;
+  }
+  
+  .accordion-body__contents {
+    padding: 1.5em 1.5em;
+    font-size: .85em;
+  }
+  
+  .accordion__item.active:last-child .accordion-header {
+    border-radius: none;
+  }
+  
+  .accordion:first-child > .accordion__item > .accordion-header {
+    border-bottom: 1px solid transparent;
+  }
+  
+  .accordion__item > .accordion-header:after {
+    content: "\f3d0";
+    font-family: IonIcons;
+    font-size: 1.2em;
+    float: right;
+    text-align: right;
+    position: relative;
+    top: -2px;
+    transition: .3s all;
+    transform: rotate(0deg);
+  }
+  
+  .accordion__item.active > .accordion-header:after {
+    transform: rotate(-180deg);
+  }
+  
+  .accordion__item.active .accordion-header {
+    background: #494d4a;
+  }
+  
+  .accordion__item .accordion__item .accordion-header {
+    background: #f1f1f1;
+    color: #353535;
+  }
+  
+  @media screen and (max-width: 1000px) {
+    body {
+      padding: 1em;
+    }
+    
+    .accordion {
+      width: 100%;
+    }
+  }

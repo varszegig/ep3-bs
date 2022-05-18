@@ -367,7 +367,7 @@ class SquareValidator extends AbstractService
      * @return boolean
      * @throws RuntimeException
      */
-    public function isCancellable(Booking $booking)
+    public function isCancellable(Booking $booking, $reservation = null)
     {
         if ($this->user && $this->user->can('calendar.cancel-single-bookings')) {
             if ($booking->need('status') == 'single') {
@@ -388,7 +388,6 @@ class SquareValidator extends AbstractService
         if ($booking->need('status') == 'subscription') {
             return false;
         }
-
         $square = $this->squareManager->get($booking->need('sid'));
         $squareCancelRange = $square->get('range_cancel');
 
@@ -396,8 +395,10 @@ class SquareValidator extends AbstractService
             return false;
         }
 
-        $reservations = $this->reservationManager->getBy(array('bid' => $booking->need('bid')), 'date ASC, time_start ASC');
-        $reservation = current($reservations);
+        if (!$reservation) {
+            $reservations = $this->reservationManager->getBy(array('bid' => $booking->need('bid')), 'date ASC, time_start ASC');
+            $reservation = current($reservations);
+        }
 
         if (! $reservation) {
             return true;

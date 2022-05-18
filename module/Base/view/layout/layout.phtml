@@ -10,8 +10,10 @@
         <link type="image/x-icon" rel="icon" href="<?= $this->basePath('imgs-client/icons/fav.ico') ?>">
         <link type="image/x-icon" rel="shortcut icon" href="<?= $this->basePath('imgs-client/icons/fav.ico') ?>">
         <link type="text/css" rel="stylesheet" href="<?= $this->basePath('css/jquery-ui/jquery-ui.min.css') ?>" media="all">
+        <link type="text/css" rel="stylesheet" href="<?= $this->basePath('css/ionicons.css') ?>" media="all">
         <link type="text/css" rel="stylesheet" href="<?= $this->basePath('css/default.min.css') ?>" media="all">
         <link type="text/css" rel="stylesheet" href="<?= $this->basePath('css-client/default.css') ?>" media="all">
+
         <?= $this->headLink() ?>
         <?= $this->headTitle($this->option(['client.name.short', 'service.name.full']))->setSeparator(' &middot; ')->setAutoEscape(false) ?>
     </head>

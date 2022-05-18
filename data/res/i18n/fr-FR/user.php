@@ -187,6 +187,9 @@ return array(
     'You have already booked one %s.' => 'Vous avez déjà réservé un %s.',
     'You have already booked %s %s.' => 'Vous avez déjà réservé %s %s.',
 
+    'Past bookings' => 'Réservations passées',
+    'Next bookings' => 'Prochaines réservations',
+
     'If you did not receive an activation email from us after registration, you can request a new one here.'
         => 'Si vous n\'avez pas reçu d\'email d\'activation après votre inscription, vous pouvez en demander un ici.',
     'Therefore, please type the email adress you used for registration.' => 'Dans ce cas, veuillez saisir l\'adresse email utilisée lors de votre inscription.',

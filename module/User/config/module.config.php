@@ -167,6 +167,9 @@ return array(
     ),
 
     'view_helpers' => array(
+        'invokables' => array(
+            'userBookingsCount' => 'User\View\Helper\BookingsCount',
+        ),        
         'factories' => array(
             'UserLastBookings' => 'User\View\Helper\LastBookingsFactory',
         ),
