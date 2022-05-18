@@ -187,6 +187,9 @@ return array(
     'You have already booked one %s.' => 'Ön már foglalt egy %s -t.',
     'You have already booked %s %s.' => 'Ön már foglalt %s %s.',
 
+    'Past bookings' => 'Korábbi foglalások',
+    'Next bookings' => 'Következő foglalások',
+
     'If you did not receive an activation email from us after registration, you can request a new one here.'
         => 'Ha nem kapott aktivációs emailt a regisztrálás után, akkor itt tud újat kérni.',
     'Therefore, please type the email adress you used for registration.' => 'Ezért kérem adja meg az email címet amit a regisztrációhoz használt.',

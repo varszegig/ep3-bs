@@ -52,35 +52,25 @@ class LastBookings extends AbstractHelper
             foreach ($userBookings as $booking) {
                 $reservations = $booking->needExtra('reservations');
 
-                $bookingDateTimeStart = null;
-                $bookingDateTimeEnd = null;
-
                 foreach ($reservations as $reservation) {
-                    $tmpDateTimeStart = new DateTime($reservation->need('date') . ' ' . $reservation->need('time_start'));
-                    $tmpDateTimeEnd = new DateTime($reservation->need('date') . ' ' . $reservation->need('time_end'));
 
-                    if (is_null($bookingDateTimeStart) || $tmpDateTimeStart < $bookingDateTimeStart) {
-                        $bookingDateTimeStart = $tmpDateTimeStart;
+                    $bookingDateTimeStart = new DateTime($reservation->need('date') . ' ' . $reservation->need('time_start'));
+                    $bookingDateTimeEnd = new DateTime($reservation->need('date') . ' ' . $reservation->need('time_end'));
+
+                    if ($bookingDateTimeEnd >= $lowerLimit && $bookingDateTimeStart <= $upperLimit) {
+                        $square = $this->squareManager->get($booking->need('sid'));
+                        $squareType = $view->option('subject.square.type');
+
+                        if ($bookingDateTimeStart < $now) {
+                            $html .= sprintf('<li class=\'gray\'><s>%s %s &nbsp; %s</s></li>',
+                                $squareType, $view->t($square->need('name')), $view->prettyDate($bookingDateTimeStart));
+                        } else {
+                            $html .= sprintf('<li><span class=\'my-highlight\'>%s %s</span> &nbsp; %s</li>',
+                                $squareType, $view->t($square->need('name')), $view->prettyDate($bookingDateTimeStart));
+                        }
+
+                        $bookingsActuallyDisplayed++;
                     }
-
-                    if (is_null($bookingDateTimeEnd) || $tmpDateTimeEnd < $bookingDateTimeStart) {
-                        $bookingDateTimeEnd = $tmpDateTimeEnd;
-                    }
-                }
-
-                if ($bookingDateTimeEnd >= $lowerLimit && $bookingDateTimeStart <= $upperLimit) {
-                    $square = $this->squareManager->get($booking->need('sid'));
-                    $squareType = $view->option('subject.square.type');
-
-                    if ($bookingDateTimeStart < $now) {
-                        $html .= sprintf('<li class=\'gray\'><s>%s %s &nbsp; %s</s></li>',
-                            $squareType, $view->t($square->need('name')), $view->prettyDate($bookingDateTimeStart));
-                    } else {
-                        $html .= sprintf('<li><span class=\'my-highlight\'>%s %s</span> &nbsp; %s</li>',
-                            $squareType, $view->t($square->need('name')), $view->prettyDate($bookingDateTimeStart));
-                    }
-
-                    $bookingsActuallyDisplayed++;
                 }
             }
 

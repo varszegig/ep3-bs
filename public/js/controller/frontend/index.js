@@ -9,12 +9,13 @@
             var optionValue = $(this).val();
             var url = window.location.origin;
             window.location = url + '?group-select=' + optionValue;
-            // Save value in localstorage
-            localStorage.setItem("group-select", $(this).val());   
         });
 
-        if ("group-select" in localStorage && $('#group-select').length) {
-            $('#group-select').val(localStorage.getItem("group-select"));
+        const selectedGroup = document.cookie.split("; ").find(cookie=>cookie.startsWith("ep3-bs-group-select=")).split("=")[1];
+        
+
+        if (selectedGroup && $('#group-select').length) {
+            $('#group-select').val(selectedGroup);
          }
 
         /* Beautify messages panel */
