@@ -11,12 +11,13 @@
             window.location = url + '?group-select=' + optionValue;
         });
 
-        const selectedGroup = document.cookie.split("; ").find(cookie=>cookie.startsWith("ep3-bs-group-select=")).split("=")[1];
+        if (cookieExists('ep3-bs-group-select')) {
+            const selectedGroup = document.cookie.split("; ").find(cookie=>cookie.startsWith("ep3-bs-group-select=")).split("=")[1];
         
-
-        if (selectedGroup && $('#group-select').length) {
-            $('#group-select').val(selectedGroup);
-         }
+            if (selectedGroup && $('#group-select').length) {
+                $('#group-select').val(selectedGroup);
+            }
+        }
 
         /* Beautify messages panel */
 
@@ -42,3 +43,9 @@
     });
 
 })();
+
+function cookieExists(name) {
+    var cks = document.cookie.split(';');
+    for(i = 0; i < cks.length; i++)
+      if (cks[i].split('=')[0].trim() == name) return true;
+}
