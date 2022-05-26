@@ -2,6 +2,13 @@
 
     $(document).ready(function() {
 
+        var userSearchInput = $("#bs-user-filter");
+
+        userSearchInput.autocomplete({
+            "minLength": 1,
+            "source": userSearchInput.data("autocomplete-url")
+        });
+
         /* Filters */
 
         var searchInput = $("#bs-filter");

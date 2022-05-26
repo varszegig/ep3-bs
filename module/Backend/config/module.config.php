@@ -430,9 +430,8 @@ return array(
 
     'controller_plugins' => array(
         'invokables' => array(
-            'BackendBookingDetermineFilters' => 'Backend\Controller\Plugin\Booking\DetermineFilters',
-
             'BackendUserDetermineFilters' => 'Backend\Controller\Plugin\User\DetermineFilters',
+            'BackendBookingDetermineFilters' => 'Backend\Controller\Plugin\Booking\DetermineFilters',
         ),
 
         'factories' => array(
@@ -481,6 +480,7 @@ return array(
             'BackendUsersFormat' => 'Backend\View\Helper\User\UsersFormat',
 
             'BackendInfo' => 'Backend\View\Helper\Info',
+
         ),
 
         'factories' => array(
@@ -489,6 +489,16 @@ return array(
             'BackendEventFormat' => 'Backend\View\Helper\Event\EventFormatFactory',
 
             'BackendSquareProductFormat' => 'Backend\View\Helper\Square\ProductFormatFactory',
+
+            'BackendBookingStatusList' => 'Backend\View\Helper\Booking\BookingStatusListFactory',
+
+            'BackendBookingSquareList' => 'Backend\View\Helper\Booking\BookingSquareListFactory',
+
+            'BackendBookingBillingStatusList' => 'Backend\View\Helper\Booking\BookingBillingStatusListFactory',
+
+            'BackendBookingVisibilityOptions' => 'Backend\View\Helper\Booking\BookingVisibilityOptionsFactory',
+
+            'BackendBookingOperatorSelect' => 'Backend\View\Helper\Booking\BookingOperatorSelectFactory',            
 
         ),
     ),

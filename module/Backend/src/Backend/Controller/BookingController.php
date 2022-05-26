@@ -25,7 +25,21 @@ class BookingController extends AbstractActionController
 
         $dateStart = $this->params()->fromQuery('date-start');
         $dateEnd = $this->params()->fromQuery('date-end');
-        $search = $this->params()->fromQuery('search');
+        $userSearch = $this->params()->fromQuery('user');
+        $squareList = $this->params()->fromQuery('bs-square');
+        $bookingStatus = $this->params()->fromQuery('bs-status');
+        $billingStatus = $this->params()->fromQuery('bs-billing-status');
+        $visibility = $this->params()->fromQuery('bs-visibility');
+        
+//        $search = $this->params()->fromQuery('search');
+
+        $search = array(
+            'user' => $userSearch,
+            'square' => $squareList,
+            'status' => $bookingStatus,
+            'billingStatus' => $billingStatus,
+            'visibility' => $visibility,
+        );
 
         if ($dateStart) {
             $dateStart = new \DateTime($dateStart);
@@ -48,8 +62,8 @@ class BookingController extends AbstractActionController
                     $bookings = $bookingManager->getBy($filters['filters'], null, $limit);
                 }
 
-                $bookings = $this->complexFilterBookings($bookings, $filters);
-                $reservations = $reservationManager->getByBookings($bookings);
+                // $bookings = $this->complexFilterBookings($bookings, $filters);
+                // $reservations = $reservationManager->getByBookings($bookings);
 
                 $userManager->getByBookings($bookings);
             } catch (\RuntimeException $e) {
@@ -63,7 +77,11 @@ class BookingController extends AbstractActionController
             'reservations' => $reservations,
             'dateStart' => $dateStart,
             'dateEnd' => $dateEnd,
-            'search' => $search,
+            'user' => $userSearch,
+            'bs-square' => $squareList,
+            'bs-status' => $bookingStatus,
+            'bs-billing-status' => $billingStatus,
+            'bs-visibility' => $visibility,
         );
     }
 
