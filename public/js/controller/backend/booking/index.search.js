@@ -11,8 +11,6 @@
 
         /* Filters */
 
-        var searchInput = $("#bs-filter");
-
         $("#bs-filters-help").on("click", function(event) {
             event.preventDefault();
 
@@ -29,13 +27,6 @@
             }
         });
 
-        $(".bs-filter-snippet").on("click", function(event) {
-            event.preventDefault();
-
-            var snippet = $(this).find("code").text();
-
-            searchInput.val(searchInput.val() + " " + snippet);
-        });
 
     });
 

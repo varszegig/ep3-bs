@@ -35,6 +35,8 @@ class BookingOperatorSelect extends AbstractHelper
 
         }
 
+        $html .= '</select>';
+
         return $html;
     }
 

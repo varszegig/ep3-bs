@@ -3,6 +3,7 @@
 namespace Backend\Controller;
 
 use Booking\Entity\Booking;
+use Booking\Entity\Reservation;
 use Booking\Table\BookingTable;
 use Booking\Table\ReservationTable;
 use Laminas\Db\Adapter\Adapter;
@@ -30,6 +31,13 @@ class BookingController extends AbstractActionController
         $bookingStatus = $this->params()->fromQuery('bs-status');
         $billingStatus = $this->params()->fromQuery('bs-billing-status');
         $visibility = $this->params()->fromQuery('bs-visibility');
+        $billingTotalOperator = $this->params()->fromQuery('bs-billing-total-operator');
+        $billingTotal = $this->params()->fromQuery('bs-billing-total');
+        $quantityOperator = $this->params()->fromQuery('bs-quantity-operator');
+        $quantity = $this->params()->fromQuery('bs-quantity');
+        $dateCreatedOperator = $this->params()->fromQuery('date-created-operator');
+        $dateCreated = $this->params()->fromQuery('date-created');
+
         
 //        $search = $this->params()->fromQuery('search');
 
@@ -39,7 +47,13 @@ class BookingController extends AbstractActionController
             'status' => $bookingStatus,
             'billingStatus' => $billingStatus,
             'visibility' => $visibility,
-        );
+            'billingTotalOperator' => $billingTotalOperator,
+            'billingTotal' => $billingTotal,
+            'quantityOperator' => $quantityOperator,
+            'quantity' => $quantity,
+            'dateCreatedOperator' => $dateCreatedOperator,
+            'dateCreated' => $dateCreated,
+         );
 
         if ($dateStart) {
             $dateStart = new \DateTime($dateStart);
@@ -49,9 +63,12 @@ class BookingController extends AbstractActionController
             $dateEnd = new \DateTime($dateEnd);
         }
 
+        if ($dateCreated) {
+            $dateCreated = new \DateTime($dateCreated);
+        }
+
         if (($dateStart && $dateEnd) || $search) {
             $filters = $this->backendBookingDetermineFilters($search);
-
             try {
                 $limit = 1000;
 
@@ -62,8 +79,10 @@ class BookingController extends AbstractActionController
                     $bookings = $bookingManager->getBy($filters['filters'], null, $limit);
                 }
 
-                // $bookings = $this->complexFilterBookings($bookings, $filters);
-                // $reservations = $reservationManager->getByBookings($bookings);
+                $bookings = $this->complexFilterBookings($bookings, $filters);
+                if ($reservations) {
+                    $reservations = $this->complexFilterReservations($bookings, $reservations);
+                }
 
                 $userManager->getByBookings($bookings);
             } catch (\RuntimeException $e) {
@@ -82,6 +101,12 @@ class BookingController extends AbstractActionController
             'bs-status' => $bookingStatus,
             'bs-billing-status' => $billingStatus,
             'bs-visibility' => $visibility,
+            'bs-billing-total-operator' => $billingTotalOperator,
+            'billingTotal' => $billingTotal,
+            'quantity-operator' => $quantityOperator,
+            'quantity' => $quantity,
+            'date-created-operator' => $dateCreatedOperator,
+            'dateCreated' => $dateCreated,
         );
     }
 
@@ -92,18 +117,20 @@ class BookingController extends AbstractActionController
         foreach ($filters['filterParts'] as $filterPart) {
 
             // Filter for billing total
-            if ($filterPart[0] == str_replace(' ', '_', strtolower($this->t('Billing total')))) {
+            if ($filterPart[0] == 'billing_total') {
                 $bookingBillManager = $serviceManager->get('Booking\Manager\Booking\BillManager');
                 $bookingBillManager->getByBookings($bookings);
 
                 $bookings = array_filter($bookings, function(Booking $booking) use ($filterPart) {
+                    $sum = $booking->getExtra('bills_total');
+                    if (!$sum) $sum = 0;
                     switch ($filterPart[1]) {
                         case '=':
-                            return $booking->getExtra('bills_total') == (int) $filterPart[2];
+                            return ($sum == (int) $filterPart[2]);
                         case '>':
-                            return $booking->getExtra('bills_total') > (int) $filterPart[2];
+                            return ($sum > (int) $filterPart[2]);
                         case '<':
-                            return $booking->getExtra('bills_total') < (int) $filterPart[2];
+                            return ($sum < (int) $filterPart[2]);
                         default:
                             return false;
                     }
@@ -112,6 +139,17 @@ class BookingController extends AbstractActionController
         }
 
         return $bookings;
+    }
+
+    protected function complexFilterReservations($bookings, $reservations) {
+        $bookingIds = array();
+        foreach($bookings as $booking) {
+            $bookingIds[] = $booking->need('bid');
+        }
+        $reservations = array_filter($reservations, function(Reservation $reservation) use ($bookingIds) {
+            return (in_array($reservation->need('bid'), $bookingIds));
+        });        
+        return $reservations;
     }
 
     public function editAction()
