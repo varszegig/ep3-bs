@@ -28,6 +28,7 @@ class DetermineFilters extends AbstractPlugin
         $quantityOperator = $search['quantityOperator'];
         $dateCreatedOperator = $search['dateCreatedOperator'];
         $dateCreated = $search['dateCreated'];
+        $notes = $search['notes'];
 
 
         if ($userSearch) {
@@ -88,6 +89,14 @@ class DetermineFilters extends AbstractPlugin
                 $dateCreatedOperator = '>';
             }
             $filters[] = sprintf('created %s "%s"', $dateCreatedOperator, $value);
+        }
+
+        if ($notes) {
+            $key = 'notes';
+            $operator =  '=';
+            $value = $notes;
+            $filterParts[] = array($key, $operator, $value);
+
         }
 
         return array(

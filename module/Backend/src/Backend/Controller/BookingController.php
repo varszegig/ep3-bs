@@ -37,6 +37,7 @@ class BookingController extends AbstractActionController
         $quantity = $this->params()->fromQuery('bs-quantity');
         $dateCreatedOperator = $this->params()->fromQuery('date-created-operator');
         $dateCreated = $this->params()->fromQuery('date-created');
+        $notes = $this->params()->fromQuery('bs-notes');
 
         
 //        $search = $this->params()->fromQuery('search');
@@ -53,6 +54,7 @@ class BookingController extends AbstractActionController
             'quantity' => $quantity,
             'dateCreatedOperator' => $dateCreatedOperator,
             'dateCreated' => $dateCreated,
+            'notes' => $notes,
          );
 
         if ($dateStart) {
@@ -107,6 +109,7 @@ class BookingController extends AbstractActionController
             'quantity' => $quantity,
             'date-created-operator' => $dateCreatedOperator,
             'dateCreated' => $dateCreated,
+            'notes' => $notes,
         );
     }
 
@@ -135,6 +138,14 @@ class BookingController extends AbstractActionController
                             return false;
                     }
                 });
+            }
+            if ($filterPart[0] == 'notes') {
+                $bookings = array_filter($bookings, function(Booking $booking) use ($filterPart) {
+                    $notes = strtolower($booking->getMeta('notes'));
+                    if (! $notes) return false; 
+                    if (strpos($notes, strtolower($filterPart[2])) !== false) return true;
+                    else return false;
+                }); 
             }
         }
 

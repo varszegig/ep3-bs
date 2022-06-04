@@ -121,17 +121,13 @@ if (! ($this->dateStart || $this->dateEnd)) {
                 <tr>               
                     <td style="vertical-align: bottom;">
                         <div class="default-form-label-top gray">
-                            <label for="bs-remark"><?= $this->t('Remark') ?>:</label>
+                            <label for="bs-notes"><?= $this->t('Notes') ?>:</label>
                         </div>
 
-                        <input type="text" name="bs-remark" id="bs-remark-filter" value="<?= $this->remark ?>" style="width: 30vw;">
+                        <input type="text" name="bs-notes" id="bs-notes" value="<?= $this->notes ?>" style="width: 30vw;">
                     </td>                     
                 </tr>
             </table>
-            <p><?= $this->t('You can use filters like these to narrow your search:') ?></p>
-
-            <?= $this->backendUserFilterHelp('Created', '<', new DateTime(), 'bs-filter-snippet') ?>
-
         </div>
     </form>
 </div>
