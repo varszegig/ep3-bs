@@ -22,7 +22,7 @@ $this->setup(array(
 
     <div class="separator separator-line"></div>
 
-    <?= $this->partial('backend/booking/index.datepicker.phtml', ['dateStart' => $this->dateStart, 'dateEnd' => $this->dateEnd, 'search' => $this->search]) ?>
+    <?= $this->partial('backend/booking/index.datepicker.phtml', ['dateStart' => $this->dateStart, 'dateEnd' => $this->dateEnd, 'user' => $this->user, 'billingTotal' => $this->billingTotal, 'quantity' => $this->quantity, 'dateCreated' => $this->dateCreated, 'notes' => $this->notes]) ?>
 
     <div class="separator separator-line"></div>
 

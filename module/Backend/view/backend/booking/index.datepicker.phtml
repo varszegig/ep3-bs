@@ -24,63 +24,110 @@ if (! ($this->dateStart || $this->dateEnd)) {
                         <input type="text" name="date-start" id="date-start" value="<?= $this->dateFormat($this->dateStart, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?>"
                                class="inline-label-container datepicker" style="padding-left: 28px; width: 96px;">
                     </div>
-                </td>
-
-                <td style="vertical-align: bottom; padding-bottom: 7px;">
                     <?= $this->t('to') ?>
-                </td>
-
-                <td style="vertical-align: bottom;">
                     <div class="inline-element">
                         <label for="date-end" class="inline-label symbolic symbolic-date"><span><?= $this->t('Date end') ?></span></label>
                         <input type="text" name="date-end" id="date-end" value="<?= $this->dateFormat($this->dateEnd, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?>"
                                class="inline-label-container datepicker" style="padding-left: 28px; width: 96px;">
                     </div>
                 </td>
-
-                <td>
-                    <div class="default-form-label-top gray">
-                        <label for="bs-filter"><?= $this->t('Filter') ?>:</label>
-                    </div>
-
-                    <input type="text" name="search" id="bs-filter" value="<?= $this->search ?>" style="width: 160px">
-
+                <td style="vertical-align: bottom;">
                     <a href="#" id="bs-filters-help" class="unlined gray">
-                        <i class="symbolic symbolic-info symbol-shifted"></i>
-                    </a>
+                        <?= $this->t('Advanced search') ?>
+                    </a>                
                 </td>
-
                 <td style="vertical-align: bottom;">
                     <input type="submit" value="<?= $this->t('Search') ?>" class="default-button">
                 </td>
             </tr>
         </table>
+
+        <div id="bs-filters-help-box" class="sandbox" style="display: none; margin: 26px auto 0px auto;">
+            <table class="default-table" style="margin-left: 0px;">
+                <tr>                
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="user"><?= $this->t('Name or number') ?>:</label>
+                        </div>
+
+                        <input type="text" name="user" id="bs-user-filter" value="<?= $this->user ?>" data-autocomplete-url="<?= $this->url('backend/user/interpret') ?>" style="width:30vw;">
+                    </td>   
+                </tr>
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-square"><?= $this->t('Square') ?>:</label>
+                        </div>                        
+                        <?= $this->backendBookingSquareList() ?>
+                    </td>
+                </tr>                
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-status"><?= $this->t('Status') ?>:</label>
+                        </div>                        
+                        <?= $this->backendBookingStatusList() ?>
+                    </td>
+                </tr>
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-billing-status"><?= $this->t('Billing status') ?>:</label>
+                        </div>                        
+                        <?= $this->backendBookingBillingStatusList() ?>
+                    </td>
+                </tr>     
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-visibility"><?= $this->t('Visibility') ?>:</label>
+                        </div>                        
+                        <?= $this->backendBookingVisibilityOptions() ?>
+                    </td>
+                </tr>    
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-billing-total"><?= $this->t('Billing total') ?>:</label>
+                        </div>    
+                            <?= $this->backendBookingOperatorSelect("bs-billing-total") ?>
+                            <input type="text" style="width:10vw;text-align:right;" name="bs-billing-total" id="bs-billing-total" value="<?= $this->billingTotal ?>">
+                    </td>
+                </tr>    
+                <tr>
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="quantity"><?= $this->t('Number of players') ?>:</label>
+                        </div>    
+                            <?= $this->backendBookingOperatorSelect("bs-quantity") ?>
+                            <input type="text" style="width:5vw;text-align:right;" name="bs-quantity" id="bs-quantity" value="<?= $this->quantity ?>">
+                    </td>
+                </tr>   
+                <tr>    
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="date-created"><?= $this->t('Created') ?>:</label>
+                        </div>
+                        <?= $this->backendBookingOperatorSelect("date-created") ?>  
+
+                        <div class="inline-element">
+                            <label for="date-created" class="inline-label symbolic symbolic-date"><span><?= $this->dateFormat($this->dateCreated, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?></span></label>
+                            <input type="text" name="date-created" id="date-created" value="<?= $this->dateFormat($this->dateCreated, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?>"
+                                class="inline-label-container datepicker" style="padding-left: 28px; width: 96px;">
+                        </div>    
+
+                    </td>
+                </tr>
+                <tr>               
+                    <td style="vertical-align: bottom;">
+                        <div class="default-form-label-top gray">
+                            <label for="bs-notes"><?= $this->t('Notes') ?>:</label>
+                        </div>
+
+                        <input type="text" name="bs-notes" id="bs-notes" value="<?= $this->notes ?>" style="width: 30vw;">
+                    </td>                     
+                </tr>
+            </table>
+        </div>
     </form>
-
-    <div id="bs-filters-help-box" class="sandbox" style="display: none; margin: 26px auto 0px auto;">
-        <div class="sandbox-arrow" style="right: 82px"></div>
-
-        <p><?= $this->t('You can use filters like these to narrow your search:') ?></p>
-
-        <?= $this->backendUserFilterHelp('User ID', '=', '1', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Square ID', '=', '1', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Status', '=', 'Single', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Status', '=', 'Subscription', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Status', '=', 'Cancelled', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing status', '=', 'Pending', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing status', '=', 'Paid', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing status', '=', 'Cancelled', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing status', '=', 'Uncollectable', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing status', '=', '[custom]', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Billing total', '>', '0', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Visibility', '=', 'Public', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Visibility', '=', 'Private', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Quantity', '>', '2', 'bs-filter-snippet') ?>
-        <?= $this->backendUserFilterHelp('Created', '<', new DateTime(), 'bs-filter-snippet') ?>
-
-        <p style="margin-top: 16px;">
-            <?= $this->t('You can also combine a search term and multiple filters like this:') ?><br>
-            <code>(... = ...) (... > ...)</code>
-        </p>
-    </div>
 </div>

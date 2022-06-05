@@ -44,7 +44,40 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.8.0 from April, 2022.
+The current version is 1.11.0 from June, 2022.
+
+Version 1.11.0
+Improve advanced search on backend/bookings
+
+Version 1.10.3
+Datepicker js bug
+
+Version 1.10.2
+Improvement of bookings list
+
+Version 1.10.1
+Save squaretype bugs
+
+Version 1.10.0
+Big update on i18n date handling, user and booking listings, hungarian translation bugs
+
+Version 1.9.2
+Bugfix
+
+Version 1.9.1
+Bugfix
+
+Version 1.9.0
+Migrate Zend framework to Laminas
+
+Version 1.8.3
+Small fixes
+
+Version 1.8.2
+Cookie consent popup
+
+Version 1.8.1
+Bugfixes to 1.8.0
 
 Version 1.8.0 corrects bug by language selector. Introducing new function court-types, to be able to handle unlimited number of courts. (Géza Várszegi)
 

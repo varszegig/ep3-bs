@@ -2,9 +2,14 @@
 
     $(document).ready(function() {
 
-        /* Filters */
+        var userSearchInput = $("#bs-user-filter");
 
-        var searchInput = $("#bs-filter");
+        userSearchInput.autocomplete({
+            "minLength": 1,
+            "source": userSearchInput.data("autocomplete-url")
+        });
+
+        /* Filters */
 
         $("#bs-filters-help").on("click", function(event) {
             event.preventDefault();
@@ -22,13 +27,6 @@
             }
         });
 
-        $(".bs-filter-snippet").on("click", function(event) {
-            event.preventDefault();
-
-            var snippet = $(this).find("code").text();
-
-            searchInput.val(searchInput.val() + " " + snippet);
-        });
 
     });
 

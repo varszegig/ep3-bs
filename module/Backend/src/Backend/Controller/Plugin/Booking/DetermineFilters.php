@@ -3,6 +3,7 @@
 namespace Backend\Controller\Plugin\Booking;
 
 use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
+use Laminas\Db\Sql\Predicate\In;
 
 class DetermineFilters extends AbstractPlugin
 {
@@ -16,71 +17,86 @@ class DetermineFilters extends AbstractPlugin
         $filters = array();
         $filterParts = array();
 
-        preg_match_all('/\(([^\(\)]+[<=>][^\(\)]+)\)/', $search, $matches);
+        $userSearch = $search["user"];
+        $square = $search['square'];
+        $bookingStatus = $search['status'];
+        $billingStatus = $search['billingStatus'];
+        $visibility = $search['visibility'];
+        $billingTotalOperator = $search['billingTotalOperator'];
+        $billingTotal = $search['billingTotal'];
+        $quantity = $search['quantity'];
+        $quantityOperator = $search['quantityOperator'];
+        $dateCreatedOperator = $search['dateCreatedOperator'];
+        $dateCreated = $search['dateCreated'];
+        $notes = $search['notes'];
 
-        if ($matches) {
 
-            /* Determine filters from matches */
+        if ($userSearch) {
+            $matches = [];
+            if (preg_match('/\(([0-9]+)\)/', $userSearch, $matches)) {
+                $filters[] = sprintf('uid = "%s"', $matches[1]);
+            }            
+        }
 
-            foreach ($matches[1] as $match) {
-                $parts = preg_split('/([<=>])/', $match, -1, PREG_SPLIT_DELIM_CAPTURE);
+        if ($square) {
+            $filters[] = sprintf('sid = "%s"', $square);
+        }
 
-                $key = strtolower(trim($parts[0]));
-                $operator = trim($parts[1]);
-                $value = trim($parts[2]);
+        if ($bookingStatus) {
+            $filters[] = sprintf('status = "%s"', $bookingStatus);
+        }
 
-                // Translate keys
-                $key = str_replace(
-                    array(
-                        str_replace(' ', '_', strtolower($controller->t('User ID'))),
-                        strtolower($controller->t('User')),
-                        str_replace(' ', '_', strtolower($controller->t('Square ID'))),
-                        str_replace(' ', '_', strtolower($controller->t('Billing status'))),
-                        strtolower($controller->t('Visibility')),
-                        strtolower($controller->t('Quantity')),
-                        strtolower($controller->t('Created')),
-                        strtolower($controller->t('Status')),
+        if ($billingStatus) {
+            $value = str_replace(
+                array(
+                    strtolower($controller->t('Cancelled')),
+                    strtolower($controller->t('Pending')),
+                    strtolower($controller->t('Paid')),
+                    strtolower($controller->t('Uncollectable')),
                     ),
-                    array('uid', 'uid', 'sid', 'status_billing', 'visibility', 'quantity', 'created', 'status'),
-                    $key);
+                array('cancelled', 'pending', 'paid', 'uncollectable'),
+                $billingStatus);            
+            $filters[] = sprintf('status_billing = "%s"', $value);
+        }
 
-                // Translate values
-                $value = str_replace(
-                    array(
-                        strtolower($controller->t('Single')),
-                        strtolower($controller->t('Subscription')),
-                        strtolower($controller->t('Cancelled')),
-                        strtolower($controller->t('Pending')),
-                        strtolower($controller->t('Paid')),
-                        strtolower($controller->t('Uncollectable')),
-                        strtolower($controller->t('Public')),
-                        strtolower($controller->t('private')),
-                        ),
-                    array('single', 'subscription', 'cancelled', 'pending', 'paid', 'uncollectable', 'public', 'private'),
-                    $value);
+        if ($visibility) {
+            $filters[] = sprintf('visibility = "%s"', $visibility);
+        }
 
-                // Transform dates
-                try {
-                    switch ($key) {
-                        case 'created':
-                            if (preg_match('/[0-3]?[0-9]\.[0-1]?[0-9]\.[1-2][0-9]{3}/', $value)) {
-                                $value = implode('-', array_reverse(explode('.', $value)));
-                            }
+        if ($quantity) {
+            $filters[] = sprintf('quantity %s "%s"', $quantityOperator, $quantity);
+        }
 
-                            $value = (new \DateTime($value))->format('Y-m-d');
-                    }
-                } catch (\RuntimeException $e) {
-                    break;
-                }
+        if ($billingTotalOperator) {
+            if (!$billingTotal) $billingTotal = 0;
+            $key = 'billing_total';
+            $operator =  $billingTotalOperator;
+            $value = $billingTotal;
+            $filterParts[] = array($key, $operator, $value);
 
-                $filterParts[] = array($key, $operator, $value);
+        }
 
-                if ($key == str_replace(' ', '_', strtolower($controller->t('Billing total')))) {
-                    continue;
-                }
-
-                $filters[] = sprintf('%s %s "%s"', $key, $operator, $value);
+        if ($dateCreatedOperator && $dateCreated) {
+            try {
+                $value = (new \DateTime($dateCreated))->format('Y-m-d');
+            } catch (\RuntimeException $e) {
+                $value = '';
             }
+
+            if ($dateCreatedOperator == '=') {
+                $nextDay = (new \DateTime($dateCreated))->modify("+1 day")->format('Y-m-d');
+                $filters[] = sprintf('created < "%s"', $nextDay);
+                $dateCreatedOperator = '>';
+            }
+            $filters[] = sprintf('created %s "%s"', $dateCreatedOperator, $value);
+        }
+
+        if ($notes) {
+            $key = 'notes';
+            $operator =  '=';
+            $value = $notes;
+            $filterParts[] = array($key, $operator, $value);
+
         }
 
         return array(

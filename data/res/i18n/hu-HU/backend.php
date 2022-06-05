@@ -39,7 +39,7 @@ return array(
 
     'Name or number' => 'Név vagy szám',
     'Search' => 'Keresés',
-    'Advanced search' => 'Haladó keresés',
+    'Advanced search' => 'Részletes keresés',
     '%sNo users found%s for this search' => '%sNem találhatók felhasználók%s ehhez a kereséshez',
     '%sNo bookings found%s for this search' => '%sNem találhatók foglalások%s ehhez a kereséshez',
     '%sNo events found%s for this search' => '%sNem találhatók események%s ehhez a kereséshez',
