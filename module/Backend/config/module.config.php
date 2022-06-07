@@ -500,6 +500,8 @@ return array(
 
             'BackendBookingOperatorSelect' => 'Backend\View\Helper\Booking\BookingOperatorSelectFactory',            
 
+            'BackendBookingsStats' => 'Backend\View\Helper\Booking\BookingsStatsFactory',
+
         ),
     ),
 

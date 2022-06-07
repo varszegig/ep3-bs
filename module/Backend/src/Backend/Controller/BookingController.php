@@ -79,6 +79,7 @@ class BookingController extends AbstractActionController
                     $bookings = $bookingManager->getByReservations($reservations, $filters['filters']);
                 } else {
                     $bookings = $bookingManager->getBy($filters['filters'], null, $limit);
+                    $reservations = $reservationManager->getByBookings($bookings);
                 }
 
                 $bookings = $this->complexFilterBookings($bookings, $filters);
@@ -495,7 +496,7 @@ class BookingController extends AbstractActionController
 
         $db = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
 
-        $stats = $db->query(sprintf('SELECT status, COUNT(status) AS count FROM %s GROUP BY status', BookingTable::NAME),
+        $stats = $db->query(sprintf('SELECT status, status_billing, COUNT(status) AS count FROM %s GROUP BY status, status_billing', BookingTable::NAME),
             Adapter::QUERY_MODE_EXECUTE)->toArray();
 
         return array(
