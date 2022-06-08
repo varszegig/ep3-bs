@@ -78,8 +78,10 @@ class BookingController extends AbstractActionController
                     $reservations = $reservationManager->getInRange($dateStart, $dateEnd, $limit);
                     $bookings = $bookingManager->getByReservations($reservations, $filters['filters']);
                 } else {
-                    $bookings = $bookingManager->getBy($filters['filters'], null, $limit);
-                    $reservations = $reservationManager->getByBookings($bookings);
+                    if ($filters['filters']) {
+                        $bookings = $bookingManager->getBy($filters['filters'], null, $limit);
+                        $reservations = $reservationManager->getByBookings($bookings);
+                    }
                 }
 
                 $bookings = $this->complexFilterBookings($bookings, $filters);
