@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.11.0 from June, 2022.
+The current version is 1.11.1 from June, 2022.
+
+Version 1.11.1
+Advanced statistics on backend/bookings
 
 Version 1.11.0
 Improve advanced search on backend/bookings
