@@ -22,7 +22,7 @@ $this->setup(array(
 
     <div class="separator separator-line"></div>
 
-    <?= $this->partial('backend/user/index.search.phtml', ['search' => $this->search]) ?>
+    <?= $this->partial('backend/user/index.search.phtml', ['name' => $this->name, 'status' => $this->status, 'email' => $this->email, 'dateActive' => $this->dateActive, 'ip' => $this->ip, 'dateCreated' => $this->dateCreated]) ?>
 
     <div class="separator separator-line"></div>
 

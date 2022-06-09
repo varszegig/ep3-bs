@@ -502,6 +502,10 @@ return array(
 
             'BackendBookingsStats' => 'Backend\View\Helper\Booking\BookingsStatsFactory',
 
+            'BackendUserStatusList' => 'Backend\View\Helper\User\UserStatusListFactory',
+
+            'BackendUserOperatorSelect' => 'Backend\View\Helper\User\UserOperatorSelectFactory',
+
         ),
     ),
 

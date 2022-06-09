@@ -4,7 +4,7 @@
 
         /* Autocomplete */
 
-        var searchInput = $("#usf-search");
+        var searchInput = $("#usf-name");
 
         searchInput.autocomplete({
             "minLength": 1,
