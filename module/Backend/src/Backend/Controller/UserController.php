@@ -20,11 +20,38 @@ class UserController extends AbstractActionController
 
         $users = array();
 
-        $search = $this->params()->fromQuery('usf-search');
+        $status = $this->params()->fromQuery('usf-status');
+        $name = $this->params()->fromQuery('usf-name');
+        $email = $this->params()->fromQuery('usf-email');
+        $dateActiveOperator = $this->params()->fromQuery('date-active-operator');
+        $dateActive = $this->params()->fromQuery('date-active');
+        $ip = $this->params()->fromQuery('usf-ip');
+        $dateCreatedOperator = $this->params()->fromQuery('date-created-operator');
+        $dateCreated = $this->params()->fromQuery('date-created');
 
-        if ($search) {
+        $search = array(
+            'name' => $name,
+            'status' => $status,
+            'email' => $email,
+            'dateActiveOperator' => $dateActiveOperator,
+            'dateActive' => $dateActive,
+            'ip' => $ip,
+            'dateCreatedOperator' => $dateCreatedOperator,
+            'dateCreated' => $dateCreated,
+        );
+
+
+        if ($dateActive) {
+            $dateActive = new \DateTime($dateActive);
+        }        
+
+        if ($dateCreated) {
+            $dateCreated = new \DateTime($dateCreated);
+        }
+
+        if ($name || $status || $email || ($dateActiveOperator && $dateActive) || $ip || ($dateCreatedOperator && $dateCreated)) {
             $filters = $this->backendUserDetermineFilters($search);
-            $filterFreeSearch = $filters['search'];
+            $filterFreeSearch = $name;
 
             try {
                 $limit = 1000;
@@ -44,7 +71,14 @@ class UserController extends AbstractActionController
         }
 
         return array(
-            'search' => $search,
+            'name' => $name,
+            'status' => $status,
+            'email' => $email,
+            'dateActiveOperator' => $dateActiveOperator,
+            'dateActive' => $dateActive,
+            'ip' => $ip,
+            'dateCreatedOperator' => $dateCreatedOperator,
+            'dateCreated' => $dateCreated,
             'users' => $users,
         );
     }

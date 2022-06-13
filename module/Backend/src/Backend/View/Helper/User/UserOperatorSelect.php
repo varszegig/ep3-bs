@@ -1,11 +1,11 @@
 <?php
 
-namespace Backend\View\Helper\Booking;
+namespace Backend\View\Helper\User;
 
 use Laminas\Stdlib\RequestInterface;
 use Laminas\View\Helper\AbstractHelper;
 
-class BookingOperatorSelect extends AbstractHelper
+class UserOperatorSelect extends AbstractHelper
 {
 
     protected $request;

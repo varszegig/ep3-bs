@@ -5,6 +5,7 @@ $this->setup(array(
     'panel' => 'centered-panel large-sized',
     'back' => true,
     'links' => array(
+        'User-Statistic' => $this->url('backend/user/stats'),
         'Booking-Administration' => $this->url('backend/booking'),
         'Event-Administration' => $this->url('backend/event'),
         'Configuration' => $this->url('backend/config'),
@@ -22,7 +23,7 @@ $this->setup(array(
 
     <div class="separator separator-line"></div>
 
-    <?= $this->partial('backend/user/index.search.phtml', ['search' => $this->search]) ?>
+    <?= $this->partial('backend/user/index.search.phtml', ['name' => $this->name, 'status' => $this->status, 'email' => $this->email, 'dateActive' => $this->dateActive, 'ip' => $this->ip, 'dateCreated' => $this->dateCreated]) ?>
 
     <div class="separator separator-line"></div>
 

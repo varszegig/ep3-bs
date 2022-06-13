@@ -5,6 +5,7 @@ $this->setup(array(
     'panel' => 'centered-panel',
     'back' => true,
     'links' => array(
+        'Event-Administration' => $this->url('backend/event'),
         'User-Statistic' => $this->url('backend/user/stats'),
         'Booking-Statistic' => $this->url('backend/booking/stats'),
     ),
@@ -29,15 +30,13 @@ $total = $enabled;
     <table class="bordered-table">
         <tr>
             <td><b><?= $this->t('Events') ?></b></td>
-            <td class="right-text"><b><code><?= $this->numberFormat($total) ?></code></b></td>
+            <td class="right-text"><b><?= $this->numberFormat($total) ?></b></td>
         </tr>
 
         <tr>
-            <td><span class="gray">&lfloor;</span> <?= $this->t('Enabled') ?></td>
+            <td><?= $this->t('Enabled') ?></td>
             <td class="right-text">
-                <code>
-                    <?= $this->numberFormat($enabled) ?>
-                </code>
+                <?= $this->numberFormat($enabled) ?>
             </td>
         </tr>
     </table>
