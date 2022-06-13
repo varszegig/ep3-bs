@@ -32,7 +32,7 @@ $total = $deleted + $blocked + $disabled + $enabled + $assist + $admin;
             <td><?= $this->t('Deleted user') ?></td>
             <td class="right-text">
                 <?php if ($deleted) { ?>
-                    <a href="<?= $this->url('backend/user/list', [], ['query' => ['usf-status' => 'blocked']]) ?>">
+                    <a href="<?= $this->url('backend/user', [], ['query' => ['usf-status' => 'blocked']]) ?>">
                 <?php } ?>
                         <?= $this->numberFormat($deleted) ?>
                 <?php if ($deleted) { ?>
