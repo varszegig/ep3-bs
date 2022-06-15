@@ -77,7 +77,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/user/bookings.min
                     }
 
                     $pricing = '';
-                    $pricing .= '<a href="' . $this->url('user/bookings/bills', ['bid' => $bid]) . '" class="default-button mini-button" style="min-width: 80px;">';
+                    $pricing .= '<a href="' . $this->url('user/bookings/bills', ['bid' => $booking->need('bid')]) . '" class="default-button mini-button" style="min-width: 80px;">';
                     $pricing .= $this->priceFormat($price);
                     $pricing .= '</a>';
                 } else {
