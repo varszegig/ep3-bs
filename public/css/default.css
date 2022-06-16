@@ -781,13 +781,30 @@ option { padding-right: 16px; }
     .half-table { margin-bottom: 32px; width: 100% !important; border: none !important; }
     .half-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
 
-    .default-table { margin-bottom: 32px; width: 100% !important; border: none !important; }
+    .default-table { 
+        margin-bottom: 32px; 
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+    }
     .default-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
 
     .default-table tr td {
         display: block;
         width: 100%;
         padding: 0.5rem 3rem;
+    }
+
+    .middle-table { 
+        margin-bottom: 32px; 
+        margin-top: 32px;
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+    }    
+
+    .middle-table tr td {
+        display: block;
     }
 
     .padded { padding: 8px; }
