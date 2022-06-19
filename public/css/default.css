@@ -778,25 +778,29 @@ option { padding-right: 16px; }
 {
     .responsive-pass-3 { display: none; }
 
-    .half-table { margin-bottom: 32px; width: 100% !important; border: none !important; }
+    .half-table { margin-bottom: 1vw; width: 100% !important; border: none !important; }
     .half-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
 
     .default-table { 
-        margin-bottom: 32px; 
+        margin-bottom: 1vw; 
         width: 100% !important; 
         border: none !important; 
         display: block;
+        margin-left: auto;
+        margin-right: auto;
     }
-    .default-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
+    .default-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }
 
     .default-table tr td {
         display: block;
         width: 100%;
-        padding: 0.5rem 3rem;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 1vw;
     }
 
     .middle-table { 
-        margin-bottom: 32px; 
+        margin-bottom: 1vw; 
         margin-top: 32px;
         width: 100% !important; 
         border: none !important; 
@@ -805,6 +809,12 @@ option { padding-right: 16px; }
 
     .middle-table tr td {
         display: block;
+    }
+
+    .sandbox {
+        margin-left: 10%;
+        margin-right: 10%;
+        padding: 1%;
     }
 
     .padded { padding: 8px; }

@@ -160,8 +160,10 @@
                     "position": "absolute",
                     "z-index": 1532,
                     "opacity": 0.00,
-                    "width": $(document).width(), "height": $(document).height(),
-                    "left": 0, "top": 0,
+                    "width": $(document).width(), 
+                    "height": "auto",
+                    "left": 0, 
+                    "top": 0,
                     "background": "#333"
                 });                
             }
@@ -176,11 +178,14 @@
                 });
             } else {
                 squarebox = $('<div class="panel"></div>').css({
-                    "position": "absolute",
-                    "top": "0!important",
+                    "position": "-webkit-sticky",
+                    "position": "sticky",
+                    "top": 0,
                     "left": 0,
                     "width": "90%", 
                     "max-width": "90%",
+                    "margin-left": "auto",
+                    "margin-right": "auto",
                     "z-index": 1536
                 });
             }                
