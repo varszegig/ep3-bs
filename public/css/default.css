@@ -566,6 +566,9 @@ p.symbolic { display: block; }
 .bordered-table tr td { padding: 8px; border: solid 1px #CCC; }
 .bordered-table tr th { padding: 0 8px 8px 8px; }
 
+.bordered-table-small tr td { padding: 8px; border: solid 1px #CCC; }
+.bordered-table-small tr th { padding: 0 8px 8px 8px; }
+
 .half-table { width: 49%; }
 .half-table:last-child { width: 50%; border-left: solid 1px #CCC; }
 
@@ -912,6 +915,10 @@ option { padding-right: 16px; }
     }
     .default-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }
 
+    .default-table tr:last-child>td {
+        padding-bottom: 1vw;
+    }
+
     .default-table tr td {
         display: block;
         width: 100%;
@@ -963,7 +970,16 @@ option { padding-right: 16px; }
         margin-right: auto;
     }
 
-    .bordered-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }    
+    .bordered-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }  
+    
+    .bordered-table-small tr td { 
+        width: 80% !important;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        padding-bottom: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+    }        
 
     .sandbox {
         margin-left: 0!important;
