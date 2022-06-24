@@ -928,14 +928,52 @@ option { padding-right: 16px; }
         display: block;
     }    
 
+    
     .middle-table tr td {
         display: block;
     }
 
+    .bordered-table tr th { 
+        display: none!important;
+    }    
+
+    .bordered-table tr td { 
+        display: block;
+        width: 150%;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        padding-bottom: 1vw;
+    }    
+
+
+    .bordered-table td:before {
+        content: attr(headers);
+        float: left;
+        text-align: left;
+        width: 50%;
+        height: fit-content;
+    }
+
+    .bordered-table { 
+        margin-bottom: 1vw; 
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bordered-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }    
+
     .sandbox {
-        margin-left: 10%;
-        margin-right: 10%;
+        margin-left: 0!important;
+        margin-right: auto!important;
+        max-width: 90%;
         padding: 1%;
+    }
+
+    .centered-panel {
+        max-width: 99%;
     }
 
     .userpanel-tab {
