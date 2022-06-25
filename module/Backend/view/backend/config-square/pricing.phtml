@@ -48,6 +48,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
             foreach ($pricingRule as $key => $value) {
                 if ($key == 'date_start' || $key == 'date_end') {
+                    // $value = (new \DateTime($value))->format('Y-m-d');
                     $value = implode('.', array_reverse(explode('-', $value)));
                 }
 

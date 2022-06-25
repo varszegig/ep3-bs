@@ -24,13 +24,13 @@ class UserFormat extends AbstractHelper
 
         $html .= sprintf('<tr %s>', $attr);
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('No.'),
             $user->need('uid'));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Name'),
             $user->need('alias'));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Status'),
             $view->t($user->getStatus()));
 
         /* Email col */
@@ -43,7 +43,7 @@ class UserFormat extends AbstractHelper
             $email = '-';
         }
 
-        $html .= sprintf('<td class="email-col">%s</td>',
+        $html .= sprintf('<td class="email-col" headers="%s">%s</td>', $view->t('Email address'),
             $email);
 
         /* Notes col */
@@ -68,7 +68,7 @@ class UserFormat extends AbstractHelper
         $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a> &nbsp; <a href="%s" class="unlined gray symbolic symbolic-booking">%s</a></td>',
             $view->url('backend/user/edit', ['uid' => $user->need('uid')], ['query' => ['search' => $search]]),
             $view->t('Edit'),
-            $view->url('backend/booking', [], ['query' => ['search' => '(uid = ' . $user->need('uid') . ')']]),
+            $view->url('backend/booking', [], ['query' => ['user' => $user->need('alias') . ' (' . $user->need('uid') . ')']]),
             $view->t('Bookings'));
 
         $html .= '</tr>';

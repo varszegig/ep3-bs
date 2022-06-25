@@ -37,7 +37,7 @@ class BookingFormat extends AbstractHelper
         $html .= sprintf('<td class="status-col right-text">%s</td>',
             $view->t($booking->getStatus()));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>',  $view->t('No.'),
             $booking->need('bid'));
 
         if ($booking->getExtra('user')) {
@@ -46,8 +46,12 @@ class BookingFormat extends AbstractHelper
             $userName = $booking->need('uid');
         }
 
-        $html .= sprintf('<td><b>%s</b></td>',
+        $html .= sprintf('<td headers="%s"><b>%s</b></td>', $view->t('Name'),
             $userName);
+
+        $billingStatus = $booking->need('status_billing');
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Billing status'),
+            $view->t(ucfirst($billingStatus)));
 
         /* Date and time col */
 
@@ -56,13 +60,14 @@ class BookingFormat extends AbstractHelper
         $fullDate = $view->dateFormat($date, \IntlDateFormatter::FULL, null, null, $view->t('eeee, y. MMMM d.'));
         $fullDateParts = explode(', ', $fullDate);
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Day'),
             $fullDateParts[0]);
 
-        $html .= sprintf('<td>%s</td>',
-            $view->dateFormat($date, \IntlDateFormatter::MEDIUM, null, null, $view->t('dd.MM.yyyy')));
+        // $html .= sprintf('<td>%s</td>',
+        //     $view->dateFormat($date, \IntlDateFormatter::MEDIUM, null, null, $view->t('dd.MM.yyyy')));
 
-        $html .= sprintf('<td>%s</td>',
+
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Time'),
             $view->timeRange($reservation->get('time_start'), $reservation->get('time_end'), '%s to %s'));
 
         /* Square col */
@@ -73,7 +78,7 @@ class BookingFormat extends AbstractHelper
             $squareName = '-';
         }
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->option('subject.square.type'),
             $squareName);
 
         /* Notes col */
@@ -90,7 +95,7 @@ class BookingFormat extends AbstractHelper
             $notes = '-';
         }
 
-        $html .= sprintf('<td class="notes-col">%s</td>',
+        $html .= sprintf('<td class="notes-col" headers="%s">%s</td>', $view->t('Notes'),
             $notes);
 
         /* Actions col */

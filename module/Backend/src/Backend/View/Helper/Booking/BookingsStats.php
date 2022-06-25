@@ -42,11 +42,11 @@ class BookingsStats extends AbstractHelper
         $html .= '<table class="bordered-table">';
 
         $html .= '<tr>';
-        $html .= '<td></td>';
+        $html .= '<th></th>';
         foreach (array_keys($bookingStatus) as $bookingStatKey) {
-            $html .= '<td>' . $view->t(ucfirst($bookingStatKey)) . '</td>';
+            $html .= '<th>' . $view->t(ucfirst($bookingStatKey)) . '</th>';
         }
-        $html .= '<td><b>' . $view->t('Total') . '</b></td>';
+        $html .= '<th><b>' . $view->t('Total') . '</b></th>';
         $html .= '</tr>';
         foreach(array_keys($billingStatus) as $billingStatKey) {
             $html .= '<tr>';
@@ -56,7 +56,7 @@ class BookingsStats extends AbstractHelper
                 $value = $statTable[$bookingStatKey][$billingStatKey];
                 $total += $value;
                 $grandTotal[$bookingStatKey] += $value;
-                $html .= '<td class="right-text">';
+                $html .= '<td class="right-text" headers="' . $view->t(ucfirst($bookingStatKey)) . '">';
                 if ($value > 0) {
                     $html .= '<a href="'; 
                     $html .= $view->url('backend/booking', [], 
@@ -68,7 +68,7 @@ class BookingsStats extends AbstractHelper
                 if ($value > 0) $html .= '</a>';
                 $html .= '</td>';
             }
-            $html .= '<td class="right-text"><b>';
+            $html .= '<td class="right-text" headers="' . $view->t('Total') . '"><b>';
             if ($total > 0) {
                 $html .= '<a href="'; 
                 $html .= $view->url('backend/booking', [], 
@@ -86,7 +86,7 @@ class BookingsStats extends AbstractHelper
         $total  = 0;
         foreach (array_keys($bookingStatus) as $bookingStatKey) {
             $value = $grandTotal[$bookingStatKey];
-            $html .= '<td class="right-text"><b>';
+            $html .= '<td class="right-text" headers="' . $view->t(ucfirst($bookingStatKey)) . '"><b>';
             if ($value > 0) {
                 $html .= '<a href="'; 
                 $html .= $view->url('backend/booking', [], 
@@ -98,7 +98,7 @@ class BookingsStats extends AbstractHelper
             $html .= '</b></td>';
             $total += $grandTotal[$bookingStatKey];
         }
-        $html .= '<td class="right-text"><b>' . $view->numberFormat($total) . '</b></td>';
+        $html .= '<td class="right-text" headers="' . $view->t('Total') . '"><b>' . $view->numberFormat($total) . '</b></td>';
         $html .= '</tr>';
        
         $html .= '</table>';

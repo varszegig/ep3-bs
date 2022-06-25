@@ -42,7 +42,7 @@ $last_vat_rate = 19;
                         <td class="right-text"><input type="text" name="ebf-<?= $bill->need('bbid') ?>-quantity" value="<?= $bill->get('quantity') ?>" style="width: 64px; text-align: right;"></td>
 
                         <td>
-                            <input type="text" name="ebf-<?= $bill->need('bbid') ?>-price" value="<?= $bill->get('price') ?>" style="width: 64px; text-align: right;">
+                            <input type="text" name="ebf-<?= $bill->need('bbid') ?>-price" value="<?= $this->currencyFormat($bill->get('price') / 100) ?>" style="width: 64px; text-align: right;">
 
                             <?php
 

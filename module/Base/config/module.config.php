@@ -99,6 +99,8 @@ return array(
             /* Layout */
 
             'HeaderLocaleChoice' => 'Base\View\Helper\Layout\HeaderLocaleChoiceFactory',
+
+            'GetHeaderUser' => 'Base\View\Helper\Layout\HeaderUserFactory',
         ),
 
         'aliases' => array(

@@ -146,24 +146,49 @@
     function prepareSquarebox()
     {
         if (! squareboxOverlay) {
-            squareboxOverlay = $('<div id="squarebox-overlay"></div>').css({
-                "position": "absolute",
-                "z-index": 1532,
-                "opacity": 0.00,
-                "width": $(document).width(), "height": $(document).height(),
-                "left": 0, "top": 0,
-                "background": "#333"
-            });
-
+            if (window.matchMedia('(min-width: 1024px)').matches) {
+                squareboxOverlay = $('<div id="squarebox-overlay"></div>').css({
+                    "position": "absolute",
+                    "z-index": 1532,
+                    "opacity": 0.00,
+                    "width": $(document).width(), "height": $(document).height(),
+                    "left": 0, "top": 0,
+                    "background": "#333"
+                });
+            } else {
+                squareboxOverlay = $('<div id="squarebox-overlay"></div>').css({
+                    "position": "absolute",
+                    "z-index": 1532,
+                    "opacity": 0.00,
+                    "width": $(document).width(), 
+                    "height": "auto",
+                    "left": 0, 
+                    "top": 0,
+                    "background": "#333"
+                });                
+            }
             $("body").prepend(squareboxOverlay);
         }
 
         if (! squarebox) {
-            squarebox = $('<div class="panel"></div>').css({
-                "position": "absolute",
-                "z-index": 1536
-            });
-
+            if (window.matchMedia('(min-width: 1024px)').matches) {
+                squarebox = $('<div class="panel"></div>').css({
+                    "position": "absolute",
+                    "z-index": 1536
+                });
+            } else {
+                squarebox = $('<div class="panel"></div>').css({
+                    "position": "-webkit-sticky",
+                    "position": "sticky",
+                    "top": 0,
+                    "left": 0,
+                    "width": "90%", 
+                    "max-width": "90%",
+                    "margin-left": "auto",
+                    "margin-right": "auto",
+                    "z-index": 1536
+                });
+            }                
             $("body").prepend(squarebox);
         }
     }

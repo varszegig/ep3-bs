@@ -552,6 +552,10 @@ class BookingController extends AbstractActionController
                             $squareType, $squareName,
                             $dateRangeHelper($dateTimeStart, $dateTimeEnd));
 
+                        if (preg_match('/^[0-9]+$/', $pricing['price'])) {
+                            $pricing['price'] += ',00';
+                        }
+
                         $bookingBillManager->save(new Booking\Bill(array(
                             'bid' => $bid,
                             'description' => $description,
@@ -619,7 +623,7 @@ class BookingController extends AbstractActionController
                     $bill->set('time', $time * 60);
                 }
 
-                $quantity = $this->params()->fromPost('ebf-' . $bbid . '-quantity');
+                $quantity = $this->params()->fromPost('ebf-' . $bbid . '-qua    ntity');
 
                 if ($quantity && is_numeric($quantity)) {
                     $bill->set('quantity', $quantity);
@@ -627,7 +631,9 @@ class BookingController extends AbstractActionController
 
                 $price = $this->params()->fromPost('ebf-' . $bbid . '-price');
 
+                $price = filter_var($price, FILTER_SANITIZE_NUMBER_INT);
                 if ($price && is_numeric($price)) {
+                    $price = $price * 100;
                     $bill->set('price', $price);
                 }
 

@@ -183,10 +183,6 @@ a#logo:active { top: 1px; }
         background: none;
     }
 
-    #topbar-i18n {
-        position: absolute;
-        left: 0; top: 0;
-    }
 }
 
 #content {
@@ -570,6 +566,9 @@ p.symbolic { display: block; }
 .bordered-table tr td { padding: 8px; border: solid 1px #CCC; }
 .bordered-table tr th { padding: 0 8px 8px 8px; }
 
+.bordered-table-small tr td { padding: 8px; border: solid 1px #CCC; }
+.bordered-table-small tr th { padding: 0 8px 8px 8px; }
+
 .half-table { width: 49%; }
 .half-table:last-child { width: 50%; border-left: solid 1px #CCC; }
 
@@ -715,6 +714,7 @@ form { margin: 0; padding: 0; }
 
 input[type="text"],
 input[type="password"],
+input[type="date"],
 textarea,
 select {
     padding: 6px;
@@ -737,6 +737,8 @@ input[type="text"]:hover,
 input[type="text"]:focus,
 input[type="password"]:hover,
 input[type="password"]:focus,
+input[type="date"]:hover,
+input[type="date"]:focus,
 textarea:hover,
 textarea:focus,
 select:hover, select:focus {
@@ -758,7 +760,90 @@ option { padding-right: 16px; }
 .default-form-label-top { padding-left: 8px; padding-bottom: 3px; }
 .default-form-label-row { padding-top: 7px; text-align: right; }
 
+.userpanel-tab {
+    height: 100%;
+}
+
 /* Responsive - We haz it :D */
+
+.hamburger-menu {
+    display: none;
+}
+
+#menu__toggle {
+    opacity: 0;
+    z-index: 9999;
+  }
+#menu__toggle:checked + .menu__btn > span {
+    transform: rotate(45deg);
+  }
+#menu__toggle:checked + .menu__btn > span::before {
+    top: 0;
+    transform: rotate(0deg);
+}
+#menu__toggle:checked + .menu__btn > span::after {
+    top: 0;
+    transform: rotate(90deg);
+}
+#menu__toggle:checked ~ .menu__box {
+    left: 0 !important;
+}
+.menu__btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    width: 26px;
+    height: 26px;
+    cursor: pointer;
+    z-index: 9999;
+}
+.menu__btn > span,
+.menu__btn > span::before,
+.menu__btn > span::after {
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    background-color: #ffffff;
+    transition-duration: .25s;
+}
+.menu__btn > span::before {
+    content: '';
+    top: -8px;
+}
+.menu__btn > span::after {
+    content: '';
+    top: 8px;
+}
+.menu__box {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: -100%;
+    width: 300px;
+    height: 100%;
+    margin: 0;
+    padding: 80px 0;
+    list-style: none;
+    background-color: #5b5e60e5;
+    box-shadow: 2px 2px 6px rgba(0, 0, 0, .4);
+    transition-duration: .25s;
+    z-index: 9998;
+}
+.menu__item {
+    display: block;
+    position: absolute;
+    padding: 12px 24px;
+    color: #333;
+    font-family: 'Roboto', sans-serif;
+    font-size: 20px;
+    font-weight: 600;
+    text-decoration: none;
+    transition-duration: .25s;
+}
+.menu__item:hover {
+    background-color: #CFD8DC;
+}
 
 @media screen and (max-width: 1536px)
 {
@@ -776,18 +861,140 @@ option { padding-right: 16px; }
 
 @media screen and (max-width: 1024px)
 {
+    .hamburger-menu {
+        display: inline;
+    }
+
+    #label {
+        display: none;
+    }
+
+    #topbar {
+        display: none;
+    }
+
+    #logo {
+        width: 100%;
+        text-align: center;
+    }
+
+    #calendar-toolbar-userpanel {
+        display: none;
+    }
+
+    #topbar-i18n {
+        position: absolute;
+        top: 0;
+        right: 0;
+    }
+
+    .symbolic-phone {
+        position: fixed;
+        top: 50px;
+        width: 40px;
+        height: 40px;
+        left: 20px;
+        background: url(../imgs/icons/topbar-phone.png) no-repeat;
+    }
+
+    .symbolic-plus-link {
+        color:yellow!important;
+    }
     .responsive-pass-3 { display: none; }
 
-    .half-table { margin-bottom: 32px; width: 100% !important; border: none !important; }
+    .half-table { margin-bottom: 1vw; width: 100% !important; border: none !important; }
     .half-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
 
-    .default-table { margin-bottom: 32px; width: 100% !important; border: none !important; }
-    .default-table:last-child { margin-bottom: 32px; width: 100% !important; border: none !important; }
+    .default-table { 
+        margin-bottom: 1vw; 
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .default-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }
+
+    .default-table tr:last-child>td {
+        padding-bottom: 1vw;
+    }
 
     .default-table tr td {
         display: block;
         width: 100%;
-        padding: 0.5rem 3rem;
+        padding-left: 0;
+        padding-right: 0;
+        padding-bottom: 1vw;
+    }
+
+    .middle-table { 
+        margin-bottom: 1vw; 
+        margin-top: 1vw;
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+    }    
+
+    
+    .middle-table tr td {
+        display: block;
+    }
+
+    .bordered-table tr th { 
+        display: none!important;
+    }    
+
+    .bordered-table tr td { 
+        display: block;
+        width: 150%;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        padding-bottom: 1vw;
+    }    
+
+
+    .bordered-table td:before {
+        content: attr(headers);
+        float: left;
+        text-align: left;
+        width: 50%;
+        height: fit-content;
+    }
+
+    .bordered-table { 
+        margin-bottom: 1vw; 
+        width: 100% !important; 
+        border: none !important; 
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+    }
+
+    .bordered-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }  
+    
+    .bordered-table-small tr td { 
+        width: 80% !important;
+        padding-left: 1vw;
+        padding-right: 1vw;
+        padding-bottom: 1vw;
+        margin-left: auto;
+        margin-right: auto;
+    }        
+
+    .sandbox {
+        margin-left: 0!important;
+        margin-right: auto!important;
+        max-width: 90%;
+        padding: 1%;
+    }
+
+    .centered-panel {
+        max-width: 99%;
+    }
+
+    .userpanel-tab {
+        display: block;
+        width: 100%;
     }
 
     .padded { padding: 8px; }
@@ -873,7 +1080,7 @@ option { padding-right: 16px; }
 	color: #fda016;
 }
 #myCookieConsent a#cookieButton {
-    display: inline-block;
+    /* display: inline-block; */
     color: #000000;
     font-size: 1.1em;
 	background: #ffba55;
