@@ -22,7 +22,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
     <div class="separator separator-line"></div>
 
     <style type="text/css">
-        .datepicker { width: fit-content; }
+        .datepicker { width: 75px; }
         .timepicker { width: 39px; }
         .pricepicker { width: 50px; color: #333 !important; font-weight: bold; text-align: right; }
         .timeblockpicker { width: 25px; text-align: right; }
@@ -48,7 +48,8 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
             foreach ($pricingRule as $key => $value) {
                 if ($key == 'date_start' || $key == 'date_end') {
-                    $value = (new \DateTime($value))->format('Y-m-d');
+                    // $value = (new \DateTime($value))->format('Y-m-d');
+                    $value = implode('.', array_reverse(explode('-', $value)));
                 }
 
                 $jsRule[] = '"' . $value . '"';
@@ -66,7 +67,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
         <table><tbody>
             <tr>
                 <td class="pricing-date-range">
-                    <input type="date" value="" class="pricing-dateStart datepicker"><span class="pricing-grammar"><?= $this->t('to') ?></span><input type="date" value="" class="pricing-dateEnd datepicker">
+                    <input type="text" value="" class="pricing-dateStart datepicker"><span class="pricing-grammar"><?= $this->t('to') ?></span><input type="text" value="" class="pricing-dateEnd datepicker">
                 </td>
                 <td>
                     <table><tbody>

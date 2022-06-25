@@ -339,7 +339,6 @@ class ConfigSquareController extends AbstractActionController
                         }
 
                         // Transform dates
-                        error_log('rule' . print_r($rule, true));
                         $rule[2] = implode('-', array_reverse(explode('.', $rule[2])));
                         $rule[3] = implode('-', array_reverse(explode('.', $rule[3])));
 
