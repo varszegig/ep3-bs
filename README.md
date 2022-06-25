@@ -49,6 +49,7 @@ The current version is 1.13.0 from June, 2022.
 Version 1.13.0
 Correct some responsivity issues
 Added billing status to bookings list
+Change the handling of billing sums
 
 Version 1.12.0
 Advanced statistics and search on backend/users
