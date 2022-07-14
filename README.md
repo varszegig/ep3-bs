@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.13.0 from June, 2022.
+The current version is 1.13.1 from June, 2022.
+
+Version 1.13.1
+Small responsitivity issues
 
 Version 1.13.0
 Correct some responsivity issues

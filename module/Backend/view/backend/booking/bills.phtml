@@ -19,71 +19,51 @@ $last_vat_rate = 19;
     <div class="separator-small"></div>
 
     <form method="post">
-        <p><?= $this->t(sprintf('Status: %s',
+        <p>
+            <div class="default-form-label-top gray">
+                <label for="ebf-status"><?= $this->t('Billing status') ?>:</label>
+            </div>
+            <?= $this->t(sprintf('%s',
             '<select name="ebf-status">' . $this->formSelect()->renderOptions(
                 $this->bookingStatusService->getStatusTitles(), array($this->booking->getBillingStatus())) . '</select>')) ?></p>
 
-        <div class="sandbox">
-            <table class="default-table middle-table">
+        <table class="default-table middle-table zebra-table">
+
+            <?php foreach ($this->bills as $bill): ?>
                 <tr>
-                    <td><?= $this->t('Description') ?></td>
-                    <td class="right-text"><?= $this->t('Time (in minutes)') ?></td>
-                    <td class="right-text"><?= $this->option('subject.square.unit.plural') ?></td>
-                    <td><?= $this->t('Price (in cent)') ?></td>
-                    <td></td>
-                </tr>
-
-                <?php foreach ($this->bills as $bill): ?>
-                    <tr>
-                        <td><input type="text" name="ebf-<?= $bill->need('bbid') ?>-description" value="<?= $bill->get('description') ?>" style="width: 220px;"></td>
-
-                        <td class="right-text"><input type="text" name="ebf-<?= $bill->need('bbid') ?>-time" value="<?= ($bill->get('time') ? ($bill->get('time') / 60) : '') ?>" style="width: 64px; text-align: right;"></td>
-
-                        <td class="right-text"><input type="text" name="ebf-<?= $bill->need('bbid') ?>-quantity" value="<?= $bill->get('quantity') ?>" style="width: 64px; text-align: right;"></td>
-
-                        <td>
-                            <input type="text" name="ebf-<?= $bill->need('bbid') ?>-price" value="<?= $this->currencyFormat($bill->get('price') / 100) ?>" style="width: 64px; text-align: right;">
-
-                            <?php
-
-                            $last_vat_gross = $bill->get('gross');
-                            $last_vat_rate = $bill->get('rate');
-
-                            echo '<select name="ebf-' . $bill->need('bbid') . '-vat-gross" style="width: 60px;">';
-
-                            echo $this->formSelect()->renderOptions(array(
-                                '0' => $this->t('plus'),
-                                '1' => $this->t('including'),
-                            ), array(
-                                $last_vat_gross,
-                            ));
-
-                            echo '</select>';
-
-                            ?>
-
-                            <input type="text" name="ebf-<?= $bill->need('bbid') ?>-vat-rate" value="<?= $last_vat_rate ?>" style="width: 20px; text-align: right;"> % <?= $this->t('VAT') ?>
-                        </td>
-
-                        <td>
-                            <a href="?delete=<?= $bill->need('bbid') ?>" class="unlined gray symbolic symbolic-cross"></a>
-                        </td>
-                    </tr>
-                <?php endforeach; ?>
-
-                <tr>
-                    <td><input type="text" name="ebf-new-description" placeholder="<?= $this->t('New position') ?>" style="width: 220px;"></td>
-
-                    <td class="right-text"><input type="text" name="ebf-new-time" style="width: 64px; text-align: right;"></td>
-
-                    <td class="right-text"><input type="text" name="ebf-new-quantity" style="width: 64px; text-align: right;"></td>
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="ebf-<?= $bill->need('bbid') ?>-description"><?= $this->t('Description') ?></label>
+                        </div>
+                        <input type="text" name="ebf-<?= $bill->need('bbid') ?>-description" value="<?= $bill->get('description') ?>" style="width: 220px;">
+                    </td>
 
                     <td>
-                        <input type="text" name="ebf-new-price" style="width: 64px; text-align: right;">
+                        <div class="default-form-label-top gray">
+                            <label for="ebf-<?= $bill->need('bbid') ?>-time"><?= $this->t('Time (in minutes)') ?></label>
+                        </div>
+                        <input type="text" name="ebf-<?= $bill->need('bbid') ?>-time" value="<?= ($bill->get('time') ? ($bill->get('time') / 60) : '') ?>" style="width: 64px; text-align: right;">
+                    </td>
+
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="ebf-<?= $bill->need('bbid') ?>-quantity"><?= $this->option('subject.square.unit.plural') ?></label>
+                        </div>
+                        <input type="text" name="ebf-<?= $bill->need('bbid') ?>-quantity" value="<?= $bill->get('quantity') ?>" style="width: 64px; text-align: right;">
+                    </td>
+
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="ebf-<?= $bill->need('bbid') ?>-quantity"><?= $this->t('Price (in cent)') ?></label>
+                        </div>
+                        <input type="text" name="ebf-<?= $bill->need('bbid') ?>-price" value="<?= $this->currencyFormat($bill->get('price') / 100) ?>" style="width: 64px; text-align: right;">
 
                         <?php
 
-                        echo '<select name="ebf-new-vat-gross" style="width: 60px;">';
+                        $last_vat_gross = $bill->get('gross');
+                        $last_vat_rate = $bill->get('rate');
+
+                        echo '<select name="ebf-' . $bill->need('bbid') . '-vat-gross" style="width: 60px;">';
 
                         echo $this->formSelect()->renderOptions(array(
                             '0' => $this->t('plus'),
@@ -96,17 +76,68 @@ $last_vat_rate = 19;
 
                         ?>
 
-                        <input type="text" name="ebf-new-vat-rate" value="<?= $last_vat_rate ?>" style="width: 20px; text-align: right;"> % <?= $this->t('VAT') ?>
+                        <input type="text" name="ebf-<?= $bill->need('bbid') ?>-vat-rate" value="<?= $last_vat_rate ?>" style="width: 20px; text-align: right;"> % <?= $this->t('VAT') ?>
                     </td>
-                </tr>
 
-                <tr>
-                    <td colspan="4">
-                        <a href="?create=default-bill" class="symbolic symbolic-plus-link"><?= $this->t('New position by using the pricing rules for this booking') ?></a>
+                    <td style="vertical-align: bottom;">
+                        <a href="?delete=<?= $bill->need('bbid') ?>" class="unlined gray symbolic symbolic-cross"></a>
                     </td>
                 </tr>
-            </table>
-        </div>
+            <?php endforeach; ?>
+
+            <tr>
+                <td>
+                    <div class="default-form-label-top gray">
+                        <label for="ebf-new-description"><?= $this->t('Description') ?></label>
+                    </div>
+                    <input type="text" name="ebf-new-description" placeholder="<?= $this->t('New position') ?>" style="width: 220px;">
+                </td>
+
+                <td class>
+                    <div class="default-form-label-top gray">
+                        <label for="ebf-new-time"><?= $this->t('Time (in minutes)') ?></label>
+                    </div>
+                    <input type="text" name="ebf-new-time" style="width: 64px; text-align: right;">
+                </td>
+
+                <td>
+                    <div class="default-form-label-top gray">
+                        <label for="ebf-new-quantity"><?= $this->option('subject.square.unit.plural') ?></label>
+                    </div>
+                    <input type="text" name="ebf-new-quantity" style="width: 64px; text-align: right;">
+                </td>
+
+                <td colspan="2">
+                    <div class="default-form-label-top gray">
+                        <label for="ebf-new-quantity"><?= $this->t('Price (in cent)') ?></label>
+                    </div>
+                    <input type="text" name="ebf-new-price" style="width: 64px; text-align: right;">
+
+                    <?php
+
+                    echo '<select name="ebf-new-vat-gross" style="width: 60px;">';
+
+                    echo $this->formSelect()->renderOptions(array(
+                        '0' => $this->t('plus'),
+                        '1' => $this->t('including'),
+                    ), array(
+                        $last_vat_gross,
+                    ));
+
+                    echo '</select>';
+
+                    ?>
+
+                    <input type="text" name="ebf-new-vat-rate" value="<?= $last_vat_rate ?>" style="width: 20px; text-align: right;"> % <?= $this->t('VAT') ?>
+                </td>
+            </tr>
+
+            <tr>
+                <td colspan="5">
+                    <a href="?create=default-bill" class="symbolic symbolic-plus-link-white"><?= $this->t('New position by using the pricing rules for this booking') ?></a>
+                </td>
+            </tr>
+        </table>
 
         <div class="separator-small"></div>
 

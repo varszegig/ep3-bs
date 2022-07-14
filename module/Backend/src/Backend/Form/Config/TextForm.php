@@ -56,7 +56,7 @@ class TextForm extends Form
 	        }
 
 	        if ($type == 'Text') {
-		        $style = 'width: 380px;';
+		        $style = 'width: 100%;';
 	        } else {
 		        $style = null;
 	        }
@@ -81,7 +81,7 @@ class TextForm extends Form
             'attributes' => array(
                 'value' => 'Save',
                 'class' => 'default-button',
-                'style' => 'width: 200px;',
+                'style' => 'width: 50%;',
             ),
         ));
 
