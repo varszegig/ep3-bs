@@ -20,7 +20,7 @@ class SquareGroupFormat extends AbstractHelper
         $html .= sprintf('<td class="priority-col">%s</td>',
             $squareGroup->get('sgid'));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Description'),
             $squareGroup->get('description'));
 
         /* Actions col */

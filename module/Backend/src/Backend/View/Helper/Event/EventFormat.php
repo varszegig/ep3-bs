@@ -23,7 +23,7 @@ class EventFormat extends AbstractHelper
 
         $html .= sprintf('<tr>');
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('No.'),
             $event->need('eid'));
 
         /* Name col */
@@ -34,15 +34,15 @@ class EventFormat extends AbstractHelper
             $name = substr($name, 0, 48) . '&hellip;';
         }
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Name'),
             $name);
 
         /* Date cols */
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Start date'),
             $view->dateFormat($event->needExtra('datetime_start'), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('End date'),
             $view->dateFormat($event->needExtra('datetime_end'), \IntlDateFormatter::MEDIUM, \IntlDateFormatter::SHORT));
 
         /* Capacity col */
@@ -55,7 +55,7 @@ class EventFormat extends AbstractHelper
             $capacityLabel = $view->t('None');
         }
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Capacity'),
             $capacityLabel);
 
         /* Square col */
@@ -66,7 +66,7 @@ class EventFormat extends AbstractHelper
             $squareLabel = $view->t('All');
         }
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Square'),
             $squareLabel);
 
         /* Actions col */

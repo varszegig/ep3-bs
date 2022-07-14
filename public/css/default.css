@@ -463,7 +463,7 @@ a.squarebox-primary-close-link:hover {
 .message:last-child { margin-bottom: 0; }
 
 .symbolic-plus { padding-left: 20px; background-image: url(../imgs/icons/plus.png); }
-.symbolic-plus-link { padding-left: 20px; background-image: url(../imgs/icons/plus-link.png); }
+.symbolic-plus-link, .symbolic-plus-link-white { padding-left: 20px; background-image: url(../imgs/icons/plus-link.png); }
 .symbolic-minus { padding-left: 20px; background-image: url(../imgs/icons/minus.png); }
 .symbolic-email { padding-left: 24px; background-image: url(../imgs/icons/email.png); }
 .symbolic-pw { padding-left: 16px; background-image: url(../imgs/icons/pw.png); }
@@ -573,6 +573,10 @@ p.symbolic { display: block; }
 .half-table:last-child { width: 50%; border-left: solid 1px #CCC; }
 
 .middle-table td { vertical-align: middle; }
+
+.zebra-table tr:nth-child(even) {
+    background-color: #f1f1f1;
+}
 
 .no-wrap { white-space: nowrap; }
 
@@ -900,6 +904,11 @@ option { padding-right: 16px; }
     .symbolic-plus-link {
         color:yellow!important;
     }
+
+    .symbolic-plus-link-white {
+        padding-top: 1vw;
+    }
+
     .responsive-pass-3 { display: none; }
 
     .half-table { margin-bottom: 1vw; width: 100% !important; border: none !important; }
@@ -946,18 +955,18 @@ option { padding-right: 16px; }
 
     .bordered-table tr td { 
         display: block;
-        width: 150%;
+        width: 100%;
+        height: 100%;
         padding-left: 1vw;
         padding-right: 1vw;
         padding-bottom: 1vw;
+        text-align: right;
     }    
-
 
     .bordered-table td:before {
         content: attr(headers);
         float: left;
         text-align: left;
-        width: 50%;
         height: fit-content;
     }
 
@@ -968,6 +977,10 @@ option { padding-right: 16px; }
         display: block;
         margin-left: auto;
         margin-right: auto;
+    }
+
+    .zebra-table {
+        display: block;
     }
 
     .bordered-table:last-child { margin-bottom: 1vw; width: 100% !important; border: none !important; }  
@@ -1000,6 +1013,10 @@ option { padding-right: 16px; }
     .padded { padding: 8px; }
 
     #content { padding: 0; }
+
+    .default-form-label-row {
+        text-align: left;
+    }
 }
 
 @media screen and (max-width: 768px)

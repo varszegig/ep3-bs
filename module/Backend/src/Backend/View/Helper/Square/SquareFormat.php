@@ -18,23 +18,23 @@ class SquareFormat extends AbstractHelper
         $html .= sprintf('<td class="priority-col">%s</td>',
             $square->get('priority'));
 
-        $html .= sprintf('<td><span class="gray">%s</span> %s</td>',
+        $html .= sprintf('<td headers="%s"><span class="gray">%s</span> %s</td>', $view->t('Name'),
             $view->option('subject.square.type'),
             $square->get('name'));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Status'),
             $view->t($square->getStatus()));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Time'),
             $view->timeRange($square->need('time_start'), $square->need('time_end'), '%s to %s'));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Time block'),
             $view->prettyTime($square->need('time_block')));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Time block (min. bookable)'),
             $view->prettyTime($square->need('time_block_bookable')));
 
-        $html .= sprintf('<td>%s</td>',
+        $html .= sprintf('<td headers="%s">%s</td>', $view->t('Time block (max. bookable)'),
             $view->prettyTime($square->need('time_block_bookable_max')));
 
         $html .= '<td class="actions-col no-print">'
