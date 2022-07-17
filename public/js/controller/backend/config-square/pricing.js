@@ -18,8 +18,8 @@
 
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
-            $(this).closest("table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
-            $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
+            $(this).find(".pricing-table-day-range").parent().closest("table").find("tr:last").after('<tr><td>' + template + '</td></tr>');
+            $(this).find(".pricing-table-day-range").parent().closest("table").find("tr:last").hide().fadeIn();
         });
 
         $("#pricing-table").on("click", ".pricing-time-range-new", function(event) {
@@ -27,7 +27,7 @@
 
             var template = $("#pricing-table-template").find(".pricing-time-range").closest("tr").closest("td").html();
 
-            $(this).closest("table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").find("tr:last").after('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
         });
 
@@ -36,7 +36,7 @@
 
             var template = $("#pricing-table-template").find(".pricing-price").closest("tr").html();
 
-            $(this).closest("table").find("tr:last").before('<tr>' + template + '</tr>');
+            $(this).closest("table").find("tr:last").after('<tr>' + template + '</tr>');
             $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
 
             $(".tooltip").tooltip();
