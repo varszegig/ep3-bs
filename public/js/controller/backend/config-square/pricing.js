@@ -16,6 +16,7 @@
         $("#pricing-table").on("click", ".pricing-day-range-new", function(event) {
             event.preventDefault();
 
+            console.log(this);
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
             $(this).closest(".pricing-table-day-range").children().children().last().after('<tr><td>' + template + '</td></tr>');
