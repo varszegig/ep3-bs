@@ -18,8 +18,8 @@
 
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
-            $(this).find(".pricing-table-day-range").parent().closest("table").find("tr:last").after('<tr><td>' + template + '</td></tr>');
-            $(this).find(".pricing-table-day-range").parent().closest("table").find("tr:last").hide().fadeIn();
+            $(this).closest(".pricing-table-day-range").children().children().last().after('<tr><td>' + template + '</td></tr>');
+            $(this).closest(".pricing-table-day-range").children().children().last().hide().fadeIn();
         });
 
         $("#pricing-table").on("click", ".pricing-time-range-new", function(event) {
