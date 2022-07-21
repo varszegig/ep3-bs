@@ -19,8 +19,8 @@
             console.log(this);
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
-            $(this).closest(".pricing-table-day-range").children().children().last().after('<tr><td>' + template + '</td></tr>');
-            $(this).closest(".pricing-table-day-range").children().children().last().hide().fadeIn();
+            $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").closest("tr").first().hide().fadeIn();
         });
 
         $("#pricing-table").on("click", ".pricing-time-range-new", function(event) {
@@ -28,8 +28,8 @@
 
             var template = $("#pricing-table-template").find(".pricing-time-range").closest("tr").closest("td").html();
 
-            $(this).closest("table").find("tr:last").after('<tr><td>' + template + '</td></tr>');
-            $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
+            $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").closest("tr").siblings("tr:last").hide().fadeIn();
         });
 
         $("#pricing-table").on("click", ".pricing-price-new", function(event) {
@@ -48,13 +48,13 @@
 
             var fadeTime = 200;
 
-            if ($(this).closest("tbody").children("tr").length > 2) {
+            if ($(this).closest("tbody").children("tr").length > 1) {
                 $(this).closest("tr").fadeOut(fadeTime, function() { $(this).remove(); });
             } else {
-                if ($(this).parents("tbody:eq(2)").children("tr").length > 2) {
+                if ($(this).parents("tbody:eq(2)").children("tr").length > 1) {
                     $(this).parents("tr:eq(2)").fadeOut(fadeTime, function() { $(this).remove(); });
                 } else {
-                    if ($(this).parents("tbody:eq(4)").children("tr").length > 2) {
+                    if ($(this).parents("tbody:eq(4)").children("tr").length > 1) {
                         $(this).parents("tr:eq(4)").fadeOut(fadeTime, function() { $(this).remove(); });
                     } else {
                         $(this).parents("tr:eq(6)").fadeOut(fadeTime, function() { $(this).remove(); });
@@ -191,15 +191,15 @@
             } else if (thisStartEndDay !== latestStartEndDay) {
                 var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
-                $("#pricing-table").find(".pricing-day-range:last").parents("tbody:eq(1)").find("tr:last").before('<tr><td>' + template + '</td></tr>');
+                $("#pricing-table").find(".pricing-day-range:last").closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
             } else if (thisStartEndTime !== latestStartEndTime) {
                 var template = $("#pricing-table-template").find(".pricing-time-range").closest("table").closest("td").html();
 
-                $("#pricing-table").find(".pricing-time-range:last").parents("tbody:eq(1)").find("tr:last").before('<tr><td>' + template + '</td></tr>');
+                $("#pricing-table").find(".pricing-time-range:last").closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
             } else {
-                var template = $("#pricing-table-template").find(".pricing-price").html();
+                var template = $("#pricing-table-template").find(".pricing-price").closest("tr").html();
 
-                $("#pricing-table").find(".pricing-price:last").parents("tbody:eq(1)").find("tr:last").before('<tr><td class="pricing-price">' + template + '</td></tr>');
+                $("#pricing-table").find(".pricing-price:last").closest("tr").after('<tr>' + template + '</tr>');                
             }
 
             if (price >= 100) {

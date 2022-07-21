@@ -350,6 +350,7 @@ return array(
     'New time' => 'Új idő',
     'New day' => 'Új nap',
     'New period' => 'Új periódus',
+    'valid for' => 'érvényes',
 
     'Display pricing:' => 'Árak megjelenítése:',
     'For no one' => 'Senkinek',

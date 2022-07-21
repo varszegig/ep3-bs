@@ -330,6 +330,7 @@ return array(
     'New time' => 'Nouvelle heure',
     'New day' => 'Nouveau jour',
     'New period' => 'Nouvelle période',
+    'valid for' => 'valable pour',
 
     'Display pricing:' => 'Afficher les prix:',
     'For no one' => '&Agrave; personne',

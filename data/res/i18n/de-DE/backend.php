@@ -342,6 +342,7 @@ return array(
     'New time' => 'Neue Zeit',
     'New day' => 'Neuer Wochentag',
     'New period' => 'Neuer Zeitraum',
+    'valid for' => 'gültig für',
 
     'Display pricing:' => 'Preise anzeigen:',
     'For no one' => 'Für niemanden',

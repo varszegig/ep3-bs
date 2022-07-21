@@ -37,17 +37,13 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
         #pricing-table-template { display: none; }
 
-        .pricing-table-day-range { background: #f5f5f5; border-radius: 4px; padding: 4px; }
-        .pricing-table-time-range { background: #9c9a9a; border-radius: 4px; padding: 4px; }
-        .pricing-table-price-range { background: #4f4e4e; border-radius: 4px; padding: 4px; }
+        .pricing-table-day-range { background: #defcf9; }
+        .pricing-table-time-range { background: #b5f7f0; }
+        .pricing-table-price-range { background: #7af5e7;  }
 
-/*         tr:not(:last-child) > td > .pricing-price-new {
+         tr:not(:last-child) > td > .pricing-price-new {
             display: none;
         }
-
-        td > table:not(:last-child) tr > td > table tr > td > table .pricing-day-range-new {
-            display: none;
-        } */
 
     </style>
 
@@ -106,21 +102,21 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                             ?>
                                         </td>
                                         <td>
-                                            <a href="#" class="pricing-day-range-new unlined gray"><em><?= $this->t('New day') ?></em></a>
+                                            <a href="#" class="pricing-day-range-new unlined gray"><em><span class="symbolic symbolic-plus"><?= $this->t('New day') ?></span></em></a>
                                         </td>
                                     </tr>
                                     <tr>
                                         <td>
-                                            <table><tbody>
+                                            <table class="pricing-table-time-range"><tbody>
                                                 <tr>
                                                     <td>
-                                                        <table class="pricing-table-time-range"><tbody>
+                                                        <table><tbody>
                                                             <tr>
                                                                 <td class="pricing-time-range">
-                                                                    <input type="text" value="06:00" maxlength="5" class="pricing-timeStart timepicker"><span class="pricing-grammar white"><?= $this->t('to') ?></span><input type="text" value="24:00" maxlength="5" class="pricing-timeEnd timepicker"><span class="white pricing-grammar"><?= $this->t('Clock') ?></span>
+                                                                    <input type="text" value="06:00" maxlength="5" class="pricing-timeStart timepicker"><span class="pricing-grammar"><?= $this->t('to') ?></span><input type="text" value="24:00" maxlength="5" class="pricing-timeEnd timepicker"><span class="pricing-grammar"><?= $this->t('Clock') ?></span>
                                                                 </td>
                                                                 <td>
-                                                                    <a href="#" class="pricing-time-range-new unlined white"><em><?= $this->t('New time') ?></em></a>
+                                                                    <a href="#" class="pricing-time-range-new unlined"><em><span class="symbolic symbolic-plus"><?= $this->t('New time') ?></span></em></a>
                                                                 </td>
                                                             </tr>
                                                             <tr>
@@ -130,7 +126,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                             <td class="pricing-price">
                                                                                 <?php
 
-                                                                                echo '<input type="text" value="0,00" maxlength="6" class="pricing-price-number pricepicker"><span class="pricing-grammar white">' . $this->config('i18n.currency') . '</span>';
+                                                                                echo '<input type="text" value="0,00" maxlength="6" class="pricing-price-number pricepicker"><span class="pricing-grammar">' . $this->config('i18n.currency') . '</span>';
 
                                                                                 echo '<select class="pricing-rate-gross" style="width: 60px;">';
                                                                                 echo '<option value="0">' . $this->t('plus') . '</option>';
@@ -138,9 +134,9 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 echo '</select>';
 
                                                                                 echo '<input type="text" value="19" maxlength="3" class="pricing-rate" style="width: 20px;">';
-                                                                                echo '<span class="pricing-grammar white">% ' . $this->t('VAT') . '</span>';
+                                                                                echo '<span class="pricing-grammar">% ' . $this->t('VAT') . '</span>';
 
-                                                                                echo '<br><span class="pricing-grammar white">' . $this->t('for') . '</span>';
+                                                                                echo '<br><span class="pricing-grammar">' . $this->t('valid for') . '</span>';
 
                                                                                 echo '<select class="pricing-sid">';
                                                                                 echo '<option value="null">' . sprintf($this->t('All %s'), $this->option('subject.square.type.plural')) . '</option>';
@@ -149,16 +145,16 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 }
                                                                                 echo '</select>';
 
-                                                                                echo '<span class="pricing-grammar white">' . $this->t('and') . '</span>';
+                                                                                echo '<span class="pricing-grammar">' . $this->t('and') . '</span>';
                                                                                 echo '<input type="text" value="' . round($this->squaresTimeBlock / 60) . '" maxlength="3" class="pricing-timeBlock timeblockpicker">';
-                                                                                echo '<span class="pricing-grammar white">Min.</span>';
-
-                                                                                echo '<a href="#" class="pricing-grammar pricing-delete tooltip">x</a>';
+                                                                                echo '<span class="pricing-grammar">Min.</span>';
 
                                                                                 ?>
                                                                             </td>
-                                                                            <td style="float:left;">
-                                                                                <a href="#" class="pricing-price-new unlined white"><em><?= $this->t('New price') ?></em></a>
+                                                                            <td>
+                                                                                <a href="#" class="pricing-price-new unlined"><em><span class="symbolic symbolic-plus"><?= $this->t('New price') ?></span></em></a>
+                                                                                <br><br>
+                                                                                <a href="#" class="pricing-grammar pricing-delete tooltip"><span class="symbolic symbolic-cross"></span></a>
                                                                             </td>
                                                                         </tr>
                                                                     </tbody></table>
