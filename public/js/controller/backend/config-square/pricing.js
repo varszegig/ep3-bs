@@ -1,4 +1,10 @@
 (function() {
+    $.fn.invalidate = function mark_invalid_fields(errorField) {
+        this.addClass("visible");
+        errorField.addClass("invalid");
+        var scrolltop = errorField.offset().top  - 50;
+        $('html, body').animate({ scrollTop: scrolltop }, 'slow');
+    }
 
     $(document).ready(function() {
 
@@ -10,7 +16,9 @@
             $(this).closest("table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
 
-            $(".datepicker").datepicker();
+            $('.datepicker').each(function(i) {
+                $(this).removeClass('hasDatepicker').datepicker(); 
+            });
         });
 
         $("#pricing-table").on("click", ".pricing-day-range-new", function(event) {
@@ -74,32 +82,40 @@
                 var dayRange = timeRange.parents("tbody:eq(2)").find(".pricing-day-range");
                 var dateRange = dayRange.parents("tbody:eq(2)").find(".pricing-date-range");
 
-                var dateStart = dateRange.find("input.datepicker:first").val();
-                var dateEnd = dateRange.find("input.datepicker:last").val();
+                var dateStartInput = dateRange.find("input.datepicker:first");
+                var dateEndInput = dateRange.find("input.datepicker:last");
+                var timeStartInput = timeRange.find("input.timepicker:first");
+                var timeEndInput = timeRange.find("input.timepicker:last");
+                var priceInput = pricing.find("input.pricepicker");
+                var rateInput = pricing.find("input.pricing-rate");
+                var timeBlockInput = pricing.find("input.timeblockpicker");
+
+                var dateStart = dateStartInput.val();
+                var dateEnd = dateEndInput.val();
                 var dayStart = dayRange.find("select:first").val();
                 var dayEnd = dayRange.find("select:last").val();
-                var timeStart = timeRange.find("input.timepicker:first").val();
-                var timeEnd = timeRange.find("input.timepicker:last").val();
-                var price = pricing.find("input.pricepicker").val();
+                var timeStart = timeStartInput.val();
+                var timeEnd = timeEndInput.val();
+                var price = priceInput.val();
                 var gross = pricing.find("select.pricing-rate-gross").val();
-                var rate = pricing.find("input.pricing-rate").val();
+                var rate = rateInput.val();
 
                 var priority = index;
 
                 var sid = pricing.find("select:last").val();
 
-                var timeBlock = pricing.find("input.timeblockpicker").val();
+                var timeBlock = timeBlockInput.val();
 
                 // Check date
                 if (! dateStart.match(/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/)) {
-                    window.alert("Hinweis: Das Datum \"" + dateStart + "\" ist ungültig - Format: 24.12.2014");
-
+                    dateRange.find(".date-range-error").invalidate(dateStartInput);
+                    
                     event.preventDefault();
                     return;
                 }
 
                 if (! dateEnd.match(/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/)) {
-                    window.alert("Hinweis: Das Datum \"" + dateEnd + "\" ist ungültig - Format: 24.12.2014");
+                    dateRange.find(".date-range-error").invalidate(dateEndInput);
 
                     event.preventDefault();
                     return;
@@ -110,8 +126,8 @@
                 }
 
                 if (! timeStart.match(/^[0-9]{0,1}[0-9]:[0-9][0-9]$/)) {
-                    window.alert("Hinweis: Die Uhrzeit \"" + timeStart + "\" ist ungültig - Format: 23:15");
-
+                    timeRange.find(".time-range-error").invalidate(timeStartInput);
+                    
                     event.preventDefault();
                     return;
                 }
@@ -121,7 +137,7 @@
                 }
 
                 if (! timeEnd.match(/^[0-9]{0,1}[0-9]:[0-9][0-9]$/)) {
-                    window.alert("Hinweis: Die Uhrzeit \"" + timeEnd + "\" ist ungültig - Format: 23:15");
+                    timeRange.find(".time-range-error").invalidate(timeEndInput);
 
                     event.preventDefault();
                     return;
@@ -132,14 +148,21 @@
                 }
 
                 if (! price.match(/^[0-9]+,[0-9][0-9]$/)) {
-                    window.alert("Hinweis: Der Preis \"" + price + "\" ist ungültig - Format: 19,95");
+                    pricing.find(".price-error").invalidate(priceInput);
+
+                    event.preventDefault();
+                    return;
+                }
+
+                if (! rate.match(/^[0-9]*$/)) {
+                    pricing.find(".price-error").invalidate(rateInput);
 
                     event.preventDefault();
                     return;
                 }
 
                 if (! timeBlock.match(/^[1-9][0-9]*$/)) {
-                    window.alert("Hinweis: Die Minutenangabe \"" + timeBlock + "\" ist ungültig");
+                    pricing.find(".time-block-error").invalidate(timeBlockInput);
 
                     event.preventDefault();
                     return;
@@ -175,6 +198,8 @@
             var rate = element[10];
             var gross = element[11];
             var timeBlock = element[12];
+
+            console.log(sid, dateStart, dateEnd, dayStart, dayEnd, timeStart, timeEnd, price, rate, gross, timeBlock);
 
             if (! sid) {
                 sid = "null";
@@ -227,7 +252,12 @@
             latestStartEndTime = thisStartEndTime;
         });
 
-        $(".datepicker").datepicker();
+        $('.datepicker').each(function(i) {
+            $(this).removeClass('hasDatepicker').datepicker(); 
+        });
     });
 
+    
+
 })();
+

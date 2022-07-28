@@ -22,7 +22,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
     <div class="separator separator-line"></div>
 
     <style type="text/css">
-        .datepicker { width: 75px; }
+        .datepicker { width: 75px; } 
         .timepicker { width: 39px; }
         .pricepicker { width: 50px; color: #333 !important; font-weight: bold; text-align: right; }
         .timeblockpicker { width: 25px; text-align: right; }
@@ -41,8 +41,34 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
         .pricing-table-time-range { background: #b5f7f0; }
         .pricing-table-price-range { background: #7af5e7;  }
 
+        @media screen and (max-width: 1024px)
+        {
+            .pricing-table-day-range { display: block; }
+            .pricing-table-time-range { display: block; }
+            .pricing-table-price-range { display: block;  }
+            
+        }
+
+        .bordered-table-background { background: red; }
+
          tr:not(:last-child) > td > .pricing-price-new {
             display: none;
+        }
+
+        .date-range-error, .time-range-error, .price-error, .time-block-error {
+            display: none;
+            font-weight: bold;
+            color: red;
+        }
+
+        .date-range-error.visible, .time-range-error.visible, 
+        .price-error.visible, .time-block-error.visible {
+            display: block;
+        }
+
+        input.invalid {
+            border-color: red;
+            background-color: #f2b7a5;
         }
 
     </style>
@@ -56,15 +82,18 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
             $jsRule = array();
 
             foreach ($pricingRule as $key => $value) {
+                error_log($key . ': ' . $value);
                 if ($key == 'date_start' || $key == 'date_end') {
-                    // $value = (new \DateTime($value))->format('Y-m-d');
-                    $value = implode('.', array_reverse(explode('-', $value)));
+                    $value = $this->dateFormat(new \DateTime($value), IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy'));
+                    error_log($value);
+    //                $value = implode('.', array_reverse(explode('-', $value)));
                 }
 
                 $jsRule[] = '"' . $value . '"';
             }
 
             $jsRules[] = '[ ' . implode(', ', $jsRule) . ' ]';
+            error_log(json_encode($jsRules));
         }
 
         ?>
@@ -77,6 +106,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
             <tr>
                 <td class="pricing-date-range">
                     <input type="text" value="" class="pricing-dateStart datepicker"><span class="pricing-grammar"><?= $this->t('to') ?></span><input type="text" value="" class="pricing-dateEnd datepicker">
+                    <span class="date-range-error"><br><br><?= $this->t('Invalid date') ?></span>
                 </td>
                 <td>
                     <table class="pricing-table-day-range"><tbody>
@@ -114,6 +144,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                             <tr>
                                                                 <td class="pricing-time-range">
                                                                     <input type="text" value="06:00" maxlength="5" class="pricing-timeStart timepicker"><span class="pricing-grammar"><?= $this->t('to') ?></span><input type="text" value="24:00" maxlength="5" class="pricing-timeEnd timepicker"><span class="pricing-grammar"><?= $this->t('Clock') ?></span>
+                                                                    <span class="time-range-error"><br><?= $this->t('Invalid time') ?></span>
                                                                 </td>
                                                                 <td>
                                                                     <a href="#" class="pricing-time-range-new unlined"><em><span class="symbolic symbolic-plus"><?= $this->t('New time') ?></span></em></a>
@@ -135,7 +166,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
                                                                                 echo '<input type="text" value="19" maxlength="3" class="pricing-rate" style="width: 20px;">';
                                                                                 echo '<span class="pricing-grammar">% ' . $this->t('VAT') . '</span>';
-
+                                                                                echo '<span class="price-error"><br>' . $this->t('Invalid value') . '</span>';
                                                                                 echo '<br><span class="pricing-grammar">' . $this->t('valid for') . '</span>';
 
                                                                                 echo '<select class="pricing-sid">';
@@ -147,7 +178,8 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
                                                                                 echo '<span class="pricing-grammar">' . $this->t('and') . '</span>';
                                                                                 echo '<input type="text" value="' . round($this->squaresTimeBlock / 60) . '" maxlength="3" class="pricing-timeBlock timeblockpicker">';
-                                                                                echo '<span class="pricing-grammar">Min.</span>';
+                                                                                echo '<span class="pricing-grammar">' . $this->t("Min.") . '</span>';
+                                                                                echo '<span class="time-block-error"><br>' . $this->t('Invalid value') . '</span>';
 
                                                                                 ?>
                                                                             </td>
@@ -179,7 +211,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
         <table class="bordered-table">
             <tr>
                 <td>
-                    <a href="#" class="pricing-date-range-new unlined   "><em><?= $this->t('New period') ?></em></a>
+                    <a href="#" class="pricing-date-range-new unlined   "><em><span class="symbolic symbolic-plus"><?= $this->t('New period') ?></span></em></a>
                 </td>
             </tr>
         </table>

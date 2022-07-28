@@ -213,6 +213,9 @@ return array(
     'Change the date range and/or interval of this booking:' => 'Changer les créneaux horaires et/ou les intervalles de cette réservation:',
 
     'Invalid date' => 'Date invalide',
+    'Invalid time' => 'Heure invalide',
+    'Invalid value' => 'Valeur invalide',
+    'Min.' => 'Min.',
 
     'Essentially disables the system for the public,<br>but allows administrators to still login'
         => 'Désactve essentiellement le système pour le public.<br>Mais permet aux administrateurs de continuer à ce connecter<br>',

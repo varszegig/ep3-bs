@@ -220,6 +220,9 @@ return array(
     'Change the date range and/or interval of this booking:' => 'Dátum módosítása ennél a foglalásnál:',
 
     'Invalid date' => 'Érvénytelen dátum',
+    'Invalid time' => 'Érvénytelen idő',
+    'Invalid value' => 'Érvénytelen érték',
+    'Min.' => 'perc',
 
     'Essentially disables the system for the public,<br>but allows administrators to still login'
         => 'Letiltja a rendszert a nyilvánosság elöl.<br>de az adminisztrátorok még be tudnak jelentkezni',
