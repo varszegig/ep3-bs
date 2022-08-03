@@ -960,6 +960,7 @@ option { padding-right: 16px; }
         padding-left: 1vw;
         padding-right: 1vw;
         padding-bottom: 1vw;
+        margin: 0;
         text-align: right;
     }    
 

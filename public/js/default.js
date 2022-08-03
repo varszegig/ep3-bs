@@ -168,32 +168,6 @@
         }
     }
 
-    function prepareDatepicker()
-    {
-        var locale = $("html").attr("lang");
-        var basePath = $("#logo").attr("href");
-
-        if (locale && locale !== "en-US") {
-            $("body").append('<script type="text/javascript" src="' + basePath + 'js/jquery-ui/i18n/' + locale + '.js"></script>');
-        }
-
-        $.datepicker.setDefaults({
-            "altFormat": "dd.mm.yy",
-            "dateFormat": "dd.mm.yy",
-            "onSelect": function() {
-                that = $(this);
-
-                that.trigger("change");
-
-                updateInlineLabel(that);
-
-                if (that.is(".datepicker-autosubmit")) {
-                    that.closest("form").submit();
-                }
-            },
-            "showAnim": "slideDown"
-        });
-    }
 
     function openPopup(event)
     {
@@ -207,6 +181,35 @@
     }
 
 })();
+
+
+function prepareDatepicker()
+{
+    var locale = $("html").attr("lang");
+    var basePath = $("#logo").attr("href");
+
+    dateMatch = /^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/;
+    if (locale && locale !== "en-US") {
+        $("body").append('<script type="text/javascript" src="' + basePath + 'js/jquery-ui/i18n/' + locale + '.js"></script>');
+    }
+
+    $.datepicker.setDefaults({
+        "altFormat": "dd.mm.yy",
+        "dateFormat": "dd.mm.yy",
+        "onSelect": function() {
+            that = $(this);
+
+            that.trigger("change");
+
+            updateInlineLabel(that);
+
+            if (that.is(".datepicker-autosubmit")) {
+                that.closest("form").submit();
+            }
+        },
+        "showAnim": "slideDown"
+    });
+}
 
 function updateInlineLabel(input)
 {

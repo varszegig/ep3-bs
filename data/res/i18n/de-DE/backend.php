@@ -219,6 +219,9 @@ return array(
     'Change the date range and/or interval of this booking:' => 'Zeitraum und/oder Wiederholungsinterval dieser Buchung ändern:',
 
     'Invalid date' => 'Ungültiges Datum',
+    'Invalid time' => 'Ungültiges Uhrzeit',
+    'Invalid value' => 'Ungültiger Wert',
+    'Min.' => 'Min.',
 
     'Essentially disables the system for the public,<br>but allows administrators to still login'
         => 'Hiermit kann das System in den Wartungsmodus versetzt werden.<br>Im Wartungsmodus ist der Kalender nicht mehr sichtbar und<br>außer Ihnen kann sich niemand anmelden',
@@ -342,6 +345,7 @@ return array(
     'New time' => 'Neue Zeit',
     'New day' => 'Neuer Wochentag',
     'New period' => 'Neuer Zeitraum',
+    'valid for' => 'gültig für',
 
     'Display pricing:' => 'Preise anzeigen:',
     'For no one' => 'Für niemanden',

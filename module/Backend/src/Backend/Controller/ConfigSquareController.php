@@ -317,6 +317,8 @@ class ConfigSquareController extends AbstractActionController
 
         $squares = $squareManager->getAll();
         $squaresTimeBlock = $squareManager->getMinTimeBlock();
+        $squaresMinStartTime = $squareManager->getMinStartTime();
+        $squaresMaxEndTime = $squareManager->getMaxEndTime();
         $squaresPricingRules = $squarePricingManager->getAll();
 
         if ($this->getRequest()->isPost()) {
@@ -339,8 +341,10 @@ class ConfigSquareController extends AbstractActionController
                         }
 
                         // Transform dates
-                        $rule[2] = implode('-', array_reverse(explode('.', $rule[2])));
-                        $rule[3] = implode('-', array_reverse(explode('.', $rule[3])));
+                        $dateStart = new \DateTime($rule[2]);
+                        $dateEnd = new \DateTime($rule[3]);       
+                        $rule[2] = $dateStart->format('Y-m-d');
+                        $rule[3] = $dateEnd->format('Y-m-d');
 
                         // Transform price to cents by removing the comma
                         $rule[8] = str_replace(',', '', $rule[8]);
@@ -371,6 +375,8 @@ class ConfigSquareController extends AbstractActionController
         return array(
             'squares' => $squares,
             'squaresTimeBlock' => $squaresTimeBlock,
+            'squaresMinStartTime' => $squaresMinStartTime,
+            'squaresMaxEndTime' => $squaresMaxEndTime,
             'squaresPricingRules' => $squaresPricingRules,
         );
     }
