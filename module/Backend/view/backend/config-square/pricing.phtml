@@ -82,22 +82,27 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
             $jsRule = array();
 
             foreach ($pricingRule as $key => $value) {
-                error_log($key . ': ' . $value);
                 if ($key == 'date_start' || $key == 'date_end') {
                     $value = $this->dateFormat(new \DateTime($value), IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy'));
-                    error_log($value);
-    //                $value = implode('.', array_reverse(explode('-', $value)));
                 }
 
                 $jsRule[] = '"' . $value . '"';
             }
 
             $jsRules[] = '[ ' . implode(', ', $jsRule) . ' ]';
-            error_log(json_encode($jsRules));
         }
 
         ?>
 
+        var timeBlock = <?= $this->squaresTimeBlock ?>;
+        var minStart = <?= $this->squaresMinStartTime ?>;
+        var minStartHours = (Math.floor(minStart / 3600)).toString().padStart(2, '0');
+        var minStartMinutes = (Math.floor((minStart - minStartHours * 3600) / 60).toString().padStart(2, '0'));
+        var minStartTime = minStartHours + ':' + minStartMinutes;
+        var maxEnd = <?= $this->squaresMaxEndTime ?>;
+        var maxEndHours = Math.floor(maxEnd / 3600).toString().padStart(2, '0');
+        var maxEndMinutes = Math.floor((maxEnd - maxEndHours * 3600) / 60).toString().padStart(2, '0');
+        var maxEndTime = maxEndHours + ':' + maxEndMinutes;
         var pricingRules = [ <?= implode(', ', $jsRules) ?> ];
     </script>
 

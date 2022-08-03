@@ -317,6 +317,8 @@ class ConfigSquareController extends AbstractActionController
 
         $squares = $squareManager->getAll();
         $squaresTimeBlock = $squareManager->getMinTimeBlock();
+        $squaresMinStartTime = $squareManager->getMinStartTime();
+        $squaresMaxEndTime = $squareManager->getMaxEndTime();
         $squaresPricingRules = $squarePricingManager->getAll();
 
         if ($this->getRequest()->isPost()) {
@@ -373,6 +375,8 @@ class ConfigSquareController extends AbstractActionController
         return array(
             'squares' => $squares,
             'squaresTimeBlock' => $squaresTimeBlock,
+            'squaresMinStartTime' => $squaresMinStartTime,
+            'squaresMaxEndTime' => $squaresMaxEndTime,
             'squaresPricingRules' => $squaresPricingRules,
         );
     }
