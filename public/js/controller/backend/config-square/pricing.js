@@ -15,6 +15,9 @@
 
             $(this).closest("table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
+            var index = window.pricingRules.length;
+            $("#pricing-table .pricing-dateStart:last").prop('id', 'pricing-dateStart-' + index);
+            $("#pricing-table .pricing-dateEnd:last").prop('id', 'pricing-dateEnd-' + index);
 
             $('.datepicker').each(function(i) {
                 $(this).removeClass('hasDatepicker').datepicker(); 
@@ -24,7 +27,6 @@
         $("#pricing-table").on("click", ".pricing-day-range-new", function(event) {
             event.preventDefault();
 
-            console.log(this);
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
             $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
@@ -107,14 +109,15 @@
                 var timeBlock = timeBlockInput.val();
 
                 // Check date
-                if (! dateStart.match(/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/)) {
+                console.log(dateMatch);
+                if (! dateStart.match(dateMatch)) {
                     dateRange.find(".date-range-error").invalidate(dateStartInput);
-                    
+
                     event.preventDefault();
                     return;
                 }
 
-                if (! dateEnd.match(/^(0[1-9]|[1-2][0-9]|3[0-1])\.(0[1-9]|1[0-2])\.[0-9]{4}$/)) {
+                if (! dateEnd.match(dateMatch)) {
                     dateRange.find(".date-range-error").invalidate(dateEndInput);
 
                     event.preventDefault();
@@ -179,7 +182,7 @@
         });
 
         /* Reconstruct ruleset */
-
+        
         var pricingRules = window.pricingRules; // Quick and dirty, I know :O
 
         var latestStartEndDate;
@@ -198,8 +201,6 @@
             var rate = element[10];
             var gross = element[11];
             var timeBlock = element[12];
-
-            console.log(sid, dateStart, dateEnd, dayStart, dayEnd, timeStart, timeEnd, price, rate, gross, timeBlock);
 
             if (! sid) {
                 sid = "null";
@@ -236,7 +237,9 @@
             }
 
             $("#pricing-table .pricing-dateStart:last").val(dateStart);
+            $("#pricing-table .pricing-dateStart:last").prop('id', 'pricing-dateStart-' + index);
             $("#pricing-table .pricing-dateEnd:last").val(dateEnd);
+            $("#pricing-table .pricing-dateEnd:last").prop('id', 'pricing-dateEnd-' + index);
             $("#pricing-table .pricing-dayStart:last").val(dayStart);
             $("#pricing-table .pricing-dayEnd:last").val(dayEnd);
             $("#pricing-table .pricing-timeStart:last").val(timeStart.substring(0, 5));
@@ -252,9 +255,10 @@
             latestStartEndTime = thisStartEndTime;
         });
 
-        $('.datepicker').each(function(i) {
+        $('#pricing-table .datepicker').each(function(i) {
             $(this).removeClass('hasDatepicker').datepicker(); 
         });
+
     });
 
     
