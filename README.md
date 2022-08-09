@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.14.0 from August, 2022.
+The current version is 1.14.1 from August, 2022.
+
+Version 1.14.1
+Autocomplete bug
 
 Version 1.14.0
 Backand/config/prices big rewamp

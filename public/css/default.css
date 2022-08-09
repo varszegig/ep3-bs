@@ -355,6 +355,8 @@ a.squarebox-primary-close-link:hover {
 #calendar-choice-start .ui-datepicker { min-height: 240px; }
 #calendar-choice-end .ui-datepicker { min-height: 240px; }
 
+.ui-autocomplete { position: absolute; cursor: default;z-index:2000 !important;}
+
 #calendar-choice-selection { position: relative; }
 
 .cc-range-member a {
