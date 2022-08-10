@@ -153,6 +153,19 @@ class EditForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'bf-payment',
+            'type' => 'Select',
+            'attributes' => array(
+                'id' => 'bf-payment',
+                'style' => 'width: 124px',
+            ),
+            'options' => array(
+                'label' => 'Payment',
+                'value_options' => Booking::$paymentOptions,
+            ),
+        ));
+
+        $this->add(array(
             'name' => 'bf-notes',
             'type' => 'Textarea',
             'attributes' => array(

@@ -205,6 +205,9 @@ return array(
     'Time (End)' => 'Heure (Fin)',
     'Clock' => 'Horloge',
     'Repeat' => 'Répéter',
+    'Payment' => 'Paiement',
+    'Once' => 'Une fois',
+    'Regularly' => 'Regularment',
 
     'Edit time or date range' => 'Editer les créneaux horaires',
     'Time and date range can only be edited on subscription bookings' => 'Les créneaux horaires ne peuvent être édités qu\'en cas d\'abonnement',

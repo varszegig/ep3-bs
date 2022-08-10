@@ -95,6 +95,11 @@ class Booking extends AbstractEntity
         '28' => 'Monthly',
     );
 
+    public static $paymentOptions = array(
+        '0' => 'Once',
+        '1' => 'Regularly',
+    );
+
     /**
      * Returns the repeat string.
      *

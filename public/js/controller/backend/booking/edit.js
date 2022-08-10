@@ -59,12 +59,15 @@
         /* Datepicker on demand for date end */
 
         var dateEnd = $("#bf-date-end");
+        var payment = $("#bf-payment");
         var repeat = $("#bf-repeat");
 
         if (repeat.val() === "0") {
             disableFormElement(dateEnd);
+            disableFormElement(payment);
         } else {
             enableFormElement(dateEnd);
+            enableFormElement(payment);
         }
 
         /* Lock specific fields in edit mode */

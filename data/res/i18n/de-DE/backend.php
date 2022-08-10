@@ -211,6 +211,9 @@ return array(
     'Time (End)' => 'Uhrzeit (Ende)',
     'Clock' => 'Uhr',
     'Repeat' => 'Wiederholung',
+    'Payment' => 'Zahlung',
+    'Once' => 'Einmal',
+    'Regularly' => 'Regelmäßig',
 
     'Edit time or date range' => 'Zeitraum bearbeiten',
     'Time and date range can only be edited on subscription bookings' => 'Der Zeitraum kann nur bei Abo-Buchungen bearbeitet werden',
