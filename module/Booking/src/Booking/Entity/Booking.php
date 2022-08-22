@@ -96,8 +96,8 @@ class Booking extends AbstractEntity
     );
 
     public static $paymentOptions = array(
-        '0' => 'Once',
-        '1' => 'Regularly',
+        '0' => 'Season ticket',
+        '1' => 'Ad hoc',
     );
 
     /**

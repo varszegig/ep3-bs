@@ -249,6 +249,7 @@ class BookingController extends AbstractActionController
                         'bf-date-start' => $this->dateFormat($booking->getMeta('date_start', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                         'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                         'bf-repeat' => $booking->getMeta('repeat'),
+                        'bf-payment' => $booking->getMeta('payment'),
                     ));
                 } else {
                     $editForm->setData(array(
@@ -355,19 +356,22 @@ class BookingController extends AbstractActionController
                 if ($editTimeRangeForm->isValid()) {
                     $data = $editTimeRangeForm->getData();
 
-                    $res = $db->query(
-                        sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
-                            ReservationTable::NAME,
-                            $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
-                        Adapter::QUERY_MODE_EXECUTE);
+                    $bookingsChain = $bookingManager->getChain($bid);
+                    foreach ($bookingsChain as $booking) {
+                        $bid = $booking->get('bid');
+                        $res = $db->query(
+                            sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
+                                ReservationTable::NAME,
+                                $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
+                            Adapter::QUERY_MODE_EXECUTE);
 
-                    if ($res->getAffectedRows() > 0) {
-                        $booking->setMeta('time_start', $data['bf-time-start']);
-                        $booking->setMeta('time_end', $data['bf-time-end']);
+                        if ($res->getAffectedRows() > 0) {
+                            $booking->setMeta('time_start', $data['bf-time-start']);
+                            $booking->setMeta('time_end', $data['bf-time-end']);
 
-                        $bookingManager->save($booking);
+                            $bookingManager->save($booking);
+                        }
                     }
-
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
                     return $this->redirect()->toRoute('frontend');
@@ -382,20 +386,25 @@ class BookingController extends AbstractActionController
                     $dateEnd = new \DateTime($data['bf-date-end']);
                     $repeat = $data['bf-repeat'];
 
-                    $res = $db->query(
-                        sprintf('DELETE FROM %s WHERE bid = %s',
-                            ReservationTable::NAME, $bid),
-                        Adapter::QUERY_MODE_EXECUTE);
+                    $bookingsChain = $bookingManager->getChain($bid);
+                    foreach ($bookingsChain as $booking) {
 
-                    if ($res->getAffectedRows() > 0) {
-                        $reservationManager->createByRange($booking, $dateStart, $dateEnd,
-                            $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
+                        $bid = $booking->get('bid');
+                        $res = $db->query(
+                            sprintf('DELETE FROM %s WHERE bid = %s',
+                                ReservationTable::NAME, $bid),
+                            Adapter::QUERY_MODE_EXECUTE);
 
-                        $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
-                        $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));
-                        $booking->setMeta('repeat', $repeat);
+                        if ($res->getAffectedRows() > 0) {
+                            $reservationManager->createByRange($booking, $dateStart, $dateEnd,
+                                $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
 
-                        $bookingManager->save($booking);
+                            $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
+                            $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));
+                            $booking->setMeta('repeat', $repeat);
+
+                            $bookingManager->save($booking);
+                        }
                     }
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');

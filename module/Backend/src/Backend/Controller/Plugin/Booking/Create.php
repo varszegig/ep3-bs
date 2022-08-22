@@ -89,7 +89,6 @@ class Create extends AbstractPlugin
                     $paymentMode = 'onetime';
                 } else {
                     $paymentMode = 'regular';
-                    $status = 'single';
                 }
 
                 $controller->authorize('admin.booking, calendar.create-subscription-bookings');
@@ -133,6 +132,12 @@ class Create extends AbstractPlugin
 
             while ($walkingDate <= $walkingDateLimit) {
 
+                $bookingMeta['child_booking'] = 0;
+                if ($savedBooking) {
+                    $bookingMeta['parent_booking'] = $savedBooking->get('bid');
+                } else {
+                    $bookingMeta['parent_booking'] = 0;
+                }
                 $booking = new Booking(array(
                     'uid' => $user->need('uid'),
                     'sid' => $square->need('sid'),
@@ -148,9 +153,18 @@ class Create extends AbstractPlugin
 
                 $this->bookingManager->save($booking);
 
+                if ($savedBooking) {
+                    $savedBooking->setMeta('child_booking', $booking->get('bid'));
+                    $this->bookingManager->save($savedBooking);    
+                }
+                $savedBooking = $booking;
+                $savedBookingId = $savedBooking->get('bid');
+
+                $bookingMeta['child_booking'] = $booking->need('bid');
+
                 /* Determine reservations */
 
-                if ($status == 'single') {
+                if ($status == 'single' || $paymentMode == 'regular') {
                     $reservations = $this->reservationManager->create($booking, $walkingDate, $timeStart, $timeEnd);
                 } else {
                     $reservations = $this->reservationManager->createByRange($booking, $walkingDate, $dateEnd, $timeStart, $timeEnd, $repeat);

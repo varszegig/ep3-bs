@@ -347,6 +347,34 @@ class BookingManager extends AbstractManager
     }
 
     /**
+     * Gets all bookings in a chain.
+     *
+     * @param int $bid           Booking id
+     * @return array
+     */
+    public function getChain($bid) {
+        $booking = $this->get($bid);
+        $chain = array($booking);
+        $bid = $booking->getMeta('parent_booking');
+        error_log('parent bid: ' . $bid);
+        while ($bid && $bid > 0) {
+            $booking = $this->get($bid);
+            $chain[] = $booking;
+            $bid = $booking->getMeta('parent_booking');
+            error_log('parent bid: ' . $bid);
+        }
+        $bid = $booking->getMeta('child_booking');
+        error_log('child bid: ' . $bid);
+        while ($bid && $bid > 0) {
+            $booking = $this->get($bid);
+            $chain[] = $booking;
+            $bid = $booking->getMeta('child_booking');
+            error_log('child bid: ' . $bid);
+        }
+        return $chain;
+    }
+
+    /**
      * Deletes one booking, all respective meta properties and all respective bills (through database foreign keys).
      *
      * @param int|Booking $booking

@@ -206,8 +206,8 @@ return array(
     'Clock' => 'Horloge',
     'Repeat' => 'Répéter',
     'Payment' => 'Paiement',
-    'Once' => 'Une fois',
-    'Regularly' => 'Regularment',
+    'Season ticket' => 'Billet de saison',
+    'Ad hoc' => 'Ad hoc',
 
     'Edit time or date range' => 'Editer les créneaux horaires',
     'Time and date range can only be edited on subscription bookings' => 'Les créneaux horaires ne peuvent être édités qu\'en cas d\'abonnement',

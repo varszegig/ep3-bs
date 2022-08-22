@@ -94,6 +94,18 @@ class Update extends AbstractPlugin
                 $booking->setMeta('notes', $newNotes);
 
                 $this->bookingManager->save($booking);
+
+                $bookingsChain = $this->bookingManager->getChain($booking->get('bid'));
+
+                if (count($bookingsChain) > 1) {
+                    foreach ($bookingsChain as $booking) {
+                        $booking->set('uid', $user->need('uid'));
+                        $booking->set('sid', $square->need('sid'));
+                        $booking->set('quantity', $newQuantity);
+                        $booking->setMeta('notes', $newNotes);
+                        $this->bookingManager->save($booking);
+                    }
+                }
             }
 
             /* Update reservation */

@@ -213,8 +213,8 @@ return array(
     'Clock' => 'Óra',
     'Repeat' => 'Ismétlés',
     'Payment' => 'Fizetés',
-    'Once' => 'Egyszer',
-    'Regularly' => 'Alkalmanként',
+    'Season ticket' => 'Bérletes',
+    'Ad hoc' => 'Alkalmi',
 
     'Edit time or date range' => 'Idő és dátum tartomány szerkesztése',
     'Time and date range can only be edited on subscription bookings' => 'Idő és dátum tartomány csak az előfizetéses foglalásoknál lehetséges',
