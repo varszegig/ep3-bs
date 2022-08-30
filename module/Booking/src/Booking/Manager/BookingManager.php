@@ -233,12 +233,16 @@ class BookingManager extends AbstractManager
 
         reset($bookings);
 
+        $metaResultSet = $this->getMeta($bids);
+
+        return BookingFactory::fromMetaResultSet($bookings, $metaResultSet);
+    }
+
+    public function getMeta($bids) {
         $metaSelect = $this->bookingMetaTable->getSql()->select();
         $metaSelect->where(new In('bid', $bids));
 
-        $metaResultSet = $this->bookingMetaTable->selectWith($metaSelect);
-
-        return BookingFactory::fromMetaResultSet($bookings, $metaResultSet);
+        return $this->bookingMetaTable->selectWith($metaSelect);
     }
 
     /**
@@ -354,22 +358,18 @@ class BookingManager extends AbstractManager
      */
     public function getChain($bid) {
         $booking = $this->get($bid);
-        $chain = array($booking);
+
         $bid = $booking->getMeta('parent_booking');
-        error_log('parent bid: ' . $bid);
         while ($bid && $bid > 0) {
             $booking = $this->get($bid);
-            $chain[] = $booking;
             $bid = $booking->getMeta('parent_booking');
-            error_log('parent bid: ' . $bid);
         }
+        $chain = array($booking);
         $bid = $booking->getMeta('child_booking');
-        error_log('child bid: ' . $bid);
         while ($bid && $bid > 0) {
             $booking = $this->get($bid);
             $chain[] = $booking;
             $bid = $booking->getMeta('child_booking');
-            error_log('child bid: ' . $bid);
         }
         return $chain;
     }
