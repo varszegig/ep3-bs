@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.15.0 from August, 2022.
+The current version is 1.15.1 from September, 2022.
+
+Version 1.15.1
+Handling of conflicts 
 
 Version 1.15.0
 Long time reservations for Dabas: one time booking, repeated payment
