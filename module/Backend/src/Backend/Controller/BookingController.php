@@ -217,7 +217,7 @@ class BookingController extends AbstractActionController
 
                     /* Create booking/reservation */
                     $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
-                        $d['bf-repeat'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                        $d['bf-repeat'], $d['bf-payment'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
                 }
 
                 $this->flashMessenger()->addSuccessMessage('Booking has been saved');
@@ -249,13 +249,16 @@ class BookingController extends AbstractActionController
                         'bf-date-start' => $this->dateFormat($booking->getMeta('date_start', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                         'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                         'bf-repeat' => $booking->getMeta('repeat'),
+                        'bf-payment' => $booking->getMeta('payment'),
                     ));
                 } else {
                     $editForm->setData(array(
                         'bf-time-start' => substr($reservation->get('time_start'), 0, 5),
                         'bf-time-end' => substr($reservation->get('time_end'), 0, 5),
                         'bf-date-start' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
-                        'bf-date-end' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-repeat' => $booking->getMeta('repeat'),
+                        'bf-payment' => $booking->getMeta('payment'),
                     ));
                 }
             } else {
@@ -355,19 +358,22 @@ class BookingController extends AbstractActionController
                 if ($editTimeRangeForm->isValid()) {
                     $data = $editTimeRangeForm->getData();
 
-                    $res = $db->query(
-                        sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
-                            ReservationTable::NAME,
-                            $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
-                        Adapter::QUERY_MODE_EXECUTE);
+                    $bookingsChain = $bookingManager->getChain($bid);
+                    foreach ($bookingsChain as $booking) {
+                        $bid = $booking->get('bid');
+                        $res = $db->query(
+                            sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
+                                ReservationTable::NAME,
+                                $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
+                            Adapter::QUERY_MODE_EXECUTE);
 
-                    if ($res->getAffectedRows() > 0) {
-                        $booking->setMeta('time_start', $data['bf-time-start']);
-                        $booking->setMeta('time_end', $data['bf-time-end']);
+                        if ($res->getAffectedRows() > 0) {
+                            $booking->setMeta('time_start', $data['bf-time-start']);
+                            $booking->setMeta('time_end', $data['bf-time-end']);
 
-                        $bookingManager->save($booking);
+                            $bookingManager->save($booking);
+                        }
                     }
-
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
                     return $this->redirect()->toRoute('frontend');
@@ -381,22 +387,54 @@ class BookingController extends AbstractActionController
                     $dateStart = new \DateTime($data['bf-date-start']);
                     $dateEnd = new \DateTime($data['bf-date-end']);
                     $repeat = $data['bf-repeat'];
+                    $payment = $data['bf-payment'];
 
-                    $res = $db->query(
-                        sprintf('DELETE FROM %s WHERE bid = %s',
-                            ReservationTable::NAME, $bid),
-                        Adapter::QUERY_MODE_EXECUTE);
+                    if ($booking->getMeta('payment') == 1)
+                    {
+                        $bookingsChain = $bookingManager->getChain($bid);
+                        foreach ($bookingsChain as $oldBooking) {
+                            
+                        $bid = $oldBooking->get('bid');
+                        $res = $db->query(
+                            sprintf('DELETE FROM %s WHERE bid = %s',
+                                BookingTable::NAME, $bid),
+                            Adapter::QUERY_MODE_EXECUTE);                            
+                        $res = $db->query(
+                            sprintf('DELETE FROM %s WHERE bid = %s',
+                                ReservationTable::NAME, $bid),
+                            Adapter::QUERY_MODE_EXECUTE);                            
+                        }
+                        $sessionUser = $this->authorize('admin.booking, calendar.see-data');
+                        $savedBooking = $this->backendBookingCreate('(' . $booking->get('uid') . ')', $booking->needMeta('time_start'), $booking->needMeta('time_end'), $data['bf-date-start'], $data['bf-date-end'],
+                        $data['bf-repeat'], $data['bf-payment'], $booking->need('sid'), $booking->need('status_billing'), $booking->need('quantity'), $booking->getMeta('notes'), $sessionUser->get('alias'));
+                    } else {  
+                        $res = $db->query(
+                            sprintf('DELETE FROM %s WHERE bid = %s',
+                                ReservationTable::NAME, $bid),
+                            Adapter::QUERY_MODE_EXECUTE);
+                        if ($res->getAffectedRows() > 0 && $payment == 0) {
+                
+                            $reservationManager->createByRange($booking, $dateStart, $dateEnd,
+                                $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
 
-                    if ($res->getAffectedRows() > 0) {
-                        $reservationManager->createByRange($booking, $dateStart, $dateEnd,
-                            $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
-
-                        $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
-                        $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));
-                        $booking->setMeta('repeat', $repeat);
-
-                        $bookingManager->save($booking);
+                            $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
+                            $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));                            
+                            $booking->setMeta('repeat', $repeat);
+                            $booking->setMeta('payment', $payment);
+                            $bookingManager->save($booking);
+                        }     
+                        if ($payment == 1)
+                        {
+                            $res = $db->query(
+                                sprintf('DELETE FROM %s WHERE bid = %s',
+                                    BookingTable::NAME, $bid),
+                                Adapter::QUERY_MODE_EXECUTE);  
+                            $sessionUser = $this->authorize('admin.booking, calendar.see-data');
+                            $savedBooking = $this->backendBookingCreate('(' . $booking->get('uid') . ')', $booking->needMeta('time_start'), $booking->needMeta('time_end'), $data['bf-date-start'], $data['bf-date-end'],
+                            $data['bf-repeat'], $data['bf-payment'], $booking->need('sid'), $booking->need('status_billing'), $booking->need('quantity'), $booking->getMeta('notes'), $sessionUser->get('alias'));
+                        }
                     }
+
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
@@ -415,6 +453,7 @@ class BookingController extends AbstractActionController
                 'bf-date-start' => $this->dateFormat($booking->needMeta('date_start'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                 'bf-date-end' => $this->dateFormat($booking->needMeta('date_end'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                 'bf-repeat' => $booking->needMeta('repeat'),
+                'bf-payment' => $booking->getMeta('payment'),
             ));
         }
 
@@ -463,16 +502,21 @@ class BookingController extends AbstractActionController
                 if ($this->params()->fromQuery('cancel') == 'true') {
                     $this->authorize(['calendar.cancel-single-bookings', 'calendar.cancel-subscription-bookings']);
 
-                    $booking->set('status', 'cancelled');
-                    $booking->setMeta('cancellor', $sessionUser->get('alias'));
-                    $booking->setMeta('cancelled', date('Y-m-d H:i:s'));
-                    $bookingManager->save($booking);
+                    $bookingsChain = $bookingManager->getChain($booking->get('bid'));
+                    foreach ($bookingsChain as $booking) {
+                        $booking->set('status', 'cancelled');
+                        $booking->setMeta('cancellor', $sessionUser->get('alias'));
+                        $booking->setMeta('cancelled', date('Y-m-d H:i:s'));
+                        $bookingManager->save($booking);
+                    }
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been cancelled');
                 } else {
                     $this->authorize(['calendar.delete-single-bookings', 'calendar.delete-subscription-bookings']);
-
-                    $bookingManager->delete($booking);
+                    $bookingsChain = $bookingManager->getChain($booking->get('bid'));
+                    foreach ($bookingsChain as $booking) {
+                        $bookingManager->delete($booking);
+                    }
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been deleted');
                 }
@@ -522,6 +566,7 @@ class BookingController extends AbstractActionController
         $booking = $bookingManager->get($bid);
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
         $user = $userManager->get($booking->need('uid'));
+        $editMode = $this->params()->fromQuery('edit-mode');
 
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');

@@ -59,12 +59,15 @@
         /* Datepicker on demand for date end */
 
         var dateEnd = $("#bf-date-end");
+        var payment = $("#bf-payment");
         var repeat = $("#bf-repeat");
 
         if (repeat.val() === "0") {
             disableFormElement(dateEnd);
+            disableFormElement(payment);
         } else {
             enableFormElement(dateEnd);
+            enableFormElement(payment);
         }
 
         /* Lock specific fields in edit mode */
@@ -81,12 +84,17 @@
                 disableFormElement("#bf-time-end");
                 disableFormElement("#bf-date-start");
                 disableFormElement("#bf-date-end");
+                disableFormElement("#bf-payment");
             } else if (editMode == "reservation") {
                 disableFormElement("#bf-user");
-                disableFormElement("#bf-sid");
-                disableFormElement("#bf-status-billing");
+                if (payment.val() == "0") {
+                    disableFormElement("#bf-status-billing");
+                    disableFormElement("#bf-sid");
+                }
                 disableFormElement("#bf-quantity");
                 disableFormElement("#bf-notes");
+                disableFormElement("#bf-payment");
+                disableFormElement("#bf-date-end");
             }
         }
     }
