@@ -256,7 +256,9 @@ class BookingController extends AbstractActionController
                         'bf-time-start' => substr($reservation->get('time_start'), 0, 5),
                         'bf-time-end' => substr($reservation->get('time_end'), 0, 5),
                         'bf-date-start' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
-                        'bf-date-end' => $this->dateFormat($reservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-date-end' => $this->dateFormat($booking->getMeta('date_end', $reservation->get('date')), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                        'bf-repeat' => $booking->getMeta('repeat'),
+                        'bf-payment' => $booking->getMeta('payment'),
                     ));
                 }
             } else {
@@ -564,6 +566,7 @@ class BookingController extends AbstractActionController
         $booking = $bookingManager->get($bid);
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
         $user = $userManager->get($booking->need('uid'));
+        $editMode = $this->params()->fromQuery('edit-mode');
 
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');

@@ -101,6 +101,7 @@ class Update extends AbstractPlugin
                     foreach ($bookingsChain as $booking) {
                         $booking->set('uid', $user->need('uid'));
                         $booking->set('sid', $square->need('sid'));
+                        $booking->set('status_billing', $newStatusBilling);
                         $booking->set('quantity', $newQuantity);
                         $booking->setMeta('notes', $newNotes);
                         $this->bookingManager->save($booking);
@@ -111,6 +112,19 @@ class Update extends AbstractPlugin
             /* Update reservation */
 
             if ($mode == null || $mode == 'reservation') {
+
+                /* Determine square */
+
+                if ($newSquare instanceof Square) {
+                    $square = $this->squareManager->get($newSquare->get('sid'));
+                } else {
+                    $square = $this->squareManager->get($newSquare);
+                }
+                
+                $booking->set('sid', $square->need('sid'));
+                $booking->set('status_billing', $newStatusBilling);
+
+                $this->bookingManager->save($booking);                
 
                 /* Determine date */
 

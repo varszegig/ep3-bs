@@ -87,10 +87,14 @@
                 disableFormElement("#bf-payment");
             } else if (editMode == "reservation") {
                 disableFormElement("#bf-user");
-                disableFormElement("#bf-sid");
-                disableFormElement("#bf-status-billing");
+                if (payment.val() == "0") {
+                    disableFormElement("#bf-status-billing");
+                    disableFormElement("#bf-sid");
+                }
                 disableFormElement("#bf-quantity");
                 disableFormElement("#bf-notes");
+                disableFormElement("#bf-payment");
+                disableFormElement("#bf-date-end");
             }
         }
     }
