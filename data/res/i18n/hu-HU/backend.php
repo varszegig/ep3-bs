@@ -50,6 +50,7 @@ return array(
     'User has been saved' => 'Felhasználó elmentve',
     'User has been deleted' => 'Felhasználó törölve',
     'Booking has been saved' => 'Foglalás elmentve',
+    'Booking conflicts with other bookings: %s' => 'Foglalás ütközik egy másik foglalással: %s',
     'Booking has been deleted' => 'Foglalás törölve',
     'Booking has been cancelled' => 'Foglalás lemondva',
     'Reservation has been deleted' => 'Foglalás törölve',

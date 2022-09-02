@@ -50,6 +50,7 @@ return array(
     'User has been saved' => 'Benutzer wurde gespeichert',
     'User has been deleted' => 'Benutzer wurde gelöscht',
     'Booking has been saved' => 'Buchung wurde gespeichert',
+    'Booking conflicts with other bookings: %s' => 'Buchung steht in Konflikt mit anderen Buchungen: %s',
     'Booking has been deleted' => 'Buchung wurde gelöscht',
     'Booking has been cancelled' => 'Buchung wurde storniert',
     'Reservation has been deleted' => 'Reservierung wurde gelöscht',
