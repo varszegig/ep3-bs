@@ -224,7 +224,7 @@ class BookingController extends AbstractActionController
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');
                 } else {
-                    $conflictedDate = $conflictedReservation->get('date');
+                    $conflictedDate = $this->dateFormat($conflictedReservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy'));
                     $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                 }
 
@@ -795,9 +795,11 @@ class BookingController extends AbstractActionController
         $square = $squareManager->get($data['bf-sid']);
         $repeat = $data['bf-repeat'];
         if ($square->get('capacity_heterogenic') == 0) {
+            $dateStart = new \DateTime($data['bf-date-start']);
             if ($repeat > 0) $dateEnd = $data['bf-date-end'];
             else $dateEnd = $data['bf-date-start'];
-            $reservations = $reservationManager->getByRange($data['bf-date-start'], $dateEnd, 
+            $dateEnd = new \DateTime($dateEnd);
+            $reservations = $reservationManager->getByRange($dateStart, $dateEnd, 
                 $data['bf-time-start'], $data['bf-time-end']);
             $bookings = $bookingManager->getByReservations($reservations);
             if ($reservations) {
