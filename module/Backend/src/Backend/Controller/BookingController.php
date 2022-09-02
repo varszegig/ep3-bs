@@ -204,23 +204,29 @@ class BookingController extends AbstractActionController
             if ($editForm->isValid()) {
                 $d = $editForm->getData();
 
-                /* Process form (note, that reservation and booking are not available here) */
+                $conflictedReservation = $this->getConflicts($d);
+                if ( $conflictedReservation == null) {
+                    /* Process form (note, that reservation and booking are not available here) */
 
-                if ($d['bf-rid']) {
+                    if ($d['bf-rid']) {
 
-                    /* Update booking/reservation */
+                        /* Update booking/reservation */
 
-                    $savedBooking = $this->backendBookingUpdate($d['bf-rid'], $d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'],
-                        $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode']);
+                        $savedBooking = $this->backendBookingUpdate($d['bf-rid'], $d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'],
+                            $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $params['editMode']);
 
+                    } else {
+
+                        /* Create booking/reservation */
+                        $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
+                            $d['bf-repeat'], $d['bf-payment'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                    }
+
+                    $this->flashMessenger()->addSuccessMessage('Booking has been saved');
                 } else {
-
-                    /* Create booking/reservation */
-                    $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
-                        $d['bf-repeat'], $d['bf-payment'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                    $conflictedDate = $conflictedReservation->get('date');
+                    $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                 }
-
-                $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
                 if ($this->params()->fromPost('bf-edit-user')) {
                     return $this->redirect()->toRoute('backend/user/edit', ['uid' => $savedBooking->get('uid')]);
@@ -779,6 +785,38 @@ class BookingController extends AbstractActionController
             'user' => $user,
             'players' => $players,
         );
+    }
+
+    private function getConflicts($data) {
+        $serviceManager = @$this->getServiceLocator();
+        $reservationManager = $serviceManager->get('Booking\Manager\ReservationManager');
+        $bookingManager = $serviceManager->get('Booking\Manager\BookingManager');
+        $squareManager = $serviceManager->get('Square\Manager\SquareManager');
+        $square = $squareManager->get($data['bf-sid']);
+        $repeat = $data['bf-repeat'];
+        if ($square->get('capacity_heterogenic') == 0) {
+            if ($repeat > 0) $dateEnd = $data['bf-date-end'];
+            else $dateEnd = $data['bf-date-start'];
+            $reservations = $reservationManager->getByRange($data['bf-date-start'], $dateEnd, 
+                $data['bf-time-start'], $data['bf-time-end']);
+            $bookings = $bookingManager->getByReservations($reservations);
+            if ($reservations) {
+                $reservationsOnTheSameDay = array();
+                foreach ($reservations as $reservation) {
+                    $date1 = new \DateTime($data['bf-date-start']);
+                    $date2 = new \DateTime($reservation->get('date'));
+                    $difference = $date1->diff($date2);
+                    $days = $difference->days;
+                    if ($repeat == 0 || $days % $repeat == 0) {
+                        $booking = $reservation->getExtra('booking');
+                        if ($booking->get('sid') == $data['bf-sid'] && $booking->get('status') != 'cancelled') {
+                            return $reservation;
+                        }
+                    }
+                }
+            }
+            return null;
+        } else return null;
     }
 
 }
