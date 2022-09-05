@@ -366,12 +366,14 @@ class BookingController extends AbstractActionController
 
                     $bookingsChain = $bookingManager->getChain($bid);
                     foreach ($bookingsChain as $booking) {
+                        try {
                         $bid = $booking->get('bid');
                         $res = $db->query(
                             sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
                                 ReservationTable::NAME,
                                 $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
                             Adapter::QUERY_MODE_EXECUTE);
+                        } catch (\Exception $e) {}
 
                         if ($res->getAffectedRows() > 0) {
                             $booking->setMeta('time_start', $data['bf-time-start']);
@@ -794,8 +796,14 @@ class BookingController extends AbstractActionController
         $squareManager = $serviceManager->get('Square\Manager\SquareManager');
         $square = $squareManager->get($data['bf-sid']);
         $repeat = $data['bf-repeat'];
+        if ($data['bf-rid']) {
+            $baseReservation = $reservationManager->get($data['bf-rid']);
+            $baseBookingId = $baseReservation->get('bid');
+         } else $baseBookingId = -1;
+
         if ($square->get('capacity_heterogenic') == 0) {
             $dateStart = new \DateTime($data['bf-date-start']);
+
             if ($repeat > 0) $dateEnd = $data['bf-date-end'];
             else $dateEnd = $data['bf-date-start'];
             $dateEnd = new \DateTime($dateEnd);
@@ -811,7 +819,15 @@ class BookingController extends AbstractActionController
                     $days = $difference->days;
                     if ($repeat == 0 || $days % $repeat == 0) {
                         $booking = $reservation->getExtra('booking');
-                        if ($booking->get('sid') == $data['bf-sid'] && $booking->get('status') != 'cancelled') {
+                        $bookingsChain = $bookingManager->getChain($booking->get('bid'));
+                        $isTheSame = false;
+                        foreach ($bookingsChain as $bookingChain) {
+                            if ($bookingChain->get('bid') == $baseBookingId) {
+                                $isTheSame = true;
+                                break;
+                            }
+                        }
+                        if ($booking->get('sid') == $data['bf-sid'] && $booking->get('status') != 'cancelled' && ! $isTheSame) {
                             return $reservation;
                         }
                     }

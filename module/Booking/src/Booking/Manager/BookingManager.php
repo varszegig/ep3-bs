@@ -394,12 +394,30 @@ class BookingManager extends AbstractManager
         }
 
         $booking = $this->get($bid);
+        $this->updateChain($booking);
 
         $deletion = $this->bookingTable->delete(array('bid' => $bid));
 
         $this->getEventManager()->trigger('delete', $booking);
 
         return $deletion;
+    }
+
+    private function updateChain($booking) {
+        $parentBid = $booking->getMeta('parent_booking');
+        $childBid = $booking->getMeta('child_booking');
+        if ($parentBid) {
+            $parentBooking = $this->get($parentBid);
+            if ($childBid) $parentBooking->setMeta('child_booking', $childBid);
+            else $parentBooking->setMeta('child_booking', 0);
+            $this->save($parentBooking);
+        }
+        if ($childBid) {
+            $childBooking = $this->get($childBid);
+            if ($parentBid) $childBooking->setMeta('parent_booking', $parentBid);
+            else $childBooking->setMeta('parent_booking', 0);
+            $this->save($childBooking);
+        }
     }
 
 }
