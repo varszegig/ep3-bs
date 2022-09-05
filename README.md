@@ -49,6 +49,9 @@ The current version is 1.15.3 from September, 2022.
 Version 1.15.3
 Timepickers
 
+Version 1.15.2
+Bug in handling of conflicts
+
 Version 1.15.1
 Handling of conflicts 
 
