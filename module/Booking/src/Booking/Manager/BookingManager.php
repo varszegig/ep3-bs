@@ -410,13 +410,13 @@ class BookingManager extends AbstractManager
             $parentBooking = $this->get($parentBid);
             if ($childBid) $parentBooking->setMeta('child_booking', $childBid);
             else $parentBooking->setMeta('child_booking', 0);
-            $this->update($parentBooking);
+            $this->save($parentBooking);
         }
         if ($childBid) {
             $childBooking = $this->get($childBid);
             if ($parentBid) $childBooking->setMeta('parent_booking', $parentBid);
             else $childBooking->setMeta('parent_booking', 0);
-            $this->update($childBooking);
+            $this->save($childBooking);
         }
     }
 
