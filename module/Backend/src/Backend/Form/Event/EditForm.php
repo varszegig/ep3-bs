@@ -66,6 +66,7 @@ class EditForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'id' => 'ef-time-start',
+                'class' => 'timepicker',
                 'style' => 'width: 110px;',
             ),
             'options' => array(
@@ -91,6 +92,7 @@ class EditForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'id' => 'ef-time-end',
+                'class' => 'timepicker',
                 'style' => 'width: 110px;',
             ),
             'options' => array(

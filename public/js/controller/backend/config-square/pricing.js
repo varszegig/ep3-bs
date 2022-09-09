@@ -22,7 +22,7 @@
             $('.datepicker').each(function(i) {
                 $(this).removeClass('hasDatepicker').datepicker(); 
             });
-            initTimepicker();
+            initTimepicker(timeBlock, minStart, maxEnd);
         });
 
         $("#pricing-table").on("click", ".pricing-day-range-new", function(event) {
@@ -32,7 +32,7 @@
 
             $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").closest("tr").first().hide().fadeIn();
-            initTimepicker();
+            initTimepicker(timeBlock, minStart, maxEnd);
         });
 
         $("#pricing-table").on("click", ".pricing-time-range-new", function(event) {
@@ -43,7 +43,7 @@
             $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").closest("tr").siblings("tr:last").hide().fadeIn();
 
-            initTimepicker();
+            initTimepicker(timeBlock, minStart, maxEnd);
         });
 
         $("#pricing-table").on("click", ".pricing-price-new", function(event) {
@@ -262,20 +262,9 @@
             $(this).removeClass('hasDatepicker').datepicker(); 
         });
 
-        initTimepicker();
+        initTimepicker(timeBlock, minStart, maxEnd);
 
     });
-
-function initTimepicker() {
-    $('#pricing-table .timepicker').each(function(i) {
-        $(this).timepicker({
-            'timeFormat': 'HH:mm',
-            'interval': timeBlock / 60,
-            'minTime': minStartTime,
-            'maxTime': maxEndTime
-        }); 
-    });     
-}    
 
 })();
 

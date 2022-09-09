@@ -248,3 +248,21 @@ function blink(element, delay, length, strength)
         element.fadeTo(length, 1.0);
     });
 }
+
+function initTimepicker(minInterval, minTime, maxTime) {
+    var minStartHours = (Math.floor(minTime / 3600)).toString().padStart(2, '0');
+    var minStartMinutes = (Math.floor((minTime - minStartHours * 3600) / 60).toString().padStart(2, '0'));
+    var minStartTime = minStartHours + ':' + minStartMinutes;
+    var maxEndHours = Math.floor(maxTime / 3600).toString().padStart(2, '0');
+    var maxEndMinutes = Math.floor((maxTime - maxEndHours * 3600) / 60).toString().padStart(2, '0');
+    var maxEndTime = maxEndHours + ':' + maxEndMinutes;     
+    $('.timepicker').each(function(i) {
+        $(this).timepicker({
+            'timeFormat': 'HH:mm',
+            'interval': minInterval / 60,
+            'minTime': minStartTime,
+            'maxTime': maxEndTime,
+            'dynamic': false,
+        }); 
+    });     
+} 

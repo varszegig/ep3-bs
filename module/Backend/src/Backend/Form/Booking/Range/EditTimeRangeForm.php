@@ -17,6 +17,7 @@ class EditTimeRangeForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'id' => 'bf-time-start',
+                'class' => 'timepicker',
                 'style' => 'width: 80px;',
             ),
             'options' => array(
@@ -29,6 +30,7 @@ class EditTimeRangeForm extends Form
             'type' => 'Text',
             'attributes' => array(
                 'id' => 'bf-time-end',
+                'class' => 'timepicker',
                 'style' => 'width: 80px;',
             ),
             'options' => array(

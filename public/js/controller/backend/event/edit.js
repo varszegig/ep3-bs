@@ -7,12 +7,17 @@
         
         var repeat = $("#ef-repeat");
         var dateEnd = $("#ef-repeat-end");
+        var minInterval = $("#ef-min-interval").data("min-interval");
+        var minTime = $("#ef-min-time").data("min-time");
+        var maxTime = $("#ef-max-time").data("max-time");        
 
         if (repeat.val() === "0") {
             disableFormElement(dateEnd);
         } else {
             enableFormElement(dateEnd);
         }
+
+        initTimepicker(minInterval, minTime, maxTime);
 
         $("#ef-repeat").on("change", updateForm);
         const eventid = document.URL.split("event/edit/")[1];

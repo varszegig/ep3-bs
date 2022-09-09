@@ -168,6 +168,12 @@ class BookingController extends AbstractActionController
 
     public function editAction()
     {
+        $serviceManager = @$this->getServiceLocator();
+        $squareManager = $serviceManager->get('Square\Manager\SquareManager');
+        $minInterval = $squareManager->getMinTimeBlock();
+        $minTime = $squareManager->getMinStartTime();
+        $maxTime = $squareManager->getMaxEndTime() - 3600;
+
         $sessionUser = $this->authorize('admin.booking, calendar.see-data');
 
         $params = $this->backendBookingDetermineParams(true);
@@ -316,6 +322,9 @@ class BookingController extends AbstractActionController
             'booking' => $booking,
             'reservation' => $reservation,
             'sessionUser' => $sessionUser,
+            'minInterval' => $minInterval,
+            'minTime' => $minTime,
+            'maxTime' => $maxTime,
         )));
     }
 
@@ -341,6 +350,12 @@ class BookingController extends AbstractActionController
         $bookingManager = $serviceManager->get('Booking\Manager\BookingManager');
         $reservationManager = $serviceManager->get('Booking\Manager\ReservationManager');
         $formElementManager = $serviceManager->get('FormElementManager');
+
+        $serviceManager = @$this->getServiceLocator();
+        $squareManager = $serviceManager->get('Square\Manager\SquareManager');
+        $minInterval = $squareManager->getMinTimeBlock();
+        $minTime = $squareManager->getMinStartTime();
+        $maxTime = $squareManager->getMaxEndTime() - 3600;
 
         $bid = $this->params()->fromRoute('bid');
 
@@ -469,6 +484,9 @@ class BookingController extends AbstractActionController
             'booking' => $booking,
             'editTimeRangeForm' => $editTimeRangeForm,
             'editDateRangeForm' => $editDateRangeForm,
+            'minInterval' => $minInterval,
+            'minTime' => $minTime,
+            'maxTime' => $maxTime,
         ));
     }
 
