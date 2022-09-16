@@ -855,6 +855,10 @@ option { padding-right: 16px; }
     z-index:1600 !important; 
 }
 
+.timepicker {
+    width: 48px!important;
+}
+
 @media screen and (max-width: 1536px)
 {
     .responsive-pass-1 { display: none; }

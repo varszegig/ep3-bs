@@ -379,25 +379,35 @@ class BookingController extends AbstractActionController
                 if ($editTimeRangeForm->isValid()) {
                     $data = $editTimeRangeForm->getData();
 
-                    $bookingsChain = $bookingManager->getChain($bid);
-                    foreach ($bookingsChain as $booking) {
-                        try {
-                        $bid = $booking->get('bid');
-                        $res = $db->query(
-                            sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
-                                ReservationTable::NAME,
-                                $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
-                            Adapter::QUERY_MODE_EXECUTE);
-                        } catch (\Exception $e) {}
+                    $data['bf-sid'] = $booking->need('sid');
+                    $data['bf-bid'] = $bid;
+                    $data['bf-date-start'] = $booking->needMeta('date_start');
+                    $data['bf-date-end'] = $booking->needMeta('date_end');
+                    $conflictedReservation = $this->getConflicts($data);
+                    if ( $conflictedReservation == null) {
+                        $bookingsChain = $bookingManager->getChain($bid);
+                        foreach ($bookingsChain as $booking) {
+                            try {
+                            $bid = $booking->get('bid');
+                            $res = $db->query(
+                                sprintf('UPDATE %s SET time_start = "%s", time_end = "%s" WHERE bid = %s AND time_start = "%s" AND time_end = "%s"',
+                                    ReservationTable::NAME,
+                                    $data['bf-time-start'], $data['bf-time-end'], $bid, $booking->needMeta('time_start'), $booking->needMeta('time_end')),
+                                Adapter::QUERY_MODE_EXECUTE);
+                            } catch (\Exception $e) {}
 
-                        if ($res->getAffectedRows() > 0) {
-                            $booking->setMeta('time_start', $data['bf-time-start']);
-                            $booking->setMeta('time_end', $data['bf-time-end']);
+                            if ($res->getAffectedRows() > 0) {
+                                $booking->setMeta('time_start', $data['bf-time-start']);
+                                $booking->setMeta('time_end', $data['bf-time-end']);
 
-                            $bookingManager->save($booking);
+                                $bookingManager->save($booking);
+                            }
                         }
+                        $this->flashMessenger()->addSuccessMessage('Booking has been saved');
+                    } else {
+                        $conflictedDate = $this->dateFormat($conflictedReservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy'));
+                        $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                     }
-                    $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
                     return $this->redirect()->toRoute('frontend');
                 }
@@ -407,59 +417,69 @@ class BookingController extends AbstractActionController
                 if ($editDateRangeForm->isValid()) {
                     $data = $editDateRangeForm->getData();
 
-                    $dateStart = new \DateTime($data['bf-date-start']);
-                    $dateEnd = new \DateTime($data['bf-date-end']);
-                    $repeat = $data['bf-repeat'];
-                    $payment = $data['bf-payment'];
+                    $data['bf-sid'] = $booking->need('sid');
+                    $data['bf-bid'] = $bid;
+                    $data['bf-time-start'] = $booking->needMeta('time_start');
+                    $data['bf-time-end'] = $booking->needMeta('time_end');
+                    $conflictedReservation = $this->getConflicts($data);
+                    if ( $conflictedReservation == null) {
+                        $dateStart = new \DateTime($data['bf-date-start']);
+                        $dateEnd = new \DateTime($data['bf-date-end']);
+                        $repeat = $data['bf-repeat'];
+                        $payment = $data['bf-payment'];
 
-                    if ($booking->getMeta('payment') == 1)
-                    {
-                        $bookingsChain = $bookingManager->getChain($bid);
-                        foreach ($bookingsChain as $oldBooking) {
-                            
-                        $bid = $oldBooking->get('bid');
-                        $res = $db->query(
-                            sprintf('DELETE FROM %s WHERE bid = %s',
-                                BookingTable::NAME, $bid),
-                            Adapter::QUERY_MODE_EXECUTE);                            
-                        $res = $db->query(
-                            sprintf('DELETE FROM %s WHERE bid = %s',
-                                ReservationTable::NAME, $bid),
-                            Adapter::QUERY_MODE_EXECUTE);                            
-                        }
-                        $sessionUser = $this->authorize('admin.booking, calendar.see-data');
-                        $savedBooking = $this->backendBookingCreate('(' . $booking->get('uid') . ')', $booking->needMeta('time_start'), $booking->needMeta('time_end'), $data['bf-date-start'], $data['bf-date-end'],
-                        $data['bf-repeat'], $data['bf-payment'], $booking->need('sid'), $booking->need('status_billing'), $booking->need('quantity'), $booking->getMeta('notes'), $sessionUser->get('alias'));
-                    } else {  
-                        $res = $db->query(
-                            sprintf('DELETE FROM %s WHERE bid = %s',
-                                ReservationTable::NAME, $bid),
-                            Adapter::QUERY_MODE_EXECUTE);
-                        if ($res->getAffectedRows() > 0 && $payment == 0) {
-                
-                            $reservationManager->createByRange($booking, $dateStart, $dateEnd,
-                                $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
-
-                            $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
-                            $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));                            
-                            $booking->setMeta('repeat', $repeat);
-                            $booking->setMeta('payment', $payment);
-                            $bookingManager->save($booking);
-                        }     
-                        if ($payment == 1)
+                        if ($booking->getMeta('payment') == 1)
                         {
+                            $bookingsChain = $bookingManager->getChain($bid);
+                            foreach ($bookingsChain as $oldBooking) {
+                                
+                            $bid = $oldBooking->get('bid');
                             $res = $db->query(
                                 sprintf('DELETE FROM %s WHERE bid = %s',
                                     BookingTable::NAME, $bid),
-                                Adapter::QUERY_MODE_EXECUTE);  
+                                Adapter::QUERY_MODE_EXECUTE);                            
+                            $res = $db->query(
+                                sprintf('DELETE FROM %s WHERE bid = %s',
+                                    ReservationTable::NAME, $bid),
+                                Adapter::QUERY_MODE_EXECUTE);                            
+                            }
                             $sessionUser = $this->authorize('admin.booking, calendar.see-data');
                             $savedBooking = $this->backendBookingCreate('(' . $booking->get('uid') . ')', $booking->needMeta('time_start'), $booking->needMeta('time_end'), $data['bf-date-start'], $data['bf-date-end'],
                             $data['bf-repeat'], $data['bf-payment'], $booking->need('sid'), $booking->need('status_billing'), $booking->need('quantity'), $booking->getMeta('notes'), $sessionUser->get('alias'));
+                        } else {  
+                            $res = $db->query(
+                                sprintf('DELETE FROM %s WHERE bid = %s',
+                                    ReservationTable::NAME, $bid),
+                                Adapter::QUERY_MODE_EXECUTE);
+                            if ($res->getAffectedRows() > 0 && $payment == 0) {
+                    
+                                $reservationManager->createByRange($booking, $dateStart, $dateEnd,
+                                    $booking->needMeta('time_start'), $booking->needMeta('time_end'), $repeat);
+
+                                $booking->setMeta('date_start', $dateStart->format('Y-m-d'));
+                                $booking->setMeta('date_end', $dateEnd->format('Y-m-d'));                            
+                                $booking->setMeta('repeat', $repeat);
+                                $booking->setMeta('payment', $payment);
+                                $bookingManager->save($booking);
+                            }     
+                            if ($payment == 1)
+                            {
+                                $res = $db->query(
+                                    sprintf('DELETE FROM %s WHERE bid = %s',
+                                        BookingTable::NAME, $bid),
+                                    Adapter::QUERY_MODE_EXECUTE);  
+                                $sessionUser = $this->authorize('admin.booking, calendar.see-data');
+                                $savedBooking = $this->backendBookingCreate('(' . $booking->get('uid') . ')', $booking->needMeta('time_start'), $booking->needMeta('time_end'), $data['bf-date-start'], $data['bf-date-end'],
+                                $data['bf-repeat'], $data['bf-payment'], $booking->need('sid'), $booking->need('status_billing'), $booking->need('quantity'), $booking->getMeta('notes'), $sessionUser->get('alias'));
+                            }
                         }
+
+
+                        $this->flashMessenger()->addSuccessMessage('Booking has been saved');
+                    } else {
+                        $conflictedDate = $this->dateFormat($conflictedReservation->get('date'), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy'));
+                        $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                     }
-
-
-                    $this->flashMessenger()->addSuccessMessage('Booking has been saved');
 
                     return $this->redirect()->toRoute('frontend');
                 }
@@ -817,6 +837,8 @@ class BookingController extends AbstractActionController
         if ($data['bf-rid']) {
             $baseReservation = $reservationManager->get($data['bf-rid']);
             $baseBookingId = $baseReservation->get('bid');
+         } else if ($data['bf-bid']) {
+            $baseBookingId = $data['bf-bid'];
          } else $baseBookingId = -1;
 
         if ($square->get('capacity_heterogenic') == 0) {
