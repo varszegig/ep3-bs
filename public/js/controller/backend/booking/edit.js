@@ -7,6 +7,9 @@
 
         urlProvider = $("#bf-url-provider");
         tagProvider = $("#bf-tag-provider");
+        minInterval = $("#bf-min-interval").data("min-interval");
+        minTime = $("#bf-min-time").data("min-time");
+        maxTime = $("#bf-max-time").data("max-time");
 
         /* Autocomplete for user */
 
@@ -20,6 +23,7 @@
         /* Datepicker */
 
         $("#bf-date-start, #bf-date-end").datepicker();
+        initTimepicker(minInterval, minTime, maxTime);
 
         /* Update Form */
 
@@ -118,5 +122,6 @@
         element.removeAttr("disabled");
         element.css("opacity", 1.0);
     }
+
 
 })();

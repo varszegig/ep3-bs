@@ -96,13 +96,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
         var timeBlock = <?= $this->squaresTimeBlock ?>;
         var minStart = <?= $this->squaresMinStartTime ?>;
-        var minStartHours = (Math.floor(minStart / 3600)).toString().padStart(2, '0');
-        var minStartMinutes = (Math.floor((minStart - minStartHours * 3600) / 60).toString().padStart(2, '0'));
-        var minStartTime = minStartHours + ':' + minStartMinutes;
-        var maxEnd = <?= $this->squaresMaxEndTime ?>;
-        var maxEndHours = Math.floor(maxEnd / 3600).toString().padStart(2, '0');
-        var maxEndMinutes = Math.floor((maxEnd - maxEndHours * 3600) / 60).toString().padStart(2, '0');
-        var maxEndTime = maxEndHours + ':' + maxEndMinutes;
+        var maxEnd = <?= $this->squaresMaxEndTime ?> - 3600;
         var pricingRules = [ <?= implode(', ', $jsRules) ?> ];
     </script>
 

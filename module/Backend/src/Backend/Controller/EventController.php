@@ -57,6 +57,10 @@ class EventController extends AbstractActionController
         $serviceManager = @$this->getServiceLocator();
         $eventManager = $serviceManager->get('Event\Manager\EventManager');
         $formElementManager = $serviceManager->get('FormElementManager');
+        $squareManager = $serviceManager->get('Square\Manager\SquareManager');
+        $minInterval = $squareManager->getMinTimeBlock();
+        $minTime = $squareManager->getMinStartTime();
+        $maxTime = $squareManager->getMaxEndTime() - 3600;        
 
         $eid = $this->params()->fromRoute('eid');
 
@@ -177,10 +181,11 @@ class EventController extends AbstractActionController
                 ));
             } else {
                 $params = $this->backendBookingDetermineParams();
+                $query = $params['query'];
                 $editForm->setData(array(
-                    'ef-date-start' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                    'ef-date-start' => $this->dateFormat(new \DateTime($query['ds']), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-start' => $params['dateTimeStart']->format('H:i'),
-                    'ef-date-end' => $this->dateFormat(new \DateTime(), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
+                    'ef-date-end' => $this->dateFormat(new \DateTime($query['ds']), \IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')),
                     'ef-time-end' => $params['dateTimeEnd']->format('H:i'),
                     'ef-sid' =>  $params['square']->get('sid'),
                     'ef-capacity' => 0,
@@ -193,6 +198,9 @@ class EventController extends AbstractActionController
         return array(
             'event' => $event,
             'editForm' => $editForm,
+            'minInterval' => $minInterval,
+            'minTime' => $minTime,
+            'maxTime' => $maxTime,            
         );
     }
 

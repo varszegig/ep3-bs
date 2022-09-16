@@ -95,6 +95,13 @@ $this->headScript()->appendFile($this->basePath('js/tinymce/tinymce.setup.medium
         </table>
 
         <?= $this->form()->closeTag() ?>
+
+        <div id="ef-min-interval"
+            data-min-interval="<?= $this->minInterval ?>"></div>
+        <div id="ef-min-time"
+            data-min-time="<?= $this->minTime ?>"></div>
+        <div id="ef-max-time"
+            data-max-time="<?= $this->maxTime ?>"></div>        
     </div>
 </div>
 
