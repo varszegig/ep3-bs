@@ -1,5 +1,6 @@
-FROM php:8.1.8-fpm-alpine3.15
-RUN apk add icu-dev libsodium-dev
+FROM php:8.1.8-apache
+RUN apt update
+RUN apt install -y libicu-dev libsodium-dev
 RUN docker-php-ext-install mysqli pdo pdo_mysql
 RUN docker-php-ext-configure intl && docker-php-ext-install intl
 
@@ -20,5 +21,10 @@ ENV PATH $PATH:/composer/vendor/bin
 
 WORKDIR /var/www
 
+ENV APACHE_DOCUMENT_ROOT /var/www/public
 
-CMD sh -c "(cat config/init.php || cp config/init.php.dist config/init.php) && php-fpm -F"
+RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
+RUN sed -ri -e 's!/var/www/!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
+
+
+CMD sh -c "(cat config/init.php || cp config/init.php.dist config/init.php) && apache2-foreground"
