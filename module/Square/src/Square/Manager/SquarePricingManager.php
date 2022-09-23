@@ -59,20 +59,34 @@ class SquarePricingManager extends AbstractManager
         }
 
         try {
-            $adapter = $this->squarePricingTable->getAdapter();
-            $adapter->query('TRUNCATE TABLE ' . SquarePricingTable::NAME, Adapter::QUERY_MODE_EXECUTE);
-
-            $statement = $adapter->query('INSERT INTO ' . SquarePricingTable::NAME . ' (sid, priority, date_start, date_end, day_start, day_end, time_start, time_end, price, rate, gross, per_time_block) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)', Adapter::QUERY_MODE_PREPARE);
-
+            $this->squarePricingTable->delete(array());
+            $ruleId = 0;
             foreach ($rules as $rule) {
                 if (count($rule) != 12) {
                     throw new InvalidArgumentException('Pricing rules are not well formed internally');
                 }
-
-                $statement->execute($rule);
+                $ruleId += 1;
+                $this->squarePricingTable->insert(array(
+                    'spid' => $ruleId,
+                    'sid' => $rule[0],
+                    'priority' => $rule[1],
+                    'date_start' => $rule[2],
+                    'date_end' => $rule[3],
+                    'day_start' => $rule[4],
+                    'day_end' => $rule[5],
+                    'time_start' => $rule[6],
+                    'time_end' => $rule[7],
+                    'price' => $rule[8],
+                    'rate' => $rule[9],
+                    'gross' => $rule[10],
+                    'per_time_block' => $rule[11],
+                    'per_quantity' => null,
+                ));
             }
 
-            $connection->commit();
+            if ($transaction) {
+                $connection->commit();
+            }
 
             $this->getEventManager()->trigger('create', $rules);
 
