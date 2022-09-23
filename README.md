@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.15.3 from September, 2022.
+The current version is 1.15.4 from September, 2022.
+
+Version 1.15.4
+Small bugfix by emptiing pricing table.
 
 Version 1.15.3
 Timepickers
