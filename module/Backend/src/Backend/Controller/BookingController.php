@@ -643,9 +643,11 @@ class BookingController extends AbstractActionController
                             $squareType, $squareName,
                             $dateRangeHelper($dateTimeStart, $dateTimeEnd));
 
+/*                      
                         if (preg_match('/^[0-9]+$/', $pricing['price'])) {
-                            $pricing['price'] += ',00';
+                            $pricing['price'] = number_format((float)$pricing['price'] / 100, 2, ',', '');
                         }
+ */
 
                         $bookingBillManager->save(new Booking\Bill(array(
                             'bid' => $bid,

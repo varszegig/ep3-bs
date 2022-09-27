@@ -34,7 +34,6 @@ class PricingSummary extends AbstractHelper
         }
 
         $finalPricing = $this->squarePricingManager->getFinalPricingInRange($dateStart, $dateEnd, $square, $quantity);
-
         if (! $finalPricing) {
             return null;
         }

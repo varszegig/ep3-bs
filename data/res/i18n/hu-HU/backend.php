@@ -156,6 +156,7 @@ return array(
     'Pricing' => 'Árak',
     'Pricing rules' => 'Ár szabályok',
     'Pricing rules have been saved' => 'Ár szabályok elmentve',
+    'booking type' => 'foglalás típusa',
     'Unknown pricing rules error' => 'Ismeretlen ár szabály hiba',
     'How much do bookings cost for your %s?' => 'Mennyibe kerülnek a foglalások a %s?',
     'Products' => 'Termékek',

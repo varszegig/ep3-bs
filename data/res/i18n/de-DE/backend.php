@@ -157,6 +157,7 @@ return array(
     'Pricing' => 'Preise',
     'Pricing rules' => 'Preisregeln',
     'Pricing rules have been saved' => 'Preisregeln wurden gespeichert',
+    'booking type' => 'Buchungsart',
     'Unknown pricing rules error' => 'Unbekannter Fehler mit den Preisregeln',
     'How much do bookings cost for your %s?' => 'Wie teuer sind die Buchungen für Ihre %s?',
     'Products' => 'Produkte',

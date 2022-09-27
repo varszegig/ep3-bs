@@ -238,6 +238,7 @@ CREATE TABLE IF NOT EXISTS `bs_squares_pricing` (
   `gross` tinyint(1) DEFAULT NULL,
   `per_time_block` int(10) unsigned DEFAULT NULL,
   `per_quantity` tinyint(1) DEFAULT NULL,
+  'type' tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`spid`),
   KEY `sid` (`sid`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;

@@ -31,11 +31,24 @@ class SquarePricingManager extends AbstractManager
         $this->squarePricingTable = $squarePricingTable;
         $this->squareManager = $squareManager;
 
-        $select = $squarePricingTable->getSql()->select();
-        $select->order('priority ASC');
+        $loadPrices = function() {
+            $this->rules = array();
+            $select = $this->squarePricingTable->getSql()->select();
+            $select->order('priority ASC');
 
-        foreach ($squarePricingTable->selectWith($select) as $result) {
-            $this->rules[] = $result;
+            foreach ($this->squarePricingTable->selectWith($select) as $result) {
+                $this->rules[] = $result;
+            }
+        };
+
+        $loadPrices();
+
+        if ($this->rules) {
+            $referenceRule = $this->rules[0];
+            if (! property_exists($referenceRule, 'type')) {
+                $this->squarePricingTable->getAdapter()->query('ALTER TABLE `bs_squares_pricing` ADD `type` tinyint(1) DEFAULT NULL AFTER `per_quantity`;', 'execute');
+                $loadPrices();
+            }
         }
     }
 
@@ -62,7 +75,7 @@ class SquarePricingManager extends AbstractManager
             $this->squarePricingTable->delete(array());
             $ruleId = 0;
             foreach ($rules as $rule) {
-                if (count($rule) != 12) {
+                if (count($rule) != 13) {
                     throw new InvalidArgumentException('Pricing rules are not well formed internally');
                 }
                 $ruleId += 1;
@@ -81,6 +94,7 @@ class SquarePricingManager extends AbstractManager
                     'gross' => $rule[10],
                     'per_time_block' => $rule[11],
                     'per_quantity' => null,
+                    'type' => $rule[12],
                 ));
             }
 
@@ -116,10 +130,11 @@ class SquarePricingManager extends AbstractManager
      *
      * @param string|DateTime $dateTime
      * @param int|Square $square
+     * @param int|null $type
      * @return array|null
      * @throws InvalidArgumentException
      */
-    public function getPricingRule($dateTime, $square)
+    public function getPricingRule($dateTime, $square, $type = 1)
     {
         $matchedRule = null;
 
@@ -157,25 +172,27 @@ class SquarePricingManager extends AbstractManager
         }
 
         foreach ($this->rules as $rule) {
-            $dateStart = new DateTime($rule['date_start']);
-            $dateEnd = new DateTime($rule['date_end']);
+            if ($rule['type'] == null || $type == $rule['type']) {
+                $dateStart = new DateTime($rule['date_start']);
+                $dateEnd = new DateTime($rule['date_end']);
 
-            if ($dateTime <= $dateEnd && $dateTime >= $dateStart) {
-                $dateTimeDay = ($dateTime->format('w') + 6) % 7;
+                if ($dateTime <= $dateEnd && $dateTime >= $dateStart) {
+                    $dateTimeDay = ($dateTime->format('w') + 6) % 7;
 
-                if ($dateTimeDay <= $rule['day_end'] && $dateTimeDay >= $rule['day_start']) {
-                    $ruleDateTime = clone $dateTime;
+                    if ($dateTimeDay <= $rule['day_end'] && $dateTimeDay >= $rule['day_start']) {
+                        $ruleDateTime = clone $dateTime;
 
-                    $timeStart = explode(':', $rule['time_start']);
-                    $ruleDateTime->setTime($timeStart[0], $timeStart[1]);
+                        $timeStart = explode(':', $rule['time_start']);
+                        $ruleDateTime->setTime($timeStart[0], $timeStart[1]);
 
-                    if ($dateTime >= $ruleDateTime) {
-                        $timeEnd = explode(':', $rule['time_end']);
-                        $ruleDateTime->setTime($timeEnd[0], $timeEnd[1]);
+                        if ($dateTime >= $ruleDateTime) {
+                            $timeEnd = explode(':', $rule['time_end']);
+                            $ruleDateTime->setTime($timeEnd[0], $timeEnd[1]);
 
-                        if ($dateTime < $ruleDateTime) {
-                            if (is_null($rule['sid']) || $rule['sid'] == $square) {
-                                $matchedRule = $rule;
+                            if ($dateTime < $ruleDateTime) {
+                                if (is_null($rule['sid']) || $rule['sid'] == $square) {
+                                    $matchedRule = $rule;
+                                }
                             }
                         }
                     }
@@ -193,10 +210,11 @@ class SquarePricingManager extends AbstractManager
      * @param string|DateTime $timeStart
      * @param string|DateTime $timeEnd
      * @param int|Square $square
+     * @param int|null $type
      * @return array
      * @throws InvalidArgumentException
      */
-    public function getPricingRules($date, $timeStart, $timeEnd, $square)
+    public function getPricingRules($date, $timeStart, $timeEnd, $square, $type = 1)
     {
         $matchedRules = array();
 
@@ -264,7 +282,7 @@ class SquarePricingManager extends AbstractManager
         $lastTimeStart = $timeStart->format('H:i');
 
         while ($dateTimeStart < $dateTimeEnd) {
-            $rule = $this->getPricingRule($dateTimeStart, $square);
+            $rule = $this->getPricingRule($dateTimeStart, $square, $type);
 
             if ($rule) {
                 if ($lastSpid && $lastSpid !== $rule->spid) {
@@ -295,10 +313,11 @@ class SquarePricingManager extends AbstractManager
      * @param string|DateTime $timeStart
      * @param string|DateTime $timeEnd
      * @param int|Square $square
+     * @param int|null $type
      * @return array
      * @throws InvalidArgumentException
      */
-    public function getFinalPricing($date, $timeStart, $timeEnd, $square, $quantity)
+    public function getFinalPricing($date, $timeStart, $timeEnd, $square, $quantity, $type = 1)
     {
         $pricing = array();
 
@@ -363,7 +382,7 @@ class SquarePricingManager extends AbstractManager
         }
 
         while ($dateTimeStart < $dateTimeEnd) {
-            $rule = $this->getPricingRule($dateTimeStart, $square);
+            $rule = $this->getPricingRule($dateTimeStart, $square, $type);
 
             if ($rule) {
                 if (! isset($pricing['price'])) {
@@ -440,11 +459,12 @@ class SquarePricingManager extends AbstractManager
      * @param DateTime $dateTimeEnd
      * @param Square $square
      * @param int $quantity
+     * @param int|null $type
      * @return array
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function getFinalPricingInRange(DateTime $dateTimeStart, DateTime $dateTimeEnd, Square $square, $quantity)
+    public function getFinalPricingInRange(DateTime $dateTimeStart, DateTime $dateTimeEnd, Square $square, $quantity, $type = 1)
     {
         if ($dateTimeStart > $dateTimeEnd) {
             throw new InvalidArgumentException('The passed date range is invalid');
@@ -473,7 +493,7 @@ class SquarePricingManager extends AbstractManager
                 $walkingTimeEnd = $square->need('time_end');
             }
 
-            $finalPricing = $this->getFinalPricing($walkingDate, $walkingTimeStart, $walkingTimeEnd, $square, $quantity);
+            $finalPricing = $this->getFinalPricing($walkingDate, $walkingTimeStart, $walkingTimeEnd, $square, $quantity, $type);
 
             if ($finalPricing) {
                 if (! isset($finalPricingInRange['price'])) {
@@ -527,11 +547,12 @@ class SquarePricingManager extends AbstractManager
      * @param DateTime $dateTimeEnd
      * @param Square $square
      * @param int $quantity
+     * @param int|null $type
      * @return array
      * @throws InvalidArgumentException
      * @throws RuntimeException
      */
-    public function getMinMaxPricingInRange(DateTime $dateTimeStart, DateTime $dateTimeEnd, Square $square, $quantity)
+    public function getMinMaxPricingInRange(DateTime $dateTimeStart, DateTime $dateTimeEnd, Square $square, $quantity, $type = 1)
     {
         if ($dateTimeStart > $dateTimeEnd) {
             throw new InvalidArgumentException('The passed date range is invalid');
@@ -553,7 +574,7 @@ class SquarePricingManager extends AbstractManager
             $walkingDateClone = clone $walkingDate;
             $walkingTimeEnd = $walkingDateClone->modify('+1 hour')->format('H:i');
 
-            $finalPricing = $this->getFinalPricing($walkingDate, $walkingTimeStart, $walkingTimeEnd, $square, $quantity);
+            $finalPricing = $this->getFinalPricing($walkingDate, $walkingTimeStart, $walkingTimeEnd, $square, $quantity, $type);
 
             if ($finalPricing) {
                 if ($minMaxPricingInRange['minPrice'] > $finalPricing['price']) {

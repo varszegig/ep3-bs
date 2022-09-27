@@ -153,6 +153,7 @@ return array(
     'Pricing' => 'Tarifs',
     'Pricing rules' => 'Politiques tarifaires',
     'Pricing rules have been saved' => 'Politiques tarifaires sauvegardés',
+    'booking type' => 'type de réservation',
     'Unknown pricing rules error' => 'Erreur: Politique tarifaire inconnue',
     'How much do bookings cost for your %s?' => 'Combien la réservation des %s coûte-t\'elle ?',
     'Products' => 'Produits',
