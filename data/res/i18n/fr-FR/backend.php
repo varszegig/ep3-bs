@@ -392,6 +392,10 @@ return array(
 
     'New position' => 'Nouvelle position',
     'New position by using the pricing rules for this booking' => 'Nouvelle position en utilisant les règles de fixation des prix pour cette réservation',
+    'New cash payment' => 'Nouveau paiement en espèces',
+    'New bank transfer' => 'Nouveau virement bancaire',
+    'Cash payment' => 'Paiement en espèces',
+    'Bank transfer' => 'Virement bancaire',
 
     'Who?' => 'Qui ?',
 

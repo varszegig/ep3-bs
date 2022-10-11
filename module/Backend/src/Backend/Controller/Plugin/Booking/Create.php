@@ -166,8 +166,10 @@ class Create extends AbstractPlugin
 
                 if ($status == 'single' || $paymentMode == 'regular') {
                     $reservations = $this->reservationManager->create($booking, $walkingDate, $timeStart, $timeEnd);
+                    $this->controller->backendBookingCreateBill($booking, $walkingDate, null, $timeStart, $timeEnd, $square, $quantity);
                 } else {
                     $reservations = $this->reservationManager->createByRange($booking, $walkingDate, $dateEnd, $timeStart, $timeEnd, $repeat);
+                    $this->controller->backendBookingCreateBill($booking, $walkingDate, $dateEnd, $timeStart, $timeEnd, $square, $quantity, $repeat);
                 }
 
                 $booking->setExtra('reservations', $reservations);

@@ -436,6 +436,7 @@ return array(
 
         'factories' => array(
             'BackendBookingCreate' => 'Backend\Controller\Plugin\Booking\CreateFactory',
+            'BackendBookingCreateBill' => 'Backend\Controller\Plugin\Booking\CreateBillFactory',
             'BackendBookingDetermineParams' => 'Backend\Controller\Plugin\Booking\DetermineParamsFactory',
             'BackendBookingUpdate' => 'Backend\Controller\Plugin\Booking\UpdateFactory',
         ),
