@@ -17,6 +17,7 @@ class CreateBillFactory implements FactoryInterface
             $sm->get('ViewHelperManager'),
             $sm->get('Square\Manager\SquarePricingManager'),
             $sm->get('Booking\Manager\Booking\BillManager'),
+            $sm->get('User\Manager\UserManager'),
         );
     }
 

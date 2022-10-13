@@ -251,6 +251,11 @@ return array(
     'Day names (like Sunday) or concrete dates (like 2016-08-16);<br>Separated by line breaks or commas;<br>Force concrete dates to be shown by adding a plus (like +2016-08-30)'
         => 'Name des Tages (z.B. Sonntag) oder konkrete Datumangaben (z.B. 16.08.2016);<br>Getrennt durch Zeilenumbrüche oder Kommata;<br>Ein versteckter Tag kann mit einem Plus wieder angezeigt werden (z.B. +30.08.2016)',
 
+    'Subscription price' => 'Abo-Preis',
+    'Club Card price' => 'Vereinskarten-Preis',
+    'Allow set up subscription price' => 'Abo-Preis festlegen',
+    'Allow set up club card price' => 'Vereinskarten-Preis festlegen',
+
     'Your name' => 'Ihr Name',
     'Will be shown as the operator of this site.<br>Displayed next to the logo, for example.'
         => 'Wird Ihren Besuchern als Betreiber angezeigt.<br>Erscheint z.B. ganz oben neben dem Logo.',
@@ -415,4 +420,6 @@ return array(
     'Booked by' => 'Gebucht von',
 
     'User matched by' => 'Benutzer ermittelt nach',
+
+    'Club Card' => 'Vereinskarte',
 );

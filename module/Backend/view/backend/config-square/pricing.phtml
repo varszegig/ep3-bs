@@ -173,7 +173,12 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 echo '<select class="pricing-type">';
                                                                                 echo '<option value="null">' . $this->t('All') . '</option>';
                                                                                 echo '<option value="1">' . $this->t('Single') . '</option>';
-                                                                                echo '<option value="2">' . $this->t('Subscription') . '</option>';
+                                                                                if ($this->option('service.allow.subscription.price')) {
+                                                                                    echo '<option value="2">' . $this->t('Subscription') . '</option>';
+                                                                                }
+                                                                                if ($this->option('service.allow.club-card.price')) {
+                                                                                    echo '<option value="3">' . $this->t('Club Card') . '</option>';
+                                                                                }
                                                                                 echo '</select>';                                                                                
                                                                                 echo '<br><span class="pricing-grammar">' . $this->t('valid for') . '</span>';
 

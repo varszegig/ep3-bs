@@ -241,6 +241,14 @@ return array(
     'Days in calendar' => 'Jours dans le calendrier',
     'Sets how many days are displayed in the calendar' => 'Etablit combien de Jours sont affichés dans le calendrier',
 
+    'Hide these days' => 'Cacher ces jours',
+    'Day names (like Sunday) or concrete dates (like 2016-08-16);<br>Separated by line breaks or commas;<br>Force concrete dates to be shown by adding a plus (like +2016-08-30)' => 'Noms de jours (comme Dimanche) ou dates concrètes (comme 2016-08-16);<br>Séparés par des sauts de ligne ou des virgules;<br>Forcer les dates concrètes à être affichées en ajoutant un plus (comme +2016-08-30)',
+
+    'Subscription price' => 'Prix de l\'abonnement',
+    'Club Card price' => 'Prix de la carte de club',
+    'Allow set up subscription price' => 'Permettre de définir le prix de l\'abonnement',
+    'Allow set up club card price' => 'Permettre de définir le prix de la carte de club',
+
     'Your name' => 'Votre Nom',
     'Will be shown as the operator of this site.<br>Displayed next to the logo, for example.'
         => 'Sera présenté comme l\'opérateur de ce site.<br>Affiché à coté du logo, par exemple.',
@@ -403,4 +411,6 @@ return array(
     'Booked by' => 'Réservé par',
 
     'User matched by' => 'Utilisateur déterminé par',
+
+    'Club Card' => 'Carte de Club',
 );

@@ -20,10 +20,16 @@ class Free extends AbstractHelper
         $rangeTimeStart = new \DateTime($cellLinkParams["query"]["ds"] . ' ' . "0:00");
         $dateTimeEnd = new \DateTime($cellLinkParams["query"]["ds"] . ' ' . $cellLinkParams["query"]["te"]);
         $rangeTimeEnd = new \DateTime($cellLinkParams["query"]["ds"] . ' ' . "23:00");
+
+        if ($user && $user->getMeta('club-card')) {
+            $priceType = 3;
+        } else {
+            $priceType = 1;
+        }
         $pricing = $squarePricingManager->
-            getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, 1);
+            getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, 1, $priceType);
         $minMaxPrice = $squarePricingManager->
-            getMinMaxPricingInRange($rangeTimeStart, $rangeTimeEnd, $square, 1);
+            getMinMaxPricingInRange($rangeTimeStart, $rangeTimeEnd, $square, 1, $priceType);
         $minPrice = $minMaxPrice["minPrice"];
         $maxPrice = $minMaxPrice["maxPrice"]; 
         
@@ -44,7 +50,7 @@ class Free extends AbstractHelper
 
 
         if ($user && $user->can('calendar.see-data, calendar.create-single-bookings, calendar.create-subscription-bookings')) {
-            return $view->calendarCellRenderFreeForPrivileged($reservations, $cellLinkParams, $square);
+            return $view->calendarCellRenderFreeForPrivileged($reservations, $cellLinkParams, $square, $priceType);
         } else if ($user) {
             if ($userBooking) {
                 $cellLabel = $view->t('Your Booking');

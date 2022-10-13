@@ -9,7 +9,7 @@ use Square\Manager\SquarePricingManager;
 class FreeForPrivileged extends AbstractHelper
 {
 
-    public function __invoke(array $reservations, array $cellLinkParams, Square $square)
+    public function __invoke(array $reservations, array $cellLinkParams, Square $square, $priceType)
     {
         $view = $this->getView();
 
@@ -23,9 +23,9 @@ class FreeForPrivileged extends AbstractHelper
         $dateTimeEnd = new \DateTime($cellLinkParams["query"]["ds"] . ' ' . $cellLinkParams["query"]["te"]);
         $rangeTimeEnd = new \DateTime($cellLinkParams["query"]["ds"] . ' ' . "23:00");
         $pricing = $squarePricingManager->
-            getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, 1);
+            getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, 1, $priceType);
         $minMaxPrice = $squarePricingManager->
-            getMinMaxPricingInRange($rangeTimeStart, $rangeTimeEnd, $square, 1);
+            getMinMaxPricingInRange($rangeTimeStart, $rangeTimeEnd, $square, 1, $priceType);
         $minPrice = $minMaxPrice["minPrice"];
         $maxPrice = $minMaxPrice["maxPrice"];
         $priceClass = "cc-free";

@@ -165,6 +165,12 @@ class UserController extends AbstractActionController
                     $user->set('pw', $bcrypt->create($pw));
                 }
 
+                $clubCard = $eud['euf-club-card'];
+
+                if ($clubCard) {
+                    $user->setMeta('club-card', $clubCard);
+                } 
+
                 /* Personal data */
 
                 $user->setMeta('gender', $eud['euf-gender']);
@@ -212,6 +218,7 @@ class UserController extends AbstractActionController
                     'euf-status' => $user->need('status'),
                     'euf-privileges' => $privileges,
                     'euf-email' => $user->get('email'),
+                    'euf-club-card' => $user->getMeta('club-card'),
                     'euf-gender' => $user->getMeta('gender'),
                     'euf-firstname' => $user->getMeta('firstname', $user->getMeta('name')),
                     'euf-lastname' => $user->getMeta('lastname'),

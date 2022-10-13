@@ -10,6 +10,7 @@ use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 use Laminas\ServiceManager\ServiceLocatorInterface;
 use Booking\Entity\Booking\Bill;
 use Booking\Manager\Booking\BillManager;
+use User\Manager\UserManager;
 
 class CreateBill extends AbstractPlugin
 {
@@ -18,24 +19,28 @@ class CreateBill extends AbstractPlugin
     protected $viewHelperManager;
     protected $squarePricingManager;
     protected $billManager;
+    protected $userManager;
 
     public function __construct(
         OptionManager $optionManager, 
         ServiceLocatorInterface $viewHelperManager,
         SquarePricingManager $squarePricingManager,
-        BillManager $billManager
+        BillManager $billManager,
+        UserManager $userManager
         )
     {
         $this->optionManager = $optionManager;
         $this->viewHelperManager = $viewHelperManager;
         $this->squarePricingManager = $squarePricingManager;
         $this->billManager = $billManager;
+        $this->userManager = $userManager;
     }
 
     public function __invoke($booking, $dateStart, $dateEnd, $timeStart, $timeEnd, $square, $quantity, $repeat = 1)
     {
         $controller = $this->getController();
         $bills = array();
+        $user = $this->userManager->get($booking->need('uid'));
 
         $startTimeParts = explode(':', $timeStart);
 
@@ -47,6 +52,7 @@ class CreateBill extends AbstractPlugin
             $walkingDateLimit = clone $dateEnd;
         } else {
             $type = 1;
+            if ($user->getMeta('club-card')) $type = 3;
             $walkingDateLimit = clone $dateStart;
         }
         

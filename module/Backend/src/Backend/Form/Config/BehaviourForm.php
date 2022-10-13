@@ -126,6 +126,34 @@ class BehaviourForm extends Form
         ));
 
         $this->add(array(
+            'name' => 'cf-subscription-price',
+            'type' => 'Checkbox',
+            'attributes' => array(
+                'id' => 'cf-subscription-price',
+            ),
+            'options' => array(
+                'label' => 'Subscription price',
+                'notes' => 'Allow set up subscription price',
+                'checked_value' => 'true',
+                'unchecked_value' => 'false',
+            ),
+        ));
+
+        $this->add(array(
+            'name' => 'cf-club-card-price',
+            'type' => 'Checkbox',
+            'attributes' => array(
+                'id' => 'cf-club-card-price',
+            ),
+            'options' => array(
+                'label' => 'Club Card price',
+                'notes' => 'Allow set up club card price',
+                'checked_value' => 'true',
+                'unchecked_value' => 'false',
+            ),
+        ));        
+
+        $this->add(array(
             'name' => 'cf-submit',
             'type' => 'Submit',
             'attributes' => array(

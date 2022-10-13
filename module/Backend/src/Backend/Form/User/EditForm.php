@@ -105,6 +105,18 @@ class EditForm extends Form
             ),
         ));
 
+        $this->add(array(
+            'name' => 'euf-club-card',
+            'type' => 'Text',
+            'attributes' => array(
+                'id' => 'euf-club-card',
+                'style' => 'width: 250px;',
+            ),
+            'options' => array(
+                'label' => 'Club Card Number',
+            ),
+        ));
+
         /* Personal data */
 
         $this->add(array(
@@ -351,6 +363,19 @@ class EditForm extends Form
                     ),
                 ),
             ),
+
+            'euf-club-card' => array(
+                'required' => false,
+                'validators' => array(
+                    array(
+                        'name' => 'Alnum',
+                        'options' => array(
+                            'message' => 'The club card number must be alphanumberic',
+                        ),
+                    ),
+                ),
+            ),
+
             'euf-firstname' => array(
                 'required' => false,
                 'filters' => array(
