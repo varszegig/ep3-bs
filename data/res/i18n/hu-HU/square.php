@@ -41,6 +41,7 @@ return array(
     'including' => 'tartalmazza a ',
     'plus' => 'plusz',
     'VAT' => 'Áfát',
+    'Vat' => 'Áfa',
 
     'Summary of your booking:' => 'A foglalások összegzése:',
     '%s items' => '%s példány',

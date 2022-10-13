@@ -166,7 +166,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 echo '<option value="1" selected="selected">' . $this->t('including') . '</option>';
                                                                                 echo '</select>';
 
-                                                                                echo '<input type="text" value="19" maxlength="3" class="pricing-rate" style="width: 20px;">';
+                                                                                echo '<input type="text" value="' . $this->option('service.vat') . '" maxlength="3" class="pricing-rate" style="width: 20px;">';
                                                                                 echo '<span class="pricing-grammar">% ' . $this->t('VAT') . '</span>';
                                                                                 echo '<span class="price-error"><br>' . $this->t('Invalid value') . '</span>';
                                                                                 echo '<br><span class="pricing-type">' . $this->t('booking type') . '</span>';

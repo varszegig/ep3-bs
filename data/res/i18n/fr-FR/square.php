@@ -41,6 +41,7 @@ return array(
     'including' => 'including.',
     'plus' => 'plus.',
     'VAT' => 'TVA',
+    'Vat' => 'TVA',
 
     'Summary of your booking:' => 'Résumé de vos réservations:',
     '%s items' => '%s Heures',

@@ -3,6 +3,7 @@
 namespace Backend\Form\Config;
 
 use Laminas\Form\Form;
+use Laminas\Form\Element;
 
 class BehaviourForm extends Form
 {
@@ -151,7 +152,24 @@ class BehaviourForm extends Form
                 'checked_value' => 'true',
                 'unchecked_value' => 'false',
             ),
-        ));        
+        ));   
+        
+        $this->add(array(
+            'name' => 'cf-vat',
+            'type' => Element\Number::class,
+            'attributes' => array(
+                'id' => 'cf-vat',
+            ),
+            'options' => array(
+                'label' => 'Vat',
+                'notes' => 'Set up the VAT for your country',
+            ),
+            'attributes' => [
+                'min' => '0',
+                'max' => '100',
+                'step' => '1', 
+            ],            
+        ));
 
         $this->add(array(
             'name' => 'cf-submit',
@@ -162,6 +180,8 @@ class BehaviourForm extends Form
                 'style' => 'width: 200px;',
             ),
         ));
+
+  
     }
 
 }

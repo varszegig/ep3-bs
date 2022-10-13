@@ -41,6 +41,7 @@ return array(
     'including' => 'inkl.',
     'plus' => 'zzgl.',
     'VAT' => 'USt',
+    'Vat' => 'USt',
 
     'Summary of your booking:' => 'Übersicht über Ihre Buchung:',
     '%s items' => '%s Stück',
