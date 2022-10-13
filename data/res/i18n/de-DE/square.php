@@ -42,6 +42,7 @@ return array(
     'plus' => 'zzgl.',
     'VAT' => 'USt',
     'Vat' => 'USt',
+    'Set up the VAT for your country' => 'Stellen Sie die Umsatzsteuer für Ihr Land ein',
 
     'Summary of your booking:' => 'Übersicht über Ihre Buchung:',
     '%s items' => '%s Stück',

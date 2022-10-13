@@ -42,6 +42,7 @@ return array(
     'plus' => 'plus.',
     'VAT' => 'TVA',
     'Vat' => 'TVA',
+    'Set up the VAT for your country' => 'Configurer la TVA pour votre pays',
 
     'Summary of your booking:' => 'Résumé de vos réservations:',
     '%s items' => '%s Heures',

@@ -42,6 +42,7 @@ return array(
     'plus' => 'plusz',
     'VAT' => 'Áfát',
     'Vat' => 'Áfa',
+    'Set up the VAT for your country' => 'Áfa beállítása az ön országához',
 
     'Summary of your booking:' => 'A foglalások összegzése:',
     '%s items' => '%s példány',
