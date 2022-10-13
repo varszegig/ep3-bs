@@ -422,4 +422,5 @@ return array(
     'User matched by' => 'Benutzer ermittelt nach',
 
     'Club Card' => 'Vereinskarte',
+    'Club Card Number' => 'Vereinskartennummer',
 );

@@ -413,4 +413,5 @@ return array(
     'User matched by' => 'Utilisateur déterminé par',
 
     'Club Card' => 'Carte de Club',
+    'Club Card Number' => 'Numéro de Carte de Club',
 );

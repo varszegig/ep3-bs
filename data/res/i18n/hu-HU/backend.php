@@ -430,4 +430,5 @@ return array(
     'User matched by' => 'Felhasználó párosítva',
 
     'Club Card' => 'Klubkártya',
+    'Club Card Number' => 'Klubkártya szám',
 );
