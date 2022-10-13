@@ -105,6 +105,7 @@
                 var price = priceInput.val();
                 var gross = pricing.find("select.pricing-rate-gross").val();
                 var rate = rateInput.val();
+                var type = pricing.find("select.pricing-type").val();
 
                 var priority = index;
 
@@ -174,7 +175,7 @@
                     return;
                 }
 
-                var data = JSON.stringify( [sid, priority, dateStart, dateEnd, dayStart, dayEnd, timeStart, timeEnd, price, rate, gross, timeBlock] );
+                var data = JSON.stringify( [sid, priority, dateStart, dateEnd, dayStart, dayEnd, timeStart, timeEnd, price, rate, gross, timeBlock, type] );
 
                 $("#pricing-form-rules").append('<input type="hidden" name="pricing-rule-' + index + '" value="' + encodeURI(data) + '">');
 
@@ -204,6 +205,7 @@
             var rate = element[10];
             var gross = element[11];
             var timeBlock = element[12];
+            var type = element[14];
 
             if (! sid) {
                 sid = "null";
@@ -251,6 +253,7 @@
             $("#pricing-table .pricing-rate-gross:last").val(gross);
             $("#pricing-table .pricing-rate:last").val(rate);
             $("#pricing-table .pricing-sid:last").val(sid);
+            $("#pricing-table .pricing-type:last").val(type);
             $("#pricing-table .pricing-timeBlock:last").val(Math.round(timeBlock / 60));
 
             latestStartEndDate = thisStartEndDate;

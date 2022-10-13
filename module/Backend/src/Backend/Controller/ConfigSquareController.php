@@ -340,6 +340,10 @@ class ConfigSquareController extends AbstractActionController
                             $rule[0] = null;
                         }
 
+                        if ($rule[12] == 'null') {
+                            $rule[12] = null;
+                        }
+
                         // Transform dates
                         $dateStart = new \DateTime($rule[2]);
                         $dateEnd = new \DateTime($rule[3]);       

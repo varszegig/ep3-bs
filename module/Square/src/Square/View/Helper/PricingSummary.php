@@ -32,9 +32,13 @@ class PricingSummary extends AbstractHelper
         if ($pricingVisibility == 'never') {
             return null;
         }
+        if($this->user && $this->user->getMeta('club-card')) {
+            $priceType = 3;
+        } else {
+            $priceType = 1;
+        }
 
-        $finalPricing = $this->squarePricingManager->getFinalPricingInRange($dateStart, $dateEnd, $square, $quantity);
-
+        $finalPricing = $this->squarePricingManager->getFinalPricingInRange($dateStart, $dateEnd, $square, $quantity, $priceType, $products);
         if (! $finalPricing) {
             return null;
         }

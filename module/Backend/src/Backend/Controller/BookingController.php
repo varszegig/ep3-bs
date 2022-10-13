@@ -617,7 +617,7 @@ class BookingController extends AbstractActionController
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');
 
-            if ($create == 'default-bill') {
+            if ($create) {
                 $reservationManager = $serviceManager->get('Booking\Manager\ReservationManager');
                 $squareManager = $serviceManager->get('Square\Manager\SquareManager');
                 $squarePricingManager = $serviceManager->get('Square\Manager\SquarePricingManager');
@@ -630,35 +630,71 @@ class BookingController extends AbstractActionController
 
                 $created = false;
 
-                foreach ($reservationManager->getBy(['bid' => $bid]) as $reservation) {
+                $priceSum = 0;
 
-                    $dateTimeStart = new \DateTime($reservation->get('date') . ' ' . $reservation->get('time_start'));
-                    $dateTimeEnd = new \DateTime($reservation->get('date') . ' ' . $reservation->get('time_end'));
+                foreach($bills as $bill) {
+                    $quantity = $bill->get('quantity');
+                    $priceSum += $bill->get('price');
+                    $time = $bill->get('time');
+                    $rate = $bill->get('rate');
+                    $gross = $bill->get('gross');
+                }
 
-                    $pricing = $squarePricingManager->getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, $booking->get('quantity'));
+                switch ($create) {
+                    case 'default-bill':
+                        foreach ($reservationManager->getBy(['bid' => $bid]) as $reservation) {
 
-                    if ($pricing) {
+                            $dateTimeStart = new \DateTime($reservation->get('date') . ' ' . $reservation->get('time_start'));
+                            $dateTimeEnd = new \DateTime($reservation->get('date') . ' ' . $reservation->get('time_end'));
 
-                        $description = sprintf('%s %s, %s',
-                            $squareType, $squareName,
-                            $dateRangeHelper($dateTimeStart, $dateTimeEnd));
+                            $pricing = $squarePricingManager->getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, $booking->get('quantity'));
 
-                        if (preg_match('/^[0-9]+$/', $pricing['price'])) {
-                            $pricing['price'] += ',00';
+                            if ($pricing) {
+
+                                $description = sprintf('%s %s, %s',
+                                    $squareType, $squareName,
+                                    $dateRangeHelper($dateTimeStart, $dateTimeEnd));
+
+                                $bookingBillManager->save(new Booking\Bill(array(
+                                    'bid' => $bid,
+                                    'description' => $description,
+                                    'quantity' => $booking->get('quantity'),
+                                    'time' => $pricing['seconds'],
+                                    'price' => $pricing['price'],
+                                    'rate' => $pricing['rate'],
+                                    'gross' => $pricing['gross'],
+                                )));
+
+                                $created = true;
+                            }
+                            break;
                         }
-
+                    case 'cash-payment':
                         $bookingBillManager->save(new Booking\Bill(array(
                             'bid' => $bid,
-                            'description' => $description,
-                            'quantity' => $booking->get('quantity'),
-                            'time' => $pricing['seconds'],
-                            'price' => $pricing['price'],
-                            'rate' => $pricing['rate'],
-                            'gross' => $pricing['gross'],
+                            'description' => $this->t('Cash payment'),
+                            'quantity' => $quantity,
+                            'time' => $time,
+                            'price' => - $priceSum,
+                            'rate' => $rate,
+                            'gross' => $gross,
                         )));
 
                         $created = true;
-                    }
+                        break;
+                    case 'bank-transfer':
+                        $bookingBillManager->save(new Booking\Bill(array(
+                            'bid' => $bid,
+                            'description' => $this->t('Bank transfer'),
+                            'quantity' => $quantity,
+                            'time' => $time,
+                            'price' => - $priceSum,
+                            'rate' => $rate,
+                            'gross' => $gross,
+                        )));
+
+                        $created = true;
+                        break;
                 }
 
                 if ($created) {
@@ -685,6 +721,24 @@ class BookingController extends AbstractActionController
             /* Check and save billing status */
 
             $billingStatus = $this->params()->fromPost('ebf-status');
+
+            $priceSum = 0;
+
+            foreach($bills as $bill) {
+                $quantity = $bill->get('quantity');
+                $priceSum += $bill->get('price');
+                $time = $bill->get('time');
+                $rate = $bill->get('rate');
+                $gross = $bill->get('gross');
+            }       
+
+            if ($billingStatus == 'pending' && $priceSum == 0) {
+                $billingStatus = 'paid';
+            }
+
+            if ($billingStatus == 'paid' && $priceSum != 0) {
+                $billingStatus = 'pending';
+            }
 
             if ($bookingStatusService->checkStatus($billingStatus)) {
                 $booking->set('status_billing', $billingStatus);

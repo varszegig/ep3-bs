@@ -29,9 +29,9 @@ class UserStatusList extends AbstractHelper
         if ($selectedStatus == '') $html .= ' selected="selected"';
         $html .= '></option>';
 
-        foreach($userStatus as $status) {
+        foreach($userStatus as $key => $status) {
 
-                $html .= '<option value="' . $status . '"';
+                $html .= '<option value="' . $key . '"';
                 if ($selectedStatus == $status) $html .= ' selected="selected"';
                 $html .= '>' . $view->t($status) . '</option>';
 

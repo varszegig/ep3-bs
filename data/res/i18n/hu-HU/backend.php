@@ -156,6 +156,7 @@ return array(
     'Pricing' => 'Árak',
     'Pricing rules' => 'Ár szabályok',
     'Pricing rules have been saved' => 'Ár szabályok elmentve',
+    'booking type' => 'foglalás típusa',
     'Unknown pricing rules error' => 'Ismeretlen ár szabály hiba',
     'How much do bookings cost for your %s?' => 'Mennyibe kerülnek a foglalások a %s?',
     'Products' => 'Termékek',
@@ -250,6 +251,11 @@ return array(
     'Hide these days' => 'Az alábbi napok elrejtése',
     'Day names (like Sunday) or concrete dates (like 2016-08-16);<br>Separated by line breaks or commas;<br>Force concrete dates to be shown by adding a plus (like +2016-08-30)'
         => 'Nap nevek (pl. Vasárnap) vagy konkrét dátum (pl. 2016-08-16);<br>Új sorral vagy pontosvesszővel elválasztva;<br>Konkrét dátum megjelenítésének a kikényszerítéséhez plusz jelet kell megadni (pl. +2016-08-30)',
+
+    'Subscription price' => 'Bérletes ár',
+    'Club Card price' => 'Klubkártya ár',
+    'Allow set up subscription price' => 'Bérletes ár beállításának engedélyezése',
+    'Allow set up club card price' => 'Klubkártya ár beállításának engedélyezése',
 
     'Your name' => 'Az ön neve',
     'Will be shown as the operator of this site.<br>Displayed next to the logo, for example.'
@@ -411,6 +417,10 @@ return array(
 
     'New position' => 'Új pozicíó',
     'New position by using the pricing rules for this booking' => 'Új pozicíó az árazási szabályt használva ehhez a foglaláshoz',
+    'New cash payment' => 'Új készpénz fizetés',
+    'New bank transfer' => 'Új banki átutalás',
+    'Cash payment' => 'Készpénz fizetés',
+    'Bank transfer' => 'Banki átutalás',
 
     'Who?' => 'Ki?',
 
@@ -418,4 +428,6 @@ return array(
     'Booked by' => 'Lefoglalva',
 
     'User matched by' => 'Felhasználó párosítva',
+
+    'Club Card' => 'Klubkártya',
 );

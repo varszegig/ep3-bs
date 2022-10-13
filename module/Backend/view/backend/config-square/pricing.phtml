@@ -30,6 +30,9 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
         .pricing-grammar { margin: 0 6px; cursor: default; }
         .pricing-grammar:last-child { margin: 0 0 0 6px; }
 
+        .pricing-type { margin: 0 6px; cursor: default; }
+        .pricing-type:last-child { margin: 0 0 0 6px; }
+
         .pricing-delete { color: #777 !important; text-decoration: none; cursor: pointer; }
         .pricing-delete:hover { color: #333; }
 
@@ -166,6 +169,17 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 echo '<input type="text" value="19" maxlength="3" class="pricing-rate" style="width: 20px;">';
                                                                                 echo '<span class="pricing-grammar">% ' . $this->t('VAT') . '</span>';
                                                                                 echo '<span class="price-error"><br>' . $this->t('Invalid value') . '</span>';
+                                                                                echo '<br><span class="pricing-type">' . $this->t('booking type') . '</span>';
+                                                                                echo '<select class="pricing-type">';
+                                                                                echo '<option value="null">' . $this->t('All') . '</option>';
+                                                                                echo '<option value="1">' . $this->t('Single') . '</option>';
+                                                                                if ($this->option('service.allow.subscription.price')) {
+                                                                                    echo '<option value="2">' . $this->t('Subscription') . '</option>';
+                                                                                }
+                                                                                if ($this->option('service.allow.club-card.price')) {
+                                                                                    echo '<option value="3">' . $this->t('Club Card') . '</option>';
+                                                                                }
+                                                                                echo '</select>';                                                                                
                                                                                 echo '<br><span class="pricing-grammar">' . $this->t('valid for') . '</span>';
 
                                                                                 echo '<select class="pricing-sid">';

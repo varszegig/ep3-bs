@@ -129,6 +129,8 @@ class ConfigController extends AbstractActionController
                 $activation = $data['cf-activation'];
                 $calendarDays = $data['cf-calendar-days'];
                 $calendarDayExceptions = $data['cf-calendar-day-exceptions'];
+                $allowSubscriptionPrice = $data['cf-subscription-price']; 
+                $allowClubCardPrice = $data['cf-club-card-price'];
 
                 $locale = $this->config('i18n.locale');
 
@@ -139,6 +141,8 @@ class ConfigController extends AbstractActionController
                 $optionManager->set('service.user.activation', $activation);
                 $optionManager->set('service.calendar.days', $calendarDays);
                 $optionManager->set('service.calendar.day-exceptions', $calendarDayExceptions);
+                $optionManager->set('service.allow.subscription.price', $allowSubscriptionPrice);
+                $optionManager->set('service.allow.clubcard.price', $allowClubCardPrice);
 
                 $this->flashMessenger()->addSuccessMessage('Configuration has been saved');
             } else {
@@ -154,6 +158,8 @@ class ConfigController extends AbstractActionController
             $behaviourForm->get('cf-activation')->setValue($optionManager->get('service.user.activation', 'email'));
             $behaviourForm->get('cf-calendar-days')->setValue($optionManager->get('service.calendar.days', '4'));
             $behaviourForm->get('cf-calendar-day-exceptions')->setValue($optionManager->get('service.calendar.day-exceptions'));
+            $behaviourForm->get('cf-subscription-price')->setValue($optionManager->get('service.allow.subscription.price'));
+            $behaviourForm->get('cf-club-card-price')->setValue($optionManager->get('service.allow.clubcard.price'));
         }
 
         return array(

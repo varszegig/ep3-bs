@@ -157,6 +157,7 @@ return array(
     'Pricing' => 'Preise',
     'Pricing rules' => 'Preisregeln',
     'Pricing rules have been saved' => 'Preisregeln wurden gespeichert',
+    'booking type' => 'Buchungsart',
     'Unknown pricing rules error' => 'Unbekannter Fehler mit den Preisregeln',
     'How much do bookings cost for your %s?' => 'Wie teuer sind die Buchungen für Ihre %s?',
     'Products' => 'Produkte',
@@ -249,6 +250,11 @@ return array(
     'Hide these days' => 'Folgende Tage verstecken',
     'Day names (like Sunday) or concrete dates (like 2016-08-16);<br>Separated by line breaks or commas;<br>Force concrete dates to be shown by adding a plus (like +2016-08-30)'
         => 'Name des Tages (z.B. Sonntag) oder konkrete Datumangaben (z.B. 16.08.2016);<br>Getrennt durch Zeilenumbrüche oder Kommata;<br>Ein versteckter Tag kann mit einem Plus wieder angezeigt werden (z.B. +30.08.2016)',
+
+    'Subscription price' => 'Abo-Preis',
+    'Club Card price' => 'Vereinskarten-Preis',
+    'Allow set up subscription price' => 'Abo-Preis festlegen',
+    'Allow set up club card price' => 'Vereinskarten-Preis festlegen',
 
     'Your name' => 'Ihr Name',
     'Will be shown as the operator of this site.<br>Displayed next to the logo, for example.'
@@ -403,6 +409,10 @@ return array(
 
     'New position' => 'Neue Position',
     'New position by using the pricing rules for this booking' => 'Neue Position durch Anwenden der Preis-Regeln auf diese Buchung',
+    'New cash payment' => 'Neue Barzahlung',
+    'New bank transfer' => 'Neue Banküberweisung',
+    'Cash payment' => 'Barzahlung',
+    'Bank transfer' => 'Banküberweisung',
 
     'Who?' => 'Wer?',
 
@@ -410,4 +420,6 @@ return array(
     'Booked by' => 'Gebucht von',
 
     'User matched by' => 'Benutzer ermittelt nach',
+
+    'Club Card' => 'Vereinskarte',
 );
