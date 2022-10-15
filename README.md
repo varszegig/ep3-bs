@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.16.1 from October, 2022.
+The current version is 1.16.2 from October, 2022.
+
+Version 1.16.2
+Price defintion bug for the last hour
 
 Version 1.16.1
 VAT as option
