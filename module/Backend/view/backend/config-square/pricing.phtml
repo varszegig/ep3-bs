@@ -99,7 +99,7 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
 
         var timeBlock = <?= $this->squaresTimeBlock ?>;
         var minStart = <?= $this->squaresMinStartTime ?>;
-        var maxEnd = <?= $this->squaresMaxEndTime ?> - 3600;
+        var maxEnd = <?= $this->squaresMaxEndTime ?>;
         var pricingRules = [ <?= implode(', ', $jsRules) ?> ];
     </script>
 
