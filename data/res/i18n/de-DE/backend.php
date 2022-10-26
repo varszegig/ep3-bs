@@ -411,6 +411,7 @@ return array(
     'New position by using the pricing rules for this booking' => 'Neue Position durch Anwenden der Preis-Regeln auf diese Buchung',
     'New cash payment' => 'Neue Barzahlung',
     'New bank transfer' => 'Neue Banküberweisung',
+    'New premium prescription' => 'Neue Prämienverschreibung',
     'Cash payment' => 'Barzahlung',
     'Bank transfer' => 'Banküberweisung',
 

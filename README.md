@@ -44,7 +44,14 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.16.2 from October, 2022.
+The current version is 1.16.3 from October, 2022.
+
+Version 1.16.3
+Various bugfixes:
+1) Last day of period had no prices
+2) Reverse the order of periods by price config
+3) Allow club-card, subscription option not worked properly
+4) Price type with NULL value not handled well
 
 Version 1.16.2
 Price defintion bug for the last hour

@@ -13,11 +13,11 @@
 
             var template = $("#pricing-table-template").html();
 
-            $(this).closest("table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
-            $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
+            $(this).closest("table").find("tr:first").after('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").find("tr:first").siblings("tr:first").hide().fadeIn();
             var index = window.pricingRules.length;
-            $("#pricing-table .pricing-dateStart:last").prop('id', 'pricing-dateStart-' + index);
-            $("#pricing-table .pricing-dateEnd:last").prop('id', 'pricing-dateEnd-' + index);
+            $("#pricing-table .pricing-dateStart:first").prop('id', 'pricing-dateStart-' + index);
+            $("#pricing-table .pricing-dateEnd:first").prop('id', 'pricing-dateEnd-' + index);
 
             $('.datepicker').each(function(i) {
                 $(this).removeClass('hasDatepicker').datepicker(); 
@@ -30,7 +30,7 @@
 
             var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 
-            $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").closest("tr").before('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").closest("tr").first().hide().fadeIn();
             initTimepicker(timeBlock, minStart, maxEnd);
         });
@@ -40,7 +40,7 @@
 
             var template = $("#pricing-table-template").find(".pricing-time-range").closest("tr").closest("td").html();
 
-            $(this).closest("table").closest("tr").after('<tr><td>' + template + '</td></tr>');
+            $(this).closest("table").closest("tr").before('<tr><td>' + template + '</td></tr>');
             $(this).closest("table").closest("tr").siblings("tr:last").hide().fadeIn();
 
             initTimepicker(timeBlock, minStart, maxEnd);
@@ -51,7 +51,7 @@
 
             var template = $("#pricing-table-template").find(".pricing-price").closest("tr").html();
 
-            $(this).closest("table").find("tr:last").after('<tr>' + template + '</tr>');
+            $(this).closest("table").find("tr:last").before('<tr>' + template + '</tr>');
             $(this).closest("table").find("tr:last").siblings("tr:last").hide().fadeIn();
 
             $(".tooltip").tooltip();
@@ -194,6 +194,7 @@
         var latestStartEndTime;
 
         $.each(pricingRules, function(index, element) {
+            console.log(element);
             var sid = element[1];
             var dateStart = element[3];
             var dateEnd = element[4];
@@ -211,14 +212,17 @@
                 sid = "null";
             }
 
+            if (! type) {
+                type = "null";
+            }
+
             var thisStartEndDate = "" + dateStart + dateEnd;
             var thisStartEndDay = "" + dayStart + dayEnd;
             var thisStartEndTime = "" + timeStart + timeEnd;
 
             if (thisStartEndDate !== latestStartEndDate) {
                 var template = $("#pricing-table-template").html();
-
-                $("#pricing-table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
+                    $("#pricing-table").find("tr:last").before('<tr><td>' + template + '</td></tr>');
             } else if (thisStartEndDay !== latestStartEndDay) {
                 var template = $("#pricing-table-template").find(".pricing-day-range").closest("table").closest("td").html();
 

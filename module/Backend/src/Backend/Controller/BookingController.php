@@ -669,6 +669,7 @@ class BookingController extends AbstractActionController
                             }
                             break;
                         }
+                        break;
                     case 'cash-payment':
                         $bookingBillManager->save(new Booking\Bill(array(
                             'bid' => $bid,

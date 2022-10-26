@@ -419,6 +419,7 @@ return array(
     'New position by using the pricing rules for this booking' => 'Új pozicíó az árazási szabályt használva ehhez a foglaláshoz',
     'New cash payment' => 'Új készpénz fizetés',
     'New bank transfer' => 'Új banki átutalás',
+    'New premium prescription' => 'Új díjelőírás',
     'Cash payment' => 'Készpénz fizetés',
     'Bank transfer' => 'Banki átutalás',
 

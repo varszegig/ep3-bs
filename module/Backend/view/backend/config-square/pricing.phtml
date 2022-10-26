@@ -2,7 +2,7 @@
 
 $this->setup(array(
     'title' => 'Pricing',
-    'panel' => 'centered-panel giant-sized',
+    'panel' => 'centered-panel large-sized',
     'back' => array(
         'Configuration' => $this->url('backend/config'),
     ),
@@ -173,10 +173,10 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
                                                                                 echo '<select class="pricing-type">';
                                                                                 echo '<option value="null">' . $this->t('All') . '</option>';
                                                                                 echo '<option value="1">' . $this->t('Single') . '</option>';
-                                                                                if ($this->option('service.allow.subscription.price')) {
-                                                                                    echo '<option value="2">' . $this->t('Subscription') . '</option>';
+                                                                                if ($this->option('service.allow.subscription.price', 'false') == 'true') {
+                                                                                    echo '<option value="2">' . $this->t('Subscription')  . '</option>';
                                                                                 }
-                                                                                if ($this->option('service.allow.club-card.price')) {
+                                                                                if ($this->option('service.allow.clubcard.price', 'false') == 'true') {
                                                                                     echo '<option value="3">' . $this->t('Club Card') . '</option>';
                                                                                 }
                                                                                 echo '</select>';                                                                                
@@ -220,18 +220,6 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
         </tbody></table>
     </div>
 
-    <div id="pricing-table">
-        <table class="bordered-table">
-            <tr>
-                <td>
-                    <a href="#" class="pricing-date-range-new unlined   "><em><span class="symbolic symbolic-plus"><?= $this->t('New period') ?></span></em></a>
-                </td>
-            </tr>
-        </table>
-    </div>
-
-    <div class="separator separator-line"></div>
-
     <div class="centered-text">
         <form method="post" action="<?= $this->url('backend/config/square/pricing') ?>" id="pricing-form">
             <div id="pricing-form-rules"></div>
@@ -267,5 +255,19 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/config-sq
             <input type="hidden" name="pricing-rules-count" id="pricing-rules-count" value="0">
             <input type="submit" id="pricing-save" value="<?= $this->t('Save') ?>" class="default-button">
         </form>
+    </div>    
+
+    <div class="separator separator-line"></div>
+    
+    <div id="pricing-table">
+        <table class="bordered-table">
+            <tr>
+                <td>
+                    <a href="#" class="pricing-date-range-new unlined   "><em><span class="symbolic symbolic-plus"><?= $this->t('New period') ?></span></em></a>
+                </td>
+            </tr>
+            <tr></tr>
+        </table>
     </div>
+
 </div>
