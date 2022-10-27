@@ -52,7 +52,7 @@ Various bugfixes:
 2) Reverse the order of periods by price config
 3) Allow club-card, subscription option not worked properly
 4) Price type with NULL value not handled well
-5) It was possible to book multiple timeblocks without price, if the first timebloch has price - corrected
+5) It was possible to book multiple timeblocks without price, if the first timeblock has price - corrected
 6) It was possible to book from backend even if there was no price defined - corrected
 
 Version 1.16.2
