@@ -64,6 +64,9 @@ class CreateBill extends AbstractPlugin
             $dateTimeEnd = clone $walkingDate;
             $dateTimeEnd->setTime($endTimeParts[0], $endTimeParts[1], 0);
             $pricing = $this->squarePricingManager->getFinalPricingInRange($dateTimeStart, $dateTimeEnd, $square, $quantity, $type);
+            if (!$pricing) {
+                throw new \Exception('No pricing found for this date range');
+            }
             $price += $pricing['price'];
             $walkingDate->modify('+' . $repeat. ' day');
         }        

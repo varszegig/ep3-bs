@@ -34,7 +34,7 @@ class SquarePricingManager extends AbstractManager
         $loadPrices = function() {
             $this->rules = array();
             $select = $this->squarePricingTable->getSql()->select();
-            $select->order('priority ASC');
+            $select->order('priority DESC');
 
             foreach ($this->squarePricingTable->selectWith($select) as $result) {
                 $this->rules[] = $result;
@@ -80,9 +80,9 @@ class SquarePricingManager extends AbstractManager
                 }
                 $ruleId += 1;
                 $this->squarePricingTable->insert(array(
-                    'spid' => $ruleId,
+                    'spid' => count($rules) - $ruleId + 1,
                     'sid' => $rule[0],
-                    'priority' => $rule[1],
+                    'priority' => count($rules) - 1 - $rule[1],
                     'date_start' => $rule[2],
                     'date_end' => $rule[3],
                     'day_start' => $rule[4],
@@ -171,10 +171,12 @@ class SquarePricingManager extends AbstractManager
             throw new InvalidArgumentException('The passed square is invalid');
         }
 
-        foreach ($this->rules as $rule) {
+        foreach (array_reverse($this->rules) as $rule) {
             if ($rule['type'] == null || $type == $rule['type']) {
                 $dateStart = new DateTime($rule['date_start']);
                 $dateEnd = new DateTime($rule['date_end']);
+                $dateEnd->setTime(23, 59, 59);
+
 
                 if ($dateTime <= $dateEnd && $dateTime >= $dateStart) {
                     $dateTimeDay = ($dateTime->format('w') + 6) % 7;
@@ -184,6 +186,7 @@ class SquarePricingManager extends AbstractManager
 
                         $timeStart = explode(':', $rule['time_start']);
                         $ruleDateTime->setTime($timeStart[0], $timeStart[1]);
+
 
                         if ($dateTime >= $ruleDateTime) {
                             $timeEnd = explode(':', $rule['time_end']);

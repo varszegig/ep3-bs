@@ -402,8 +402,10 @@ return array(
     'New position by using the pricing rules for this booking' => 'Nouvelle position en utilisant les règles de fixation des prix pour cette réservation',
     'New cash payment' => 'Nouveau paiement en espèces',
     'New bank transfer' => 'Nouveau virement bancaire',
+    'New premium prescription' => 'Nouvelle prescription de remboursement',
     'Cash payment' => 'Paiement en espèces',
     'Bank transfer' => 'Virement bancaire',
+    'No pricing found for this date range' => 'Aucune règle de fixation de prix trouvée pour cette période',
 
     'Who?' => 'Qui ?',
 
