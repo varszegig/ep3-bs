@@ -12,7 +12,8 @@ class TimeBlockChoiceFactory implements FactoryInterface
     {
         return new TimeBlockChoice(
             $sm->getServiceLocator()->get('Booking\Manager\BookingManager'),
-            $sm->getServiceLocator()->get('Booking\Manager\ReservationManager'));
+            $sm->getServiceLocator()->get('Booking\Manager\ReservationManager'),
+            $sm->getServiceLocator()->get('Square\Manager\SquarePricingManager'));
     }
 
 }

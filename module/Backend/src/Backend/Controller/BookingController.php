@@ -224,8 +224,13 @@ class BookingController extends AbstractActionController
                     } else {
 
                         /* Create booking/reservation */
-                        $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
-                            $d['bf-repeat'], $d['bf-payment'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                        try {
+                            $savedBooking = $this->backendBookingCreate($d['bf-user'], $d['bf-time-start'], $d['bf-time-end'], $d['bf-date-start'], $d['bf-date-end'],
+                                $d['bf-repeat'], $d['bf-payment'], $d['bf-sid'], $d['bf-status-billing'], $d['bf-quantity'], $d['bf-notes'], $sessionUser->get('alias'));
+                        } catch (\Exception $e) {
+                            $this->flashMessenger()->addErrorMessage($e->getMessage());
+                            return $this->redirect()->toRoute('frontend');
+                        }
                     }
 
                     $this->flashMessenger()->addSuccessMessage('Booking has been saved');

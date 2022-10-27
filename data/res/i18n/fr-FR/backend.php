@@ -405,6 +405,7 @@ return array(
     'New premium prescription' => 'Nouvelle prescription de remboursement',
     'Cash payment' => 'Paiement en espèces',
     'Bank transfer' => 'Virement bancaire',
+    'No pricing found for this date range' => 'Aucune règle de fixation de prix trouvée pour cette période',
 
     'Who?' => 'Qui ?',
 

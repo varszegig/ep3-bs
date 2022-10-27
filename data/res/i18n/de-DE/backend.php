@@ -414,6 +414,7 @@ return array(
     'New premium prescription' => 'Neue Prämienverschreibung',
     'Cash payment' => 'Barzahlung',
     'Bank transfer' => 'Banküberweisung',
+    'No pricing found for this date range' => 'Keine Preise für diesen Zeitraum gefunden',
 
     'Who?' => 'Wer?',
 

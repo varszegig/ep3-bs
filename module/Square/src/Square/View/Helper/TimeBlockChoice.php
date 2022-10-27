@@ -8,18 +8,24 @@ use DateTime;
 use IntlDateFormatter;
 use Square\Entity\Square;
 use Laminas\View\Helper\AbstractHelper;
+use Square\Manager\SquarePricingManager;
 
 class TimeBlockChoice extends AbstractHelper
 {
 
     protected $bookingManager;
     protected $reservationManager;
+    protected $squarePricingManager;
 
-    public function __construct(BookingManager $bookingManager, ReservationManager $reservationManager)
+    public function __construct(BookingManager $bookingManager, 
+                                ReservationManager $reservationManager, 
+                                SquarePricingManager $squarePricingManager)
     {
         $this->bookingManager = $bookingManager;
         $this->reservationManager = $reservationManager;
+        $this->squarePricingManager = $squarePricingManager;
     }
+
 
     public function __invoke(DateTime $dateTimeStart, DateTime $dateTimeEnd, Square $square)
     {
@@ -92,7 +98,11 @@ class TimeBlockChoice extends AbstractHelper
         }
 
         while ($walkingDateTime < $dateTimeCheck) {
+            if ($this->squarePricingManager->getPricingRule($walkingDateTime, $square) == null) {
+                break;
+            }
             $walkingDateTime->modify('+' . $bookable . ' sec');
+
             $walkingIndex++;
 
             $walkingTimeEndParts = explode(':', $walkingDateTime->format('H:i'));
