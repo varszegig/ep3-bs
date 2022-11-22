@@ -69,6 +69,52 @@ return array(
                             ),
                         ),
                     ),
+                    'billing' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/billing',
+                            'defaults' => array(
+                                'controller' => 'Backend\Controller\Billing',
+                                'action' => 'index',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'edit' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/edit[/:bbid]',
+                                    'defaults' => array(
+                                        'action' => 'edit',
+                                    ),
+                                    'constraints' => array(
+                                        'bbid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),
+                            'delete' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/delete/:bbid',
+                                    'defaults' => array(
+                                        'action' => 'delete',
+                                    ),
+                                    'constraints' => array(
+                                        'bbid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),
+                            'stats' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/stats',
+                                    'defaults' => array(
+                                        'action' => 'stats',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),                    
                     'booking' => array(
                         'type' => 'Literal',
                         'options' => array(
@@ -422,6 +468,7 @@ return array(
             'Backend\Controller\Index' => 'Backend\Controller\IndexController',
             'Backend\Controller\User' => 'Backend\Controller\UserController',
             'Backend\Controller\Booking' => 'Backend\Controller\BookingController',
+            'Backend\Controller\Billing' => 'Backend\Controller\BillingController',
             'Backend\Controller\Event' => 'Backend\Controller\EventController',
             'Backend\Controller\Config' => 'Backend\Controller\ConfigController',
             'Backend\Controller\ConfigSquare' => 'Backend\Controller\ConfigSquareController',

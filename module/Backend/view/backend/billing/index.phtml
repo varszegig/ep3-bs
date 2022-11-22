@@ -1,0 +1,46 @@
+<?php
+
+$this->setup(array(
+    'title' => 'User-Administration',
+    'panel' => 'centered-panel large-sized',
+    'back' => true,
+    'links' => array(
+        'User-Administration' => $this->url('backend/user'),
+        'Booking-Administration' => $this->url('backend/booking'),
+        'Event-Administration' => $this->url('backend/event'),
+        'Configuration' => $this->url('backend/config'),
+    ),
+));
+
+?>
+
+<div>
+    <h1><?= $this->t('Billing-Administration') ?></h1>
+
+    <div class="separator-small"></div>
+
+    <p><?= $this->t('Here you can make queries about the invoices') ?></p>
+
+    <div class="separator separator-line"></div>
+
+    <?= $this->partial('backend/billing/index.search.phtml', ['sum' => $this->sum, 'name' => $this->name, 'type' => $this->type, 'dateStart' => $this->dateStart, 'dateEnd' => $this->dateEnd]) ?>
+
+    <div class="separator separator-line"></div>
+
+    <div class="centered-text" style="padding: 16px 0px 16px 0px;">
+
+        <?php if ($this->users): ?>
+
+            <?= $this->backendUsersFormat($this->users, $this->search) ?>
+
+        <?php else: ?>
+
+            <?php if ($this->search): ?>
+                <p><span class="red"><?= sprintf($this->t('%sNo users found%s for this search'), '<b>', '</b>') ?></span></p>
+            <?php endif; ?>
+
+            
+        <?php endif; ?>
+
+    </div>
+</div>
