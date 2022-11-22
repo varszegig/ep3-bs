@@ -44,7 +44,10 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.16.3 from October, 2022.
+The current version is 1.16.4 from October, 2022.
+
+Version 1.16.4
+Booking conflicts only in the past
 
 Version 1.16.3
 Various bugfixes:
