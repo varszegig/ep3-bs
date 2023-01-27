@@ -8,6 +8,10 @@ return array(
     'Bookings' => 'Buchungen',
     'Create, edit or delete the bookings of your system' => 'Erstellen, bearbeiten oder löschen Sie Buchungen Ihres Systems',
 
+    'Billing' => 'Rechnung',
+    'Create, edit or delete the billings of your system' => 'Erstellen, bearbeiten oder löschen Sie die Rechnungen Ihres Systems',
+
+
     'Event' => 'Veranstaltung',
     'Events' => 'Veranstaltungen',
     'Create, edit or delete the events of your system' => 'Erstellen, bearbeiten oder löschen Sie Veranstaltungen Ihres Systems',
@@ -33,6 +37,11 @@ return array(
 
     'Booking-Administration' => 'Buchungs-Verwaltung',
     'Here you can create, edit or delete the bookings of your system.' => 'Hier können Sie die Buchungen Ihres Systems erstellen, bearbeiten oder löschen.',
+
+    'Billing-Administration' => 'Rechnungs-Verwaltung',
+    'Here you can create, search, edit or delete the billing of your system.' => 'Hier können Sie die Rechnungen Ihres Systems erstellen, suchen, bearbeiten oder löschen.',
+
+    'Sum' => 'Summe',
 
     'Event-Administration' => 'Veranstaltungs-Verwaltung',
     'Here you can create, edit or delete the events of your system.' => 'Hier können Sie die Veranstaltungen Ihres Systems erstellen, bearbeiten oder löschen.',

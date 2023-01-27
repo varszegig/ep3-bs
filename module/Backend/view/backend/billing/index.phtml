@@ -19,7 +19,7 @@ $this->setup(array(
 
     <div class="separator-small"></div>
 
-    <p><?= $this->t('Here you can make queries about the invoices') ?></p>
+    <p><?= $this->t('Here you can create, search, edit or delete the billing of your system.') ?></p>
 
     <div class="separator separator-line"></div>
 
@@ -29,17 +29,17 @@ $this->setup(array(
 
     <div class="centered-text" style="padding: 16px 0px 16px 0px;">
 
-        <?php if ($this->users): ?>
+        <?php if ($this->bookings): ?>
 
-            <?= $this->backendUsersFormat($this->users, $this->search) ?>
+            <?= $this->backendBillingsFormat($this->bookings, null, null, $this->search) ?>
 
         <?php else: ?>
 
-            <?php if ($this->search): ?>
-                <p><span class="red"><?= sprintf($this->t('%sNo users found%s for this search'), '<b>', '</b>') ?></span></p>
+            <?php if ($this->sum ): ?>
+                <p><span class="red"><?= sprintf($this->t('%sNo bookings found%s for this search'), '<b>', '</b>') ?></span></p>
             <?php endif; ?>
 
-            
+
         <?php endif; ?>
 
     </div>

@@ -1,13 +1,27 @@
 <?php
 
-$this->setup(array(
-    'title' => 'Edit Booking-Bill',
-    'panel' => 'centered-panel',
-    'back' => array(
-        'Booking-Bill' => $this->url('user/bookings/bills', ['bid' => $this->booking->need('bid')]),
-    ),
-));
-
+if (!$dateStart) {
+    $this->setup(array(
+        'title' => 'Edit Booking-Bill',
+        'panel' => 'centered-panel',
+        'back' => array(
+            'Booking-Bill' => $this->url('user/bookings/bills', ['bid' => $this->booking->need('bid')]),
+        ),
+    ));
+} else {
+    $this->setup(array(
+        'title' => 'Billing',
+        'panel' => 'centered-panel',
+        'back' => array(
+            'Billing' => $this->url('backend/billing', [], ['query' => [
+                'bbsf-date-start' => $this->dateStart,
+                'bbsf-date-end' => $this->dateEnd,
+                'bbsf-sum' => $this->sum,
+                'bbsf-name' => $this->user,                
+            ]]),
+        ),
+    ));
+}
 $last_vat_gross = 1;
 $last_vat_rate = 19;
 

@@ -92,6 +92,18 @@ return array(
                                     ),
                                 ),
                             ),
+                            'bills' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/bills[/:bid]',
+                                    'defaults' => array(
+                                        'action' => 'bills',
+                                    ),
+                                    'constraints' => array(
+                                        'bid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),                            
                             'delete' => array(
                                 'type' => 'Segment',
                                 'options' => array(
@@ -171,7 +183,7 @@ return array(
                             'bills' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/bills/:bid',
+                                    'route' => '/bills[/:bid]',
                                     'defaults' => array(
                                         'action' => 'bills',
                                     ),
@@ -479,6 +491,7 @@ return array(
         'invokables' => array(
             'BackendUserDetermineFilters' => 'Backend\Controller\Plugin\User\DetermineFilters',
             'BackendBookingDetermineFilters' => 'Backend\Controller\Plugin\Booking\DetermineFilters',
+            'BackendBillingDetermineFilters' => 'Backend\Controller\Plugin\Billing\DetermineFilters',
         ),
 
         'factories' => array(
@@ -515,6 +528,8 @@ return array(
         'invokables' => array(
             'BackendBookingsFormat' => 'Backend\View\Helper\Booking\BookingsFormat',
 
+            'BackendBillingsFormat' => 'Backend\View\Helper\Billing\BillingsFormat',
+
             'BackendEventsFormat' => 'Backend\View\Helper\Event\EventsFormat',
 
             'BackendSquareProductsFormat' => 'Backend\View\Helper\Square\ProductsFormat',
@@ -533,6 +548,8 @@ return array(
 
         'factories' => array(
             'BackendBookingFormat' => 'Backend\View\Helper\Booking\BookingFormatFactory',
+
+            'BackendBillingFormat' => 'Backend\View\Helper\Billing\BillingFormatFactory',
 
             'BackendEventFormat' => 'Backend\View\Helper\Event\EventFormatFactory',
 

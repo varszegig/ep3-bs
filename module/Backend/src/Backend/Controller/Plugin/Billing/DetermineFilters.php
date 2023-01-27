@@ -1,6 +1,6 @@
 <?php
 
-namespace Backend\Controller\Plugin\Booking;
+namespace Backend\Controller\Plugin\Billing;
 
 use Laminas\Mvc\Controller\Plugin\AbstractPlugin;
 use Laminas\Db\Sql\Predicate\In;
@@ -18,7 +18,7 @@ class DetermineFilters extends AbstractPlugin
         $filterParts = array();
 
         $userSearch = $search["user"];
-        $billingTotal = $search['billingTotal'];
+        $billingTotal = $search["sum"];
 
         if ($userSearch) {
             $matches = [];

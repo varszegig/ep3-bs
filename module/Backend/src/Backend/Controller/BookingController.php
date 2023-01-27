@@ -619,6 +619,12 @@ class BookingController extends AbstractActionController
         $user = $userManager->get($booking->need('uid'));
         $editMode = $this->params()->fromQuery('edit-mode');
 
+        $name = $this->params()->fromQuery('bbsf-name');
+        $sum = $this->params()->fromQuery('bbsf-sum');
+        $dateStart = $this->params()->fromQuery('bbsf-date-start');
+        $dateEnd = $this->params()->fromQuery('bbsf-date-end');
+        $type = $this->params()->fromQuery('bbsf-type');
+
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');
 
@@ -818,6 +824,11 @@ class BookingController extends AbstractActionController
             'bookingStatusService' => $bookingStatusService,
             'bills' => $bills,
             'user' => $user,
+            'name' => $name,
+            'sum' => $sum,
+            'dateStart' => $dateStart,
+            'dateEnd' => $dateEnd,
+            'type' => $type,
         );
     }
 
