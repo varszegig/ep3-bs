@@ -1,10 +1,24 @@
 <?php
 
-$this->setup(array(
-    'title' => 'Booking-Administration',
-    'panel' => 'centered-panel',
-    'back' => true,
-));
+$bbsfDateStart = $this->query['bbsf-date-start'];
+
+if (!$bbsfDateStart) {
+    $this->setup(array(
+        'title' => 'Booking-Administration',
+        'panel' => 'centered-panel',
+        'back' => array(
+            'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]),
+        ),
+    ));
+} else {
+    $this->setup(array(
+        'title' => 'Billing-Administration',
+        'panel' => 'centered-panel',
+        'back' => array(
+            'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
+        ),
+    ));
+}
 
 $reservations = $this->reservations;
 

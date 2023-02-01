@@ -1,6 +1,6 @@
 <?php
 
-if (!$dateStart) {
+if (!$this->dateStart) {
     $this->setup(array(
         'title' => 'Edit Booking-Bill',
         'panel' => 'centered-panel',
@@ -17,7 +17,8 @@ if (!$dateStart) {
                 'bbsf-date-start' => $this->dateStart,
                 'bbsf-date-end' => $this->dateEnd,
                 'bbsf-sum' => $this->sum,
-                'bbsf-name' => $this->user,                
+                'bbsf-name' => $this->user,   
+                'bbsf-type' => $this->type,             
             ]]),
         ),
     ));

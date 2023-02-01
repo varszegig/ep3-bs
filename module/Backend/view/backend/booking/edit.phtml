@@ -6,13 +6,24 @@ if ($this->booking && $this->booking->get('status') == 'cancelled') {
     $messages = [];
 }
 
-$this->setup(array(
-    'title' => 'Booking-Administration',
-    'panel' => 'centered-panel giant-sized',
-    'messages' => $messages,
-    'back' => true,
-));
+$bbsfDateStart = $this->query['bbsf-date-start'];
 
+if (!$bbsfDateStart) {
+    $this->setup(array(
+        'title' => 'Booking-Administration',
+        'panel' => 'centered-panel giant-sized',
+        'messages' => $messages,
+        'back' => array(
+            'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]))));
+} else {
+    $this->setup(array(
+        'title' => 'Booking-Administration',
+        'panel' => 'centered-panel giant-sized',
+        'back' => array(
+            'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
+        ),
+    ));
+}
 ?>
 
 <div class="padded centered-text">
@@ -142,11 +153,11 @@ $this->setup(array(
 
                             <?= $this->t('Bill') ?>:
                             &nbsp;
-                            <a href="<?= $this->url('user/bookings/bills', ['bid' => $this->booking->get('bid')]) ?>" class="symbolic symbolic-info unlined gray"><?= $this->t('Check') ?></a>
+                            <a href="<?= $this->url('user/bookings/bills', ['bid' => $this->booking->get('bid')], ['query' => $this->query]) ?>" class="symbolic symbolic-info unlined gray"><?= $this->t('Check') ?></a>
 
                             <?php if ($this->sessionUser->can('admin.booking')): ?>
                                 &nbsp;
-                                <a href="<?= $this->url('backend/booking/bills', ['bid' => $this->booking->get('bid')]) ?>" class="symbolic symbolic-edit unlined gray"><?= $this->t('Edit') ?></a>
+                                <a href="<?= $this->url('backend/booking/bills', ['bid' => $this->booking->get('bid')], ['query' => $this->query]) ?>" class="symbolic symbolic-edit unlined gray"><?= $this->t('Edit') ?></a>
                             <?php endif; ?>
                         </div>
 
