@@ -634,26 +634,12 @@ class BookingController extends AbstractActionController
         $booking = $bookingManager->get($bid);
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
         $user = $userManager->get($booking->need('uid'));
-        $editMode = $this->params()->fromQuery('edit-mode');
+//        $editMode = $this->params()->fromQuery('edit-mode');
 
         $params = $this->backendBookingDetermineParams(true);
         $query = $params['query'];
-
-        // $name = $this->params()->fromQuery('bbsf-name');
-        // $sum = $this->params()->fromQuery('bbsf-sum');
-        // $dateStart = $this->params()->fromQuery('bbsf-date-start');
-        // $dateEnd = $this->params()->fromQuery('bbsf-date-end');
-        // $type = $this->params()->fromQuery('bbsf-type');
-        
-        // if ($dateStart) {
-        //     $query = array(
-        //         'bbsf-date-start' => $dateStart,
-        //         'bbsf-date-end' => $dateEnd,
-        //         'bbsf-name' => $name,
-        //         'bbsf-sum' => $sum,
-        //         'bbsf-type' => $type,
-        //     );
-        // }
+        $editMode = $params['editMode'];
+        $query['em'] = $editMode;
 
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');
@@ -853,7 +839,12 @@ class BookingController extends AbstractActionController
                     return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid], 
                         ['query' => $query]);
                 } else if ($saveAndBack) {
-                    return $this->redirect()->toRoute('backend/billing', [], 
+                    if (array_key_exists('ds', $query) && $query['ds'] != '') {
+                        $backUrl = 'backend/booking/edit';
+                    } else {
+                        $backUrl = 'backend/billing';
+                    }
+                    return $this->redirect()->toRoute($backUrl, [], 
                         ['query' => $query]);
                 }                
             }
@@ -864,11 +855,6 @@ class BookingController extends AbstractActionController
             'bookingStatusService' => $bookingStatusService,
             'bills' => $bills,
             'user' => $user,
-            // 'name' => $name,
-            // 'sum' => $sum,
-            // 'dateStart' => $dateStart,
-            // 'dateEnd' => $dateEnd,
-            // 'type' => $type,
             'query' => $query,
         );
     }

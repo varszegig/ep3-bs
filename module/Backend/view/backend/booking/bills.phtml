@@ -5,7 +5,7 @@ if (!$this->dateStart) {
         'title' => 'Edit Booking-Bill',
         'panel' => 'centered-panel',
         'back' => array(
-            'Booking-Bill' => $this->url('user/bookings/bills', ['bid' => $this->booking->need('bid')]),
+            'Booking-Bill' => $this->url('user/bookings/bills', ['bid' => $this->booking->need('bid')], ['query' => $this->query]),
         ),
     ));
 } else {

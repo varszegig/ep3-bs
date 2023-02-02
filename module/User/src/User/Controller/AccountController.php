@@ -411,7 +411,62 @@ class AccountController extends AbstractActionController
 
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
 
+        $dateStartParam = $this->params()->fromQuery('ds');
+        $dateEndParam = $this->params()->fromQuery('de');
+        $timeStartParam = $this->params()->fromQuery('ts');
+        $timeEndParam = $this->params()->fromQuery('te');
+        $squareParam = $this->params()->fromQuery('s');
+        $reservationParam = $this->params()->fromQuery('r');
+        $editMode = $this->params()->fromQuery('em');
+        $bbsfDateStart = $this->params()->fromQuery('bbsf-date-start');
+        $bbsfDateEnd = $this->params()->fromQuery('bbsf-date-end');
+        $bbsfSum = $this->params()->fromQuery('bbsf-sum');
+        $bbsfName = $this->params()->fromQuery('bbsf-name');
+        $bbsfType = $this->params()->fromQuery('bbsf-type');
+        $searchUser = $this->params()->fromQuery('user');
+        $searchStatus = $this->params()->fromQuery('bs-status');
+        $SearchBillingStatus = $this->params()->fromQuery('bs-billing-status');
+        $searchDateStart = $this->params()->fromQuery('date-start');
+        $searchDateEnd = $this->params()->fromQuery('date-end');
+        $searchSquare = $this->params()->fromQuery('bs-square');
+        $searchVisibility = $this->params()->fromQuery('bs-visibility');
+        $searchBillingTotalOperator = $this->params()->fromQuery('bs-billing-total-operator');
+        $searchBillingTotal = $this->params()->fromQuery('bs-billing-total');
+        $searchQuantityOperator = $this->params()->fromQuery('bs-quantity-operator');
+        $searchQuantity = $this->params()->fromQuery('bs-quantity');
+        $searchDateCreatedOperator = $this->params()->fromQuery('bs-date-created-operator');
+        $searchDateCreated = $this->params()->fromQuery('date-created');
+        $searchNotes = $this->params()->fromQuery('bs-notes');        
+
         return array(
+            'query' => array(
+                'ds' => $dateStartParam,
+                'de' => $dateEndParam,
+                'ts' => $timeStartParam,
+                'te' => $timeEndParam,
+                's' => $squareParam,
+                'r' => $reservationParam,
+                'bbsf-date-start' => $bbsfDateStart,
+                'bbsf-date-end' => $bbsfDateEnd,
+                'bbsf-sum' => $bbsfSum,
+                'bbsf-name' => $bbsfName,
+                'bbsf-type' => $bbsfType,
+                'date-start' => $searchDateStart,
+                'date-end' => $searchDateEnd,
+                'user' => $searchUser,
+                'bs-status' => $searchStatus,
+                'bs-billing-status' => $SearchBillingStatus,
+                'bs-square' => $searchSquare,
+                'bs-visibility' => $searchVisibility,
+                'bs-billing-total-operator' => $searchBillingTotalOperator,
+                'bs-billing-total' => $searchBillingTotal,
+                'bs-quantity-operator' => $searchQuantityOperator,
+                'bs-quantity' => $searchQuantity,
+                'bs-date-created-operator' => $searchDateCreatedOperator,
+                'date-created' => $searchDateCreated,
+                'bs-notes' => $searchNotes,
+                'em' => $editMode,
+            ),            
             'booking' => $booking,
             'bookingBillingStatus' => $bookingBillingStatus,
             'bills' => $bills,

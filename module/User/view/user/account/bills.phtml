@@ -1,10 +1,17 @@
 <?php
 
 if ($this->user->can('admin.bookings')) {
-    $back = true;
+    if ($this->query['bbsf-date-start'] == '') {
+        $back = array(
+            'Booking' => $this->url('backend/booking/edit', [], ['query' => $this->query]));
+    } else {
+        $back = array(
+            'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
+        );
+    }
 
     $links = array(
-        'Edit bill' => $this->url('backend/booking/bills', ['bid' => $this->booking->need('bid')]),
+        'Edit bill' => $this->url('backend/booking/bills', ['bid' => $this->booking->need('bid')], ['query' => $this->query]),
     );
 } else {
     $back = array(

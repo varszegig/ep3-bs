@@ -153,11 +153,11 @@ if (!$bbsfDateStart) {
 
                             <?= $this->t('Bill') ?>:
                             &nbsp;
-                            <a href="<?= $this->url('user/bookings/bills', ['bid' => $this->booking->get('bid')], ['query' => $this->query]) ?>" class="symbolic symbolic-info unlined gray"><?= $this->t('Check') ?></a>
+                            <a href="<?= $this->url('user/bookings/bills', ['bid' => $this->booking->get('bid')], ['query' => array_merge($this->query, ['em' => $this->editMode])]) ?>" class="symbolic symbolic-info unlined gray"><?= $this->t('Check') ?></a>
 
                             <?php if ($this->sessionUser->can('admin.booking')): ?>
                                 &nbsp;
-                                <a href="<?= $this->url('backend/booking/bills', ['bid' => $this->booking->get('bid')], ['query' => $this->query]) ?>" class="symbolic symbolic-edit unlined gray"><?= $this->t('Edit') ?></a>
+                                <a href="<?= $this->url('backend/booking/bills', ['bid' => $this->booking->get('bid')], ['query' => array_merge($this->query, ['em' => $this->editMode])]) ?>" class="symbolic symbolic-edit unlined gray"><?= $this->t('Edit') ?></a>
                             <?php endif; ?>
                         </div>
 
