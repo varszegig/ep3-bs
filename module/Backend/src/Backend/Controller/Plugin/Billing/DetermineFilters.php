@@ -19,6 +19,7 @@ class DetermineFilters extends AbstractPlugin
 
         $userSearch = $search["user"];
         $billingTotal = $search["sum"];
+        $type = $search["type"];
 
         if ($userSearch) {
             $matches = [];
@@ -33,6 +34,13 @@ class DetermineFilters extends AbstractPlugin
             $value = $billingTotal;
             $filterParts[] = array($key, $operator, $value);
         } else $billingTotal = 0;
+
+        if ($type) {
+            $key = 'type';
+            $operator =  '=';
+            $value = $type;
+            $filterParts[] = array($key, $operator, $value);
+        }
 
 
         return array(

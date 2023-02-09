@@ -34,8 +34,15 @@ class BillingFormat extends AbstractHelper
 
         $html .= sprintf('<tr %s>', $attr);
 
+        $status = $booking->getStatus();
+        $payment = $booking->getMeta('payment');
+
+        if ($payment == 1) {
+            $status = 'Ad hoc';
+        }
+
         $html .= sprintf('<td class="status-col right-text">%s</td>',
-            $view->t($booking->getStatus()));
+            $view->t($status));
 
         foreach($reservations as $reservation) {
             if (empty($startDate)) $startDate = new \DateTime($reservation->get('date'));

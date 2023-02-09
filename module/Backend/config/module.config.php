@@ -567,6 +567,8 @@ return array(
 
             'BackendBookingsStats' => 'Backend\View\Helper\Booking\BookingsStatsFactory',
 
+            'BackendBillingsStats' => 'Backend\View\Helper\Billing\BillingsStatsFactory',
+
             'BackendUserStatusList' => 'Backend\View\Helper\User\UserStatusListFactory',
 
             'BackendUserOperatorSelect' => 'Backend\View\Helper\User\UserOperatorSelectFactory',

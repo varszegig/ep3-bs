@@ -7,23 +7,23 @@ if ($this->booking && $this->booking->get('status') == 'cancelled') {
 }
 
 $bbsfDateStart = $this->query['bbsf-date-start'];
+$bfDateStart = $this->query['date-start'];
 
-if (!$bbsfDateStart) {
-    $this->setup(array(
-        'title' => 'Booking-Administration',
-        'panel' => 'centered-panel giant-sized',
-        'messages' => $messages,
-        'back' => array(
-            'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]))));
-} else {
-    $this->setup(array(
-        'title' => 'Booking-Administration',
-        'panel' => 'centered-panel giant-sized',
-        'back' => array(
-            'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
-        ),
-    ));
+$setupArray = array(
+    'title' => 'Booking-Administration',
+    'panel' => 'centered-panel giant-sized',
+    'messages' => $messages,
+    'back' => true);
+
+if ($bfDateStart) {
+    $setupArray['back'] = array(
+            'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]));
+} else if ($bbsfDateStart) {
+    $setupArray['back'] = array(
+            'Billing' => $this->url('backend/billing', [], ['query' => $this->query ]));
 }
+
+$this->setup($setupArray);
 ?>
 
 <div class="padded centered-text">
@@ -123,7 +123,7 @@ if (!$bbsfDateStart) {
 
                     <?php if ($this->booking && $this->booking->get('status') == 'subscription' && $this->editMode == 'booking'): ?>
                         <div class="centered-text small-text gray" style="margin-top: 16px; font-style: italic;">
-                            <a href="<?= $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')]) ?>" class="unlined symbolic symbolic-edit squarebox-internal-link">
+                            <a href="<?= $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')], ['query' => array_merge($this->query, ['em' => $this->editMode])]) ?>" class="unlined symbolic symbolic-edit squarebox-internal-link">
                                 <?= $this->t('Edit time or date range') ?>
                             </a>
                         </div>

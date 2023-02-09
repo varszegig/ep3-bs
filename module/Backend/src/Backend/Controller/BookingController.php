@@ -379,6 +379,10 @@ class BookingController extends AbstractActionController
         $minTime = $squareManager->getMinStartTime();
         $maxTime = $squareManager->getMaxEndTime() - 3600;
 
+        $params = $this->backendBookingDetermineParams(true);
+        $query = $params['query'];
+        $query['em'] = $params['editMode'];
+
         $bid = $this->params()->fromRoute('bid');
 
         $booking = $bookingManager->get($bid);
@@ -431,7 +435,7 @@ class BookingController extends AbstractActionController
                         $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                     }
 
-                    return $this->redirect()->toRoute('frontend');
+                    return $this->redirect()->toRoute('backend/booking/edit', [], ['query' => $query]);
                 }
             } else if ($mode == 'date') {
                 $editDateRangeForm->setData($this->params()->fromPost());
@@ -529,6 +533,7 @@ class BookingController extends AbstractActionController
             'minInterval' => $minInterval,
             'minTime' => $minTime,
             'maxTime' => $maxTime,
+            'query' => $query
         ));
     }
 
@@ -828,6 +833,7 @@ class BookingController extends AbstractActionController
 
             $this->flashMessenger()->addSuccessMessage('Booking-Bill has been saved');
 
+            error_log(print_r($query, true));
             if (!$query) {
                 if ($save) {
                     return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid]);
@@ -841,8 +847,10 @@ class BookingController extends AbstractActionController
                 } else if ($saveAndBack) {
                     if (array_key_exists('ds', $query) && $query['ds'] != '') {
                         $backUrl = 'backend/booking/edit';
-                    } else {
+                    } else if (array_key_exists('bbsf-date-start', $query) && $query['bbsf-date-start'] != '') {
                         $backUrl = 'backend/billing';
+                    } else {
+                        $backUrl = 'frontend';
                     }
                     return $this->redirect()->toRoute($backUrl, [], 
                         ['query' => $query]);
