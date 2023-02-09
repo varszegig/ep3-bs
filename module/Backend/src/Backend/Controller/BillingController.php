@@ -6,6 +6,7 @@ use User\Entity\User;
 use Booking\Entity\Booking;
 use Booking\Entity\Reservation;
 use Booking\Table\BookingTable;
+use Booking\Table\Booking\BillTable;
 use Booking\Table\ReservationTable;
 use Laminas\Db\Adapter\Adapter;
 use Laminas\Mvc\Controller\AbstractActionController;
@@ -29,6 +30,7 @@ class BillingController extends AbstractActionController
         $dateStart = $this->params()->fromQuery('bbsf-date-start');
         $dateEnd = $this->params()->fromQuery('bbsf-date-end');
         $type = $this->params()->fromQuery('bbsf-type');
+        $billingStatus = $this->params()->fromQuery('bbsf-billing-status');
 
         $search = array(
             'user' => $name,
@@ -36,6 +38,7 @@ class BillingController extends AbstractActionController
             'dateStart' => $dateStart,
             'dateEnd' => $dateEnd,
             'type' => $type,
+            'billingStatus' => $billingStatus,
         );
 
         $bookings = array();
@@ -50,7 +53,7 @@ class BillingController extends AbstractActionController
             $dateEnd = $dateEnd->modify('+1 day');
         }
 
-        if ($name || $sum || $dateStart || $dateEnd || $type) {
+        if ($name || $sum || $dateStart || $dateEnd || $type || $billingStatus) {
             $filters = $this->backendBillingDetermineFilters($search);
             error_log(print_r($filters, true));
 
@@ -92,6 +95,7 @@ class BillingController extends AbstractActionController
             'dateStart' => $dateStart,
             'dateEnd' => $dateEnd,
             'type' => $type,
+            'billingStatus' => $billingStatus,
             'bookings' => $bookings,
             'reservations' => $reservations,
             'search' => $search,
@@ -125,11 +129,18 @@ class BillingController extends AbstractActionController
             if ($filterPart[0] == 'type') {
                 $bookings = array_filter($bookings, function(Booking $booking) use ($filterPart) {
                     $status = $booking->need('status');
-                    if ($filterPart[2] == 0) return true;
-                    if ($status == 'cancelled') return false;
-                    if ($filterPart[2] == 1 && $status == 'single') return true;
-                    if ($filterPart[2] == 2 && $status == 'subscription') return true;
-                    return false;
+                    switch ($filterPart[2]) {
+                        case 0:
+                            return true;
+                        case 1:
+                            return ($status == 'single');
+                        case 2:
+                            return ($status == 'subscription');
+                        case 3:
+                            return ($status == 'cancelled');
+                        default:
+                            return false;
+                    }
                 });                
             }
 
@@ -155,7 +166,11 @@ class BillingController extends AbstractActionController
 
         $db = @$this->getServiceLocator()->get('Laminas\Db\Adapter\Adapter');
 
-        $stats = $db->query(sprintf('SELECT status, status_billing, COUNT(status) AS count FROM %s GROUP BY status, status_billing', BookingTable::NAME),
+        $stats = $db->query(sprintf(
+            'SELECT status, status_billing, sum(price) AS sum FROM %s A, %s B ' . 
+            'WHERE A.bid = B.bid ' .
+            'GROUP BY status, status_billing', 
+            BookingTable::NAME, BillTable::NAME),
             Adapter::QUERY_MODE_EXECUTE)->toArray();
 
         return array(

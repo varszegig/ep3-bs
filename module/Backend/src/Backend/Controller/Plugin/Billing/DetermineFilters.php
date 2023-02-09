@@ -20,6 +20,7 @@ class DetermineFilters extends AbstractPlugin
         $userSearch = $search["user"];
         $billingTotal = $search["sum"];
         $type = $search["type"];
+        $billingStatus = $search['billingStatus'];
 
         if ($userSearch) {
             $matches = [];
@@ -27,6 +28,19 @@ class DetermineFilters extends AbstractPlugin
                 $filters[] = sprintf('uid = "%s"', $matches[1]);
             }            
         }
+
+        if ($billingStatus) {
+            $value = str_replace(
+                array(
+                    strtolower($controller->t('Cancelled')),
+                    strtolower($controller->t('Pending')),
+                    strtolower($controller->t('Paid')),
+                    strtolower($controller->t('Uncollectable')),
+                    ),
+                array('cancelled', 'pending', 'paid', 'uncollectable'),
+                $billingStatus);            
+            $filters[] = sprintf('status_billing = "%s"', $value);
+        }        
 
         if ($billingTotal) {
             $key = 'billing_total';

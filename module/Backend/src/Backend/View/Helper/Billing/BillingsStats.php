@@ -31,7 +31,7 @@ class BillingsStats extends AbstractHelper
         }
 
         foreach ($stats as $stat) {
-            $statTable[$stat['status']][$stat['status_billing']] = $stat['count'];
+            $statTable[$stat['status']][$stat['status_billing']] = $stat['sum'];
         }
 
         $html .= '<div>';
@@ -64,7 +64,7 @@ class BillingsStats extends AbstractHelper
                          'bs-billing-status' => $billingStatKey ]]);
                     $html .= '">';
                 }
-                $html .= $view->numberFormat($value);
+                $html .= $view->currencyFormat($value / 100);
                 if ($value > 0) $html .= '</a>';
                 $html .= '</td>';
             }
@@ -75,7 +75,7 @@ class BillingsStats extends AbstractHelper
                     ['query' => ['bs-billing-status' => $billingStatKey ]]);
                 $html .= '">';
             }            
-            $html .= $view->numberFormat($total);
+            $html .= $view->currencyFormat($total / 100);
             if ($total > 0) $html .= '</a>';
             $html .= '</b></td>';
             $html .= '</tr>';
@@ -93,12 +93,12 @@ class BillingsStats extends AbstractHelper
                     ['query' => ['bs-status' => $bookingStatKey ]]);
                 $html .= '">';
             } 
-            $html .= $view->numberFormat($value);
+            $html .= $view->currencyFormat($value / 100);
             if ($value > 0) $html .= '</a>';
             $html .= '</b></td>';
             $total += $grandTotal[$bookingStatKey];
         }
-        $html .= '<td class="right-text" headers="' . $view->t('Total') . '"><b>' . $view->numberFormat($total) . '</b></td>';
+        $html .= '<td class="right-text" headers="' . $view->t('Total') . '"><b>' . $view->currencyFormat($total /100) . '</b></td>';
         $html .= '</tr>';
        
         $html .= '</table>';

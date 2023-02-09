@@ -18,6 +18,7 @@ return array(
     'Statistic' => 'Statisztikák',
     'User-Statistic' => 'Felhasználó-statisztikák',
     'Booking-Statistic' => 'Foglalás-statisztikák',
+    'Billing-Statistic' => 'Számlázás-statisztikák',
     'Event-Statistic' => 'Esemény-statisztikák',
 
     'File manager' => 'File kezelő',

@@ -19,6 +19,7 @@ return array(
     'Statistic' => 'Statistiques',
     'User-Statistic' => 'Statistiques Utilisateurs',
     'Booking-Statistic' => 'Statistiques Réservations',
+    'Billing-Statistic' => 'Statistiques Factures',
     'Event-Statistic' => 'Statistiques Evènements',
 
     'File manager' => 'Explorer',
