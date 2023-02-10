@@ -1,24 +1,22 @@
 <?php
 
-$bbsfDateStart = $this->query['bbsf-date-start'];
+$startingFrom = $this->query['starting-from'];
 
-if (!$bbsfDateStart) {
-    $this->setup(array(
-        'title' => 'Booking-Administration',
-        'panel' => 'centered-panel',
-        'back' => array(
-            'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]),
-        ),
-    ));
+$setupArray = array(
+    'title' => 'Booking-Administration',
+    'panel' => 'centered-panel',);
+
+if ($startingFrom == 'booking') {
+    $setupArray['back'] = array(
+        'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]),
+    );
 } else {
-    $this->setup(array(
-        'title' => 'Billing-Administration',
-        'panel' => 'centered-panel',
-        'back' => array(
-            'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
-        ),
-    ));
+    $setupArray['back'] = array(
+        'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
+    );
 }
+
+$this->setup($setupArray);
 
 $reservations = $this->reservations;
 

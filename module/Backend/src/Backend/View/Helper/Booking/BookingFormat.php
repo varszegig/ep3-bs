@@ -103,7 +103,8 @@ class BookingFormat extends AbstractHelper
                        'ts' => substr($reservation->get('time_start'), 0, 5),
                        'te' => substr($reservation->get('time_end'), 0, 5),
                        's' => $booking->get('sid'),
-                       'r' => $reservation->get('rid')];
+                       'r' => $reservation->get('rid'),
+                       'starting-from' => 'booking'];
 
         if ($booking->get('status') == 'cancelled') {
 

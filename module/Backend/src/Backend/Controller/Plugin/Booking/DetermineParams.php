@@ -55,6 +55,7 @@ class DetermineParams extends AbstractPlugin
         $searchDateCreatedOperator = $controller->params()->fromQuery('bs-date-created-operator');
         $searchDateCreated = $controller->params()->fromQuery('date-created');
         $searchNotes = $controller->params()->fromQuery('bs-notes');
+        $startingFrom = $controller->params()->fromQuery('starting-from');
 
         /* Determine dates (or set to default) */
 
@@ -182,6 +183,7 @@ class DetermineParams extends AbstractPlugin
                 'bs-date-created-operator' => $searchDateCreatedOperator,
                 'date-created' => $searchDateCreated,
                 'bs-notes' => $searchNotes,
+                'starting-from' => $startingFrom,
             ),
             'dateTimeStart' => $dateTimeStart,
             'dateTimeEnd' => $dateTimeEnd,

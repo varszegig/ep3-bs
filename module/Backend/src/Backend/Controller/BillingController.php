@@ -55,7 +55,6 @@ class BillingController extends AbstractActionController
 
         if ($name || $sum || $dateStart || $dateEnd || $type || $billingStatus) {
             $filters = $this->backendBillingDetermineFilters($search);
-            error_log(print_r($filters, true));
 
             try {
                 $limit = 1000;
@@ -84,7 +83,8 @@ class BillingController extends AbstractActionController
                 $bookings = array();
                 $reservations = array();
             }
-        } else {
+        } 
+        if (!$dateStart && !$dateEnd) {
             $dateEnd = new \DateTime();
             $dateStart = (clone $dateEnd)->modify('-1 month');
         }
@@ -125,23 +125,6 @@ class BillingController extends AbstractActionController
                             return false;
                     }
                 });
-            }
-            if ($filterPart[0] == 'type') {
-                $bookings = array_filter($bookings, function(Booking $booking) use ($filterPart) {
-                    $status = $booking->need('status');
-                    switch ($filterPart[2]) {
-                        case 0:
-                            return true;
-                        case 1:
-                            return ($status == 'single');
-                        case 2:
-                            return ($status == 'subscription');
-                        case 3:
-                            return ($status == 'cancelled');
-                        default:
-                            return false;
-                    }
-                });                
             }
 
         }

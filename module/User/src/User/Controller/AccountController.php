@@ -436,7 +436,8 @@ class AccountController extends AbstractActionController
         $searchQuantity = $this->params()->fromQuery('bs-quantity');
         $searchDateCreatedOperator = $this->params()->fromQuery('bs-date-created-operator');
         $searchDateCreated = $this->params()->fromQuery('date-created');
-        $searchNotes = $this->params()->fromQuery('bs-notes');        
+        $searchNotes = $this->params()->fromQuery('bs-notes');     
+        $startingFrom = $this->params()->fromQuery('starting-from');   
 
         return array(
             'query' => array(
@@ -466,6 +467,7 @@ class AccountController extends AbstractActionController
                 'date-created' => $searchDateCreated,
                 'bs-notes' => $searchNotes,
                 'em' => $editMode,
+                'starting-from' => $startingFrom,
             ),            
             'booking' => $booking,
             'bookingBillingStatus' => $bookingBillingStatus,

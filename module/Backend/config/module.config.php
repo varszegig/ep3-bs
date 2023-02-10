@@ -561,8 +561,6 @@ return array(
 
             'BackendBookingBillingStatusList' => 'Backend\View\Helper\Booking\BookingBillingStatusListFactory',
 
-            'BackendBillingBillingStatusList' => 'Backend\View\Helper\Billing\BillingBillingStatusListFactory',
-
             'BackendBookingVisibilityOptions' => 'Backend\View\Helper\Booking\BookingVisibilityOptionsFactory',
 
             'BackendBookingOperatorSelect' => 'Backend\View\Helper\Booking\BookingOperatorSelectFactory',            

@@ -62,18 +62,13 @@ $this->headScript()->appendFile($this->basePath('js/controller/backend/billing/i
                         <div class="default-form-label-top gray">
                             <label for="bbsf-type"><?= $this->t('Status') ?>:</label>
                         </div>                        
-                        <select name="bbsf-type" id="bbsf-type" style="width: 30vw;">
-                            <option value="0"><?= $this->t('All') ?></option>
-                            <option value="1" <?= $this->type == 1 ? 'selected' : '' ?>><?= $this->t('Single') ?></option>
-                            <option value="2" <?= $this->type == 2 ? 'selected' : '' ?>><?= $this->t('Subscription') ?></option>
-                            <option value="3" <?= $this->type == 2 ? 'selected' : '' ?>><?= $this->t('Cancelled') ?></option>
-                        </select>
+                        <?= $this->backendBookingStatusList('bbsf-type') ?>
                         <tr>
                             <td style="vertical-align: bottom;">
                                 <div class="default-form-label-top gray">
                                     <label for="bs-billing-status"><?= $this->t('Billing status') ?>:</label>
                                 </div>                        
-                                <?= $this->backendBillingBillingStatusList() ?>
+                                <?= $this->backendBookingBillingStatusList('bbsf-billing-status') ?>
                             </td>
                         </tr>                          
                     </td>

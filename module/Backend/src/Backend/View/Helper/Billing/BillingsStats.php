@@ -59,9 +59,9 @@ class BillingsStats extends AbstractHelper
                 $html .= '<td class="right-text" headers="' . $view->t(ucfirst($bookingStatKey)) . '">';
                 if ($value > 0) {
                     $html .= '<a href="'; 
-                    $html .= $view->url('backend/booking', [], 
-                        ['query' => ['bs-status' => $bookingStatus[$bookingStatKey], 
-                         'bs-billing-status' => $billingStatKey ]]);
+                    $html .= $view->url('backend/billing', [], 
+                        ['query' => ['bbsf-type' => $bookingStatus[$bookingStatKey], 
+                         'bbsf-billing-status' => $billingStatKey ]]);
                     $html .= '">';
                 }
                 $html .= $view->currencyFormat($value / 100);
@@ -71,8 +71,8 @@ class BillingsStats extends AbstractHelper
             $html .= '<td class="right-text" headers="' . $view->t('Total') . '"><b>';
             if ($total > 0) {
                 $html .= '<a href="'; 
-                $html .= $view->url('backend/booking', [], 
-                    ['query' => ['bs-billing-status' => $billingStatKey ]]);
+                $html .= $view->url('backend/billing', [], 
+                    ['query' => ['bbsf-billing-status' => $billingStatKey ]]);
                 $html .= '">';
             }            
             $html .= $view->currencyFormat($total / 100);
@@ -89,8 +89,8 @@ class BillingsStats extends AbstractHelper
             $html .= '<td class="right-text" headers="' . $view->t(ucfirst($bookingStatKey)) . '"><b>';
             if ($value > 0) {
                 $html .= '<a href="'; 
-                $html .= $view->url('backend/booking', [], 
-                    ['query' => ['bs-status' => $bookingStatKey ]]);
+                $html .= $view->url('backend/billing', [], 
+                    ['query' => ['bbsf-type' => $bookingStatKey ]]);
                 $html .= '">';
             } 
             $html .= $view->currencyFormat($value / 100);

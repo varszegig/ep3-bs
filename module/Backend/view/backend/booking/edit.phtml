@@ -6,6 +6,7 @@ if ($this->booking && $this->booking->get('status') == 'cancelled') {
     $messages = [];
 }
 
+$startingFrom = $this->query['starting-from'];
 $bbsfDateStart = $this->query['bbsf-date-start'];
 $bfDateStart = $this->query['date-start'];
 
@@ -15,10 +16,12 @@ $setupArray = array(
     'messages' => $messages,
     'back' => true);
 
-if ($bfDateStart) {
+if ($startingFrom == 'booking') {
     $setupArray['back'] = array(
             'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]));
-} else if ($bbsfDateStart) {
+} 
+
+if ($startingFrom == 'billing') {
     $setupArray['back'] = array(
             'Billing' => $this->url('backend/billing', [], ['query' => $this->query ]));
 }

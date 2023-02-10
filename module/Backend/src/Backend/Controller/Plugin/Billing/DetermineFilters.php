@@ -19,7 +19,7 @@ class DetermineFilters extends AbstractPlugin
 
         $userSearch = $search["user"];
         $billingTotal = $search["sum"];
-        $type = $search["type"];
+        $bookingStatus = $search["type"];
         $billingStatus = $search['billingStatus'];
 
         if ($userSearch) {
@@ -49,13 +49,9 @@ class DetermineFilters extends AbstractPlugin
             $filterParts[] = array($key, $operator, $value);
         } else $billingTotal = 0;
 
-        if ($type) {
-            $key = 'type';
-            $operator =  '=';
-            $value = $type;
-            $filterParts[] = array($key, $operator, $value);
+        if ($bookingStatus) {
+            $filters[] = sprintf('status = "%s"', $bookingStatus);
         }
-
 
         return array(
             'search' => $search,

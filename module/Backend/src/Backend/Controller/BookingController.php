@@ -639,12 +639,13 @@ class BookingController extends AbstractActionController
         $booking = $bookingManager->get($bid);
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
         $user = $userManager->get($booking->need('uid'));
-//        $editMode = $this->params()->fromQuery('edit-mode');
 
         $params = $this->backendBookingDetermineParams(true);
         $query = $params['query'];
         $editMode = $params['editMode'];
         $query['em'] = $editMode;
+
+        $startingFrom = $query['starting-from'];
 
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');
@@ -833,7 +834,6 @@ class BookingController extends AbstractActionController
 
             $this->flashMessenger()->addSuccessMessage('Booking-Bill has been saved');
 
-            error_log(print_r($query, true));
             if (!$query) {
                 if ($save) {
                     return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid]);
@@ -845,9 +845,9 @@ class BookingController extends AbstractActionController
                     return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid], 
                         ['query' => $query]);
                 } else if ($saveAndBack) {
-                    if (array_key_exists('ds', $query) && $query['ds'] != '') {
+                    if ($startingFrom == 'booking') {
                         $backUrl = 'backend/booking/edit';
-                    } else if (array_key_exists('bbsf-date-start', $query) && $query['bbsf-date-start'] != '') {
+                    } else if ($startingFrom == 'billing') {
                         $backUrl = 'backend/billing';
                     } else {
                         $backUrl = 'frontend';

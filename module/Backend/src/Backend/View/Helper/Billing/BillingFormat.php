@@ -53,7 +53,9 @@ class BillingFormat extends AbstractHelper
                     'bbsf-date-end' => $search['dateEnd'],
                     'bbsf-sum' => $search['sum'],
                     'bbsf-name' => $search['user'],
-                    'bbsf-type' => $search['type']];
+                    'bbsf-type' => $search['type'],
+                    'bbsf-billing-status' => $search['billingStatus'],
+                    'starting-from' => 'billing'];
         $editQuery = ['ds' => $reservation->get('date'),
                     'ts' => substr($reservation->get('time_start'), 0, 5),
                     'te' => substr($reservation->get('time_end'), 0, 5),
@@ -132,19 +134,10 @@ class BillingFormat extends AbstractHelper
 
         /* Actions col */
 
-        if ($booking->get('status') == 'cancelled') {
-
-            $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a></td>',
-                $view->url('backend/booking/bills' , ['bid' => $booking->need('bid')]),
-                $view->t('Edit'));
-
-        } else {
-            
-            $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a></td>',
-                $view->url('backend/booking/bills', ['bid' => $booking->need('bid')], 
-                    ['query' => $searchArray]),
-                $view->t('Edit'));
-        }
+        $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a></td>',
+            $view->url('backend/booking/bills', ['bid' => $booking->need('bid')], 
+                ['query' => $searchArray]),
+            $view->t('Edit'));
 
         $html .= '</tr>';
 
