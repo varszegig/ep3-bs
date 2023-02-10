@@ -35,7 +35,7 @@ class BillingsStats extends AbstractHelper
         }
 
         $html .= '<div>';
-        $html .= '<h1>' . $view->t('Booking-Statistic') . '</h1>';
+        $html .= '<h1>' . $view->t('Billing-Statistic') . '</h1>';
         
         $html .= '<div class="separator separator-line"></div>';
         
