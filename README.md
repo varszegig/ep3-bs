@@ -44,10 +44,13 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.17.0 from November, 2022.
+The current version is 1.17.0 from February, 2023.
 
 Version 1.17.0
 Statistics, queries for invoices
+
+Version 1.16.4
+Booking conflicts only in the past
 
 Version 1.16.3
 Various bugfixes:

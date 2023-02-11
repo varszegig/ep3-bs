@@ -949,6 +949,8 @@ class BookingController extends AbstractActionController
 
         if ($square->get('capacity_heterogenic') == 0) {
             $dateStart = new \DateTime($data['bf-date-start']);
+            $today = new \DateTime('today');
+            $dateStart = max($dateStart, $today);
 
             if ($repeat > 0) $dateEnd = $data['bf-date-end'];
             else $dateEnd = $data['bf-date-start'];
