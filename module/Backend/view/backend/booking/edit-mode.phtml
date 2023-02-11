@@ -1,10 +1,22 @@
 <?php
 
-$this->setup(array(
+$startingFrom = $this->query['starting-from'];
+
+$setupArray = array(
     'title' => 'Booking-Administration',
-    'panel' => 'centered-panel',
-    'back' => true,
-));
+    'panel' => 'centered-panel',);
+
+if ($startingFrom == 'booking') {
+    $setupArray['back'] = array(
+        'Bookings' => $this->url('backend/booking', [], ['query' => $this->query ]),
+    );
+} else {
+    $setupArray['back'] = array(
+        'Billing' => $this->url('backend/billing', [], ['query' => $this->query]),
+    );
+}
+
+$this->setup($setupArray);
 
 $reservations = $this->reservations;
 

@@ -1,0 +1,78 @@
+<?php
+
+$this->headScript()->appendFile($this->basePath('js/controller/backend/billing/index.search.min.js'));
+
+?>
+
+<div style="padding: 10px 0px 16px 0px;">
+    <form method="get" action="<?= $this->url('backend/billing') ?>">
+        <table class="default-table">
+            <tr>
+                <td>
+                    <div class="default-form-label-top gray">
+                        <label for="date-start"><?= $this->t('Date') ?>:</label>
+                    </div>
+
+                    <div class="inline-element">
+                        <label for="bbsf-date-start" class="inline-label symbolic symbolic-date"><span><?= $this->t('Date start') ?></span></label>
+                        <input type="text" name="bbsf-date-start" id="bbsf-date-start" value="<?= $this->dateFormat($this->dateStart, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?>"
+                            class="inline-label-container datepicker" style="padding-left: 28px; width: 96px;">
+                    </div>
+                    <?= $this->t('to') ?>
+                    <div class="inline-element">
+                        <label for="bbsf-date-end" class="inline-label symbolic symbolic-date"><span><?= $this->t('Date end') ?></span></label>
+                        <input type="text" name="bbsf-date-end" id="bbsf-date-end" value="<?= $this->dateFormat($this->dateEnd, IntlDateFormatter::MEDIUM, null, null, $this->t('dd.MM.yyyy')) ?>"
+                            class="inline-label-container datepicker" style="padding-left: 28px; width: 96px;">
+                    </div>
+
+                </td>                    
+
+
+                <td style="vertical-align: bottom;">
+                    <input type="submit" value="<?= $this->t('Search') ?>" class="default-button">
+                </td>
+
+                <td style="vertical-align: bottom; padding-bottom: 7px;">
+                    <a href="#" id="bbsf-filters-link" class="unlined gray"><?= $this->t('Advanced search') ?></a>
+                </td>
+            </tr>
+        </table>
+
+        <div id="bbsf-filters-box" class="sandbox" style="display: none; margin: 26px auto 0px auto;">
+            <table class="default-table" style="margin-left: 0px;">
+                <tr>  
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="bbsf-sum"><?= $this->t('Sum') ?>:</label>
+                        </div>
+                        <input type="number" name="bbsf-sum" id="bbsf-sum" value="<?= $this->sum ?>" style="width: 30vw;">                                 
+                    </td> 
+                </tr>
+                <tr>
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="bbsf-name"><?= $this->t('Name or number') ?>:</label>
+                        </div>
+
+                        <input type="text" name="bbsf-name" id="bbsf-name" value="<?= $this->name ?>" data-autocomplete-url="<?= $this->url('backend/user/interpret') ?>" style="width: 30vw;">
+                    </td>    
+                </tr>
+                <tr>
+                    <td>
+                        <div class="default-form-label-top gray">
+                            <label for="bbsf-type"><?= $this->t('Status') ?>:</label>
+                        </div>                        
+                        <?= $this->backendBookingStatusList('bbsf-type') ?>
+                        <tr>
+                            <td style="vertical-align: bottom;">
+                                <div class="default-form-label-top gray">
+                                    <label for="bs-billing-status"><?= $this->t('Billing status') ?>:</label>
+                                </div>                        
+                                <?= $this->backendBookingBillingStatusList('bbsf-billing-status') ?>
+                            </td>
+                        </tr>                          
+                    </td>
+            </table>
+        </div>
+    </form>
+</div>

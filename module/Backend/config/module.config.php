@@ -69,6 +69,64 @@ return array(
                             ),
                         ),
                     ),
+                    'billing' => array(
+                        'type' => 'Literal',
+                        'options' => array(
+                            'route' => '/billing',
+                            'defaults' => array(
+                                'controller' => 'Backend\Controller\Billing',
+                                'action' => 'index',
+                            ),
+                        ),
+                        'may_terminate' => true,
+                        'child_routes' => array(
+                            'edit' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/edit[/:bbid]',
+                                    'defaults' => array(
+                                        'action' => 'edit',
+                                    ),
+                                    'constraints' => array(
+                                        'bbid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),
+                            'bills' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/bills[/:bid]',
+                                    'defaults' => array(
+                                        'action' => 'bills',
+                                    ),
+                                    'constraints' => array(
+                                        'bid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),                            
+                            'delete' => array(
+                                'type' => 'Segment',
+                                'options' => array(
+                                    'route' => '/delete/:bbid',
+                                    'defaults' => array(
+                                        'action' => 'delete',
+                                    ),
+                                    'constraints' => array(
+                                        'bbid' => '[0-9]+',
+                                    ),
+                                ),
+                            ),
+                            'stats' => array(
+                                'type' => 'Literal',
+                                'options' => array(
+                                    'route' => '/stats',
+                                    'defaults' => array(
+                                        'action' => 'stats',
+                                    ),
+                                ),
+                            ),
+                        ),
+                    ),                    
                     'booking' => array(
                         'type' => 'Literal',
                         'options' => array(
@@ -125,7 +183,7 @@ return array(
                             'bills' => array(
                                 'type' => 'Segment',
                                 'options' => array(
-                                    'route' => '/bills/:bid',
+                                    'route' => '/bills[/:bid]',
                                     'defaults' => array(
                                         'action' => 'bills',
                                     ),
@@ -422,6 +480,7 @@ return array(
             'Backend\Controller\Index' => 'Backend\Controller\IndexController',
             'Backend\Controller\User' => 'Backend\Controller\UserController',
             'Backend\Controller\Booking' => 'Backend\Controller\BookingController',
+            'Backend\Controller\Billing' => 'Backend\Controller\BillingController',
             'Backend\Controller\Event' => 'Backend\Controller\EventController',
             'Backend\Controller\Config' => 'Backend\Controller\ConfigController',
             'Backend\Controller\ConfigSquare' => 'Backend\Controller\ConfigSquareController',
@@ -432,6 +491,7 @@ return array(
         'invokables' => array(
             'BackendUserDetermineFilters' => 'Backend\Controller\Plugin\User\DetermineFilters',
             'BackendBookingDetermineFilters' => 'Backend\Controller\Plugin\Booking\DetermineFilters',
+            'BackendBillingDetermineFilters' => 'Backend\Controller\Plugin\Billing\DetermineFilters',
         ),
 
         'factories' => array(
@@ -468,6 +528,8 @@ return array(
         'invokables' => array(
             'BackendBookingsFormat' => 'Backend\View\Helper\Booking\BookingsFormat',
 
+            'BackendBillingsFormat' => 'Backend\View\Helper\Billing\BillingsFormat',
+
             'BackendEventsFormat' => 'Backend\View\Helper\Event\EventsFormat',
 
             'BackendSquareProductsFormat' => 'Backend\View\Helper\Square\ProductsFormat',
@@ -487,6 +549,8 @@ return array(
         'factories' => array(
             'BackendBookingFormat' => 'Backend\View\Helper\Booking\BookingFormatFactory',
 
+            'BackendBillingFormat' => 'Backend\View\Helper\Billing\BillingFormatFactory',
+
             'BackendEventFormat' => 'Backend\View\Helper\Event\EventFormatFactory',
 
             'BackendSquareProductFormat' => 'Backend\View\Helper\Square\ProductFormatFactory',
@@ -502,6 +566,8 @@ return array(
             'BackendBookingOperatorSelect' => 'Backend\View\Helper\Booking\BookingOperatorSelectFactory',            
 
             'BackendBookingsStats' => 'Backend\View\Helper\Booking\BookingsStatsFactory',
+
+            'BackendBillingsStats' => 'Backend\View\Helper\Billing\BillingsStatsFactory',
 
             'BackendUserStatusList' => 'Backend\View\Helper\User\UserStatusListFactory',
 

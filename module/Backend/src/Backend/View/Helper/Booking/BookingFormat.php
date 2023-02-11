@@ -99,27 +99,23 @@ class BookingFormat extends AbstractHelper
             $notes);
 
         /* Actions col */
+        $queryArray = ['ds' => $date->format('Y-m-d'),
+                       'ts' => substr($reservation->get('time_start'), 0, 5),
+                       'te' => substr($reservation->get('time_end'), 0, 5),
+                       's' => $booking->get('sid'),
+                       'r' => $reservation->get('rid'),
+                       'starting-from' => 'booking'];
 
         if ($booking->get('status') == 'cancelled') {
 
             $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a></td>',
-                $view->url('backend/booking/edit', [], ['query' => [
-                    'ds' => $date->format('Y-m-d'),
-                    'ts' => substr($reservation->get('time_start'), 0, 5),
-                    'te' => substr($reservation->get('time_end'), 0, 5),
-                    's' => $booking->get('sid'),
-                    'r' => $reservation->get('rid')]]),
+                $view->url('backend/booking/edit', [], ['query' => array_merge($queryArray, $search)]),
                 $view->t('Edit'));
 
         } else {
 
             $html .= sprintf('<td class="actions-col no-print"><a href="%s" class="unlined gray symbolic symbolic-edit">%s</a></td>',
-                $view->url('backend/booking/edit', [], ['query' => [
-                    'ds' => $date->format('Y-m-d'),
-                    'ts' => substr($reservation->get('time_start'), 0, 5),
-                    'te' => substr($reservation->get('time_end'), 0, 5),
-                    's' => $booking->get('sid'),
-                    'r' => $reservation->get('rid')]]),
+                $view->url('backend/booking/edit', [], ['query' => array_merge($queryArray, $search)]),
                 $view->t('Edit'));
         }
 

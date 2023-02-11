@@ -8,6 +8,10 @@ return array(
     'Bookings' => 'Réservations',
     'Create, edit or delete the bookings of your system' => 'Créez, Editez ou supprimez une Réservation',
 
+    'Billing' => 'Facture',
+    'Create, edit or delete the billings of your system' => 'Créez, Editez ou supprimez une Facture',
+
+
     'Event' => 'Evènement',
     'Events' => 'Evènements',
     'Create, edit or delete the events of your system' => 'Créez, Editez ou supprimez un Evènements',
@@ -15,6 +19,7 @@ return array(
     'Statistic' => 'Statistiques',
     'User-Statistic' => 'Statistiques Utilisateurs',
     'Booking-Statistic' => 'Statistiques Réservations',
+    'Billing-Statistic' => 'Statistiques Factures',
     'Event-Statistic' => 'Statistiques Evènements',
 
     'File manager' => 'Explorer',
@@ -33,6 +38,11 @@ return array(
 
     'Booking-Administration' => 'Réservations-Administration',
     'Here you can create, edit or delete the bookings of your system.' => 'Ici vous pouvez créer, éditer ou supprimer des réservations.',
+
+    'Billing-Administration' => 'Factures-Administration',
+    'Here you can create, search, edit or delete the billing of your system.' => 'Ici vous pouvez créer, rechercher, éditer ou supprimer des factures.',
+
+    'Sum' => 'Somme',
 
     'Event-Administration' => 'Evènements-Administration',
     'Here you can create, edit or delete the events of your system.' => 'Ici vous pouvez créer, éditer ou supprimer des événements.',

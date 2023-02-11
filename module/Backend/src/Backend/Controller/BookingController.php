@@ -38,9 +38,8 @@ class BookingController extends AbstractActionController
         $dateCreatedOperator = $this->params()->fromQuery('date-created-operator');
         $dateCreated = $this->params()->fromQuery('date-created');
         $notes = $this->params()->fromQuery('bs-notes');
-
-        
-//        $search = $this->params()->fromQuery('search');
+        $bsDateStart = $dateStart;
+        $bsDateEnd = $dateEnd;
 
         $search = array(
             'user' => $userSearch,
@@ -96,6 +95,23 @@ class BookingController extends AbstractActionController
             }
         }
 
+        $search = array(
+            'date-start' => $bsDateStart,
+            'date-end' => $bsDateEnd,
+            'user' => $userSearch,
+            'bs-square' => $squareList,
+            'bs-status' => $bookingStatus,
+            'bs-billing-status' => $billingStatus,
+            'bs-visibility' => $visibility,
+            'bs-billing-total-operator' => $billingTotalOperator,
+            'bs-billing-total' => $billingTotal,
+            'bs-quantity-operator' => $quantityOperator,
+            'bs-quantity' => $quantity,
+            'bs-date-created-operator' => $dateCreatedOperator,
+            'date-created' => $dateCreated,
+            'bs-notes' => $notes,
+         );
+
         return array(
             'bookings' => $bookings,
             'reservations' => $reservations,
@@ -113,6 +129,7 @@ class BookingController extends AbstractActionController
             'date-created-operator' => $dateCreatedOperator,
             'dateCreated' => $dateCreated,
             'notes' => $notes,
+            'search' => $search,
         );
     }
 
@@ -362,6 +379,10 @@ class BookingController extends AbstractActionController
         $minTime = $squareManager->getMinStartTime();
         $maxTime = $squareManager->getMaxEndTime() - 3600;
 
+        $params = $this->backendBookingDetermineParams(true);
+        $query = $params['query'];
+        $query['em'] = $params['editMode'];
+
         $bid = $this->params()->fromRoute('bid');
 
         $booking = $bookingManager->get($bid);
@@ -414,7 +435,7 @@ class BookingController extends AbstractActionController
                         $this->flashMessenger()->addErrorMessage(sprintf($this->translate('Booking conflicts with other bookings: %s'), $conflictedDate));
                     }
 
-                    return $this->redirect()->toRoute('frontend');
+                    return $this->redirect()->toRoute('backend/booking/edit', [], ['query' => $query]);
                 }
             } else if ($mode == 'date') {
                 $editDateRangeForm->setData($this->params()->fromPost());
@@ -512,6 +533,7 @@ class BookingController extends AbstractActionController
             'minInterval' => $minInterval,
             'minTime' => $minTime,
             'maxTime' => $maxTime,
+            'query' => $query
         ));
     }
 
@@ -617,7 +639,13 @@ class BookingController extends AbstractActionController
         $booking = $bookingManager->get($bid);
         $bills = $bookingBillManager->getBy(array('bid' => $bid), 'bbid ASC');
         $user = $userManager->get($booking->need('uid'));
-        $editMode = $this->params()->fromQuery('edit-mode');
+
+        $params = $this->backendBookingDetermineParams(true);
+        $query = $params['query'];
+        $editMode = $params['editMode'];
+        $query['em'] = $editMode;
+
+        $startingFrom = $query['starting-from'];
 
         if ($this->getRequest()->isGet()) {
             $create = $this->params()->fromQuery('create');
@@ -806,10 +834,27 @@ class BookingController extends AbstractActionController
 
             $this->flashMessenger()->addSuccessMessage('Booking-Bill has been saved');
 
-            if ($save) {
-                return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid]);
-            } else if ($saveAndBack) {
-                return $this->redirect()->toRoute('user/bookings/bills', ['bid' => $bid]);
+            if (!$query) {
+                if ($save) {
+                    return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid]);
+                } else if ($saveAndBack) {
+                    return $this->redirect()->toRoute('user/bookings/bills', ['bid' => $bid]);
+                }
+            } else {
+                if ($save) {
+                    return $this->redirect()->toRoute('backend/booking/bills', ['bid' => $bid], 
+                        ['query' => $query]);
+                } else if ($saveAndBack) {
+                    if ($startingFrom == 'booking') {
+                        $backUrl = 'backend/booking/edit';
+                    } else if ($startingFrom == 'billing') {
+                        $backUrl = 'backend/billing';
+                    } else {
+                        $backUrl = 'frontend';
+                    }
+                    return $this->redirect()->toRoute($backUrl, [], 
+                        ['query' => $query]);
+                }                
             }
         }
 
@@ -818,6 +863,7 @@ class BookingController extends AbstractActionController
             'bookingStatusService' => $bookingStatusService,
             'bills' => $bills,
             'user' => $user,
+            'query' => $query,
         );
     }
 

@@ -8,6 +8,9 @@ return array(
     'Bookings' => 'Foglalások',
     'Create, edit or delete the bookings of your system' => 'A rendszerben a foglalások létrehozása, szerkesztése vagy törlése',
 
+    'Billing' => 'Számlázás',
+    'Create, edit or delete the billings of your system' => 'A rendszerben a számlák létrehozása, szerkesztése vagy törlése',
+
     'Event' => 'Esemény',
     'Events' => 'Események',
     'Create, edit or delete the events of your system' => 'A rendszerben az események létrehozása, szerkesztése vagy törlése',
@@ -15,6 +18,7 @@ return array(
     'Statistic' => 'Statisztikák',
     'User-Statistic' => 'Felhasználó-statisztikák',
     'Booking-Statistic' => 'Foglalás-statisztikák',
+    'Billing-Statistic' => 'Számlázás-statisztikák',
     'Event-Statistic' => 'Esemény-statisztikák',
 
     'File manager' => 'File kezelő',
@@ -33,6 +37,11 @@ return array(
 
     'Booking-Administration' => 'Foglalás-adminisztráció',
     'Here you can create, edit or delete the bookings of your system.' => 'Itt létre tud hozni, szerkeszteni, vagy törölni a foglalásokat.',
+
+    'Sum' => 'Összeg',
+    
+    'Billing-Administration' => 'Számlázás-adminisztráció',
+    'Here you can create, search, edit or delete the billing of your system.' => 'Itt létre tud hozni, keresni, szerkeszteni, vagy törölni a számlákat.',
 
     'Event-Administration' => 'Esemény-adminisztráció',
     'Here you can create, edit or delete the events of your system.' => 'Itt létre tud hozni, szerkeszteni, vagy törölni az eseményeket.',

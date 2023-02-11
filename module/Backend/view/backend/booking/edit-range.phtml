@@ -16,7 +16,7 @@ $this->setup(array(
 
         $form = $this->editTimeRangeForm;
         $form->setAttribute('method', 'post');
-        $form->setAttribute('action', $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')], ['query' => ['mode' => 'time']]));
+        $form->setAttribute('action', $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')], ['query' => array_merge($this->query, ['mode' => 'time'])]));
         $form->prepare();
 
         ?>
@@ -55,7 +55,7 @@ $this->setup(array(
 
         $form = $this->editDateRangeForm;
         $form->setAttribute('method', 'post');
-        $form->setAttribute('action', $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')], ['query' => ['mode' => 'date']]));
+        $form->setAttribute('action', $this->url('backend/booking/edit/range', ['bid' => $this->booking->need('bid')], ['query' => array_merge($this->query, ['mode' => 'date'])]));
         $form->prepare();
 
         ?>

@@ -17,13 +17,13 @@ class BookingStatusList extends AbstractHelper
         $this->request = $request;
     }
     
-    public function __invoke()
+    public function __invoke($name = 'bs-status')
     {
         $html = '';
         $view = $this->getView();
         $bookingStatus = Booking::$statusOptions;
-        $html .= '<select name="bs-status" id="booking-status" class="select">';
-        $selectedStatus = $this->request->getQuery('bs-status');
+        $html .= '<select name="' . $name . '" id="booking-status" class="select">';
+        $selectedStatus = $this->request->getQuery($name);
 
         $html .= '<option value=""';
         if ($selectedStatus == '') $html .= ' selected="selected"';
