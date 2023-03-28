@@ -4,6 +4,7 @@ namespace Backend\Form\Booking;
 
 use Booking\Entity\Booking;
 use Booking\Service\BookingStatusService;
+use Booking\Service\BookingService;
 use Square\Manager\SquareManager;
 use Laminas\Form\Form;
 use Laminas\InputFilter\Factory;
@@ -12,13 +13,16 @@ class EditForm extends Form
 {
 
     protected $bookingStatusService;
+    protected $bookingService;
     protected $squareManager;
 
-    public function __construct(BookingStatusService $bookingStatusService, SquareManager $squareManager)
+    public function __construct(BookingStatusService $bookingStatusService, BookingService $bookingService,
+                                SquareManager $squareManager)
     {
         parent::__construct();
 
         $this->bookingStatusService = $bookingStatusService;
+        $this->bookingService = $bookingService;
         $this->squareManager = $squareManager;
     }
 
@@ -163,7 +167,7 @@ class EditForm extends Form
             ),
             'options' => array(
                 'label' => 'Payment',
-                'value_options' => Booking::$paymentOptions,
+                'value_options' => $this->bookingService->getPaymentOptions(),
             ),
         ));
 

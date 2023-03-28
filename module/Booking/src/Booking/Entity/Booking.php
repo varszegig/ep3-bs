@@ -95,10 +95,11 @@ class Booking extends AbstractEntity
         '28' => 'Monthly',
     );
 
-    public static $paymentOptions = array(
-        '0' => 'Season ticket',
-        '1' => 'Ad hoc',
-    );
+
+    // public static $paymentOptions = array(
+    //     '0' => 'Season ticket',
+    //     '1' => 'Ad hoc',
+    // );
 
     /**
      * Returns the repeat string.
