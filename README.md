@@ -52,7 +52,6 @@ Bugfixes:
 2) System setup new option: allow ad-hoc payments 
 3) Notes available by ad-hoc payments reservations
 
-
 Version 1.17.0
 Statistics, queries for invoices
 
