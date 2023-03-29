@@ -49,7 +49,9 @@ The current version is 1.17.1 from March, 2023.
 Version 1.17.1
 Bugfixes:
 1) Payment option available only if allowed by system setup
-2) Notes available by ad-hoc payments reservations
+2) System setup new option: allow ad-hoc payments 
+3) Notes available by ad-hoc payments reservations
+
 
 Version 1.17.0
 Statistics, queries for invoices

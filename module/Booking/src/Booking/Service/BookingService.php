@@ -153,7 +153,7 @@ class BookingService extends AbstractService
             $paymentOptions['0'] = 'Season ticket';
         }
 
-        if ($this->optionManager->get('service.allow.clubcard.price') == 'true') {
+        if ($this->optionManager->get('service.allow.adhoc.payment') == 'true') {
             $paymentOptions['1'] = 'Ad hoc';
         }
 

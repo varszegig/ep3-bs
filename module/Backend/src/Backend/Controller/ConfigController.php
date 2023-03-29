@@ -131,6 +131,7 @@ class ConfigController extends AbstractActionController
                 $calendarDayExceptions = $data['cf-calendar-day-exceptions'];
                 $allowSubscriptionPrice = $data['cf-subscription-price']; 
                 $allowClubCardPrice = $data['cf-club-card-price'];
+                $allowAdHocPayment = $data['cf-ad-hoc-payment'];
                 $vat = $data['cf-vat'];
 
                 $locale = $this->config('i18n.locale');
@@ -144,6 +145,7 @@ class ConfigController extends AbstractActionController
                 $optionManager->set('service.calendar.day-exceptions', $calendarDayExceptions);
                 $optionManager->set('service.allow.subscription.price', $allowSubscriptionPrice);
                 $optionManager->set('service.allow.clubcard.price', $allowClubCardPrice);
+                $optionManager->set('service.allow.adhoc.payment', $allowAdHocPayment);
                 $optionManager->set('service.vat', $vat);
 
                 $this->flashMessenger()->addSuccessMessage('Configuration has been saved');
@@ -162,6 +164,7 @@ class ConfigController extends AbstractActionController
             $behaviourForm->get('cf-calendar-day-exceptions')->setValue($optionManager->get('service.calendar.day-exceptions'));
             $behaviourForm->get('cf-subscription-price')->setValue($optionManager->get('service.allow.subscription.price'));
             $behaviourForm->get('cf-club-card-price')->setValue($optionManager->get('service.allow.clubcard.price'));
+            $behaviourForm->get('cf-ad-hoc-payment')->setValue($optionManager->get('service.allow.adhoc.payment'));
             $behaviourForm->get('cf-vat')->setValue($optionManager->get('service.vat', '19'));
         }
 

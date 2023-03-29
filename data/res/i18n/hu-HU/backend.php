@@ -263,6 +263,9 @@ return array(
 
     'Subscription price' => 'Bérletes ár',
     'Club Card price' => 'Klubkártya ár',
+    'Ad hoc payment' => 'Alkalmi fizetés',
+    'Allow ad-hoc payments' => 'Alkalmi fizetések engedélyezése',
+    
     'Allow set up subscription price' => 'Bérletes ár beállításának engedélyezése',
     'Allow set up club card price' => 'Klubkártya ár beállításának engedélyezése',
 
