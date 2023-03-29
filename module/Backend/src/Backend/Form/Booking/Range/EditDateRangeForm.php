@@ -5,9 +5,19 @@ namespace Backend\Form\Booking\Range;
 use Booking\Entity\Booking;
 use Laminas\Form\Form;
 use Laminas\InputFilter\Factory;
+use Booking\Service\BookingService;
+
 
 class EditDateRangeForm extends Form
 {
+    protected $bookingService;
+
+    public function __construct(BookingService $bookingService)
+    {
+        parent::__construct();
+
+        $this->bookingService = $bookingService;
+    }    
 
     public function init()
     {
@@ -59,7 +69,7 @@ class EditDateRangeForm extends Form
             ),
             'options' => array(
                 'label' => 'Payment',
-                'value_options' => Booking::$paymentOptions,
+                'value_options' => $this->bookingService->getPaymentOptions(),
             ),
         ));
 

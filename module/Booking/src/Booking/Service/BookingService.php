@@ -145,4 +145,19 @@ class BookingService extends AbstractService
         return $booking;
     }
 
+    public function getPaymentOptions()
+    {
+        $paymentOptions = array();
+
+        if ($this->optionManager->get('service.allow.subscription.price') == 'true') {
+            $paymentOptions['0'] = 'Season ticket';
+        }
+
+        if ($this->optionManager->get('service.allow.adhoc.payment') == 'true') {
+            $paymentOptions['1'] = 'Ad hoc';
+        }
+
+        return $paymentOptions;
+    }
+
 }

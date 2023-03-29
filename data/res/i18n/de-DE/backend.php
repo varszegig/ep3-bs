@@ -266,6 +266,9 @@ return array(
     'Allow set up subscription price' => 'Abo-Preis festlegen',
     'Allow set up club card price' => 'Vereinskarten-Preis festlegen',
 
+    'Ad hoc payment' => 'Ad-hoc Zahlung',
+    'Allow ad-hoc payments' => 'Ad-hoc Zahlung erlauben',
+
     'Your name' => 'Ihr Name',
     'Will be shown as the operator of this site.<br>Displayed next to the logo, for example.'
         => 'Wird Ihren Besuchern als Betreiber angezeigt.<br>Erscheint z.B. ganz oben neben dem Logo.',

@@ -155,6 +155,20 @@ class BehaviourForm extends Form
         ));   
         
         $this->add(array(
+            'name' => 'cf-ad-hoc-payment',
+            'type' => 'Checkbox',
+            'attributes' => array(
+                'id' => 'cf-ad-hoc-payment',
+            ),
+            'options' => array(
+                'label' => 'Ad hoc payment',
+                'notes' => 'Allow ad-hoc payments',
+                'checked_value' => 'true',
+                'unchecked_value' => 'false',
+            ),
+        ));   
+
+        $this->add(array(
             'name' => 'cf-vat',
             'type' => Element\Number::class,
             'attributes' => array(

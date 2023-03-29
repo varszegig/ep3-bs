@@ -512,6 +512,8 @@ return array(
         'factories' => array(
             'Backend\Form\Booking\EditForm' => 'Backend\Form\Booking\EditFormFactory',
 
+            'Backend\Form\Booking\Range\EditDateRangeForm' => 'Backend\Form\Booking\Range\EditDateRangeFormFactory',
+
             'Backend\Form\Event\EditForm' => 'Backend\Form\Event\EditFormFactory',
 
             'Backend\Form\ConfigSquare\EditProductForm' => 'Backend\Form\ConfigSquare\EditProductFormFactory',

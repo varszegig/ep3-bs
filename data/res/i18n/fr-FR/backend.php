@@ -256,6 +256,9 @@ return array(
 
     'Subscription price' => 'Prix de l\'abonnement',
     'Club Card price' => 'Prix de la carte de club',
+    'Ad hoc payment' => 'Paiement ad hoc',
+    'Allow ad-hoc payments' => 'Permettre les paiements ad hoc',
+
     'Allow set up subscription price' => 'Permettre de définir le prix de l\'abonnement',
     'Allow set up club card price' => 'Permettre de définir le prix de la carte de club',
 

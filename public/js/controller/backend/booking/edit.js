@@ -82,6 +82,7 @@
             disableFormElement(repeat);
 
             var editMode = tagProvider.data("edit-mode-tag");
+            console.log(payment.val());
 
             if (editMode == "booking") {
                 disableFormElement("#bf-time-start");
@@ -94,9 +95,9 @@
                 if (payment.val() == "0") {
                     disableFormElement("#bf-status-billing");
                     disableFormElement("#bf-sid");
+                    disableFormElement("#bf-notes");
                 }
                 disableFormElement("#bf-quantity");
-                disableFormElement("#bf-notes");
                 disableFormElement("#bf-payment");
                 disableFormElement("#bf-date-end");
             }
