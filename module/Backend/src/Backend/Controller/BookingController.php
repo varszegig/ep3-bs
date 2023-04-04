@@ -672,7 +672,7 @@ class BookingController extends AbstractActionController
                     $rate = $bill->get('rate');
                     $gross = $bill->get('gross');
                 }
-
+                
                 switch ($create) {
                     case 'default-bill':
                         foreach ($reservationManager->getBy(['bid' => $bid]) as $reservation) {
@@ -704,30 +704,34 @@ class BookingController extends AbstractActionController
                         }
                         break;
                     case 'cash-payment':
-                        $bookingBillManager->save(new Booking\Bill(array(
-                            'bid' => $bid,
-                            'description' => $this->t('Cash payment'),
-                            'quantity' => $quantity,
-                            'time' => $time,
-                            'price' => - $priceSum,
-                            'rate' => $rate,
-                            'gross' => $gross,
-                        )));
+                        if ($bills) {
+                            $bookingBillManager->save(new Booking\Bill(array(
+                                'bid' => $bid,
+                                'description' => $this->t('Cash payment'),
+                                'quantity' => $quantity,
+                                'time' => $time,
+                                'price' => - $priceSum,
+                                'rate' => $rate,
+                                'gross' => $gross,
+                            )));
 
-                        $created = true;
+                            $created = true;
+                        }
                         break;
                     case 'bank-transfer':
-                        $bookingBillManager->save(new Booking\Bill(array(
-                            'bid' => $bid,
-                            'description' => $this->t('Bank transfer'),
-                            'quantity' => $quantity,
-                            'time' => $time,
-                            'price' => - $priceSum,
-                            'rate' => $rate,
-                            'gross' => $gross,
-                        )));
+                        if ($bills) {
+                            $bookingBillManager->save(new Booking\Bill(array(
+                                'bid' => $bid,
+                                'description' => $this->t('Bank transfer'),
+                                'quantity' => $quantity,
+                                'time' => $time,
+                                'price' => - $priceSum,
+                                'rate' => $rate,
+                                'gross' => $gross,
+                            )));
 
-                        $created = true;
+                            $created = true;
+                        }
                         break;
                 }
 

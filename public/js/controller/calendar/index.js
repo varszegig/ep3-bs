@@ -319,12 +319,12 @@
 
                     var eventGroupOverlay = $("#" + eventGroup + "-overlay-" + dateIndex);
 
-                    if (! eventGroupOverlay.length) {
-                        eventGroupOverlay = eventGroupCellFirst.clone();
-                        eventGroupOverlay.appendTo( eventGroupCellFirst.closest("td") );
-                        eventGroupOverlay.attr("id", eventGroup + "-overlay-" + dateIndex);
-                        eventGroupOverlay.removeClass(eventGroup);
-                    }
+                    // if (! eventGroupOverlay.length) {
+                    //     eventGroupOverlay = eventGroupCellFirst.clone();
+                    //     eventGroupOverlay.appendTo( eventGroupCellFirst.closest("td") );
+                    //     eventGroupOverlay.attr("id", eventGroup + "-overlay-" + dateIndex);
+                    //     eventGroupOverlay.removeClass(eventGroup);
+                    // }
 
                     var eventGroupOverlayLabel = eventGroupOverlay.find(".cc-label");
 

@@ -44,7 +44,12 @@ where you can find stable and (latest) development releases.
 
 ## Version
 
-The current version is 1.17.1 from March, 2023.
+The current version is 1.17.2 from April, 2023.
+
+Version 1.17.2
+Bugfixes:
+1) Faulty overlay group created by events
+2) Not pissible payment by bills, if no prescription.
 
 Version 1.17.1
 Bugfixes:
